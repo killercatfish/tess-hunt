@@ -73,10 +73,12 @@ def claim_next(con, labels=None):
 
 
 def finish(con, tic, status, error=None, **fields):
-    fields.update(status=status, error=error, finished=time.time())
+    now = time.time()
+    started = con.execute("SELECT started FROM targets WHERE tic=?", (tic,)).fetchone()[0]
+    fields.update(status=status, error=error, finished=now, runtime_s=now - started if started else None)
     sets = ",".join(f"{k}=?" for k in fields)
     with con:
-        con.execute(f"UPDATE targets SET {sets}, runtime_s=finished-started WHERE tic=?", list(fields.values()) + [tic])
+        con.execute(f"UPDATE targets SET {sets} WHERE tic=?", list(fields.values()) + [tic])
 
 
 def save_signals(con, tic, signals):
