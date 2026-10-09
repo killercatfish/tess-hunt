@@ -31,7 +31,7 @@ def cortex_vlm(cfg, png, summary):
     a = cfg["audit"]
     with open(png, "rb") as fh:
         b64 = base64.b64encode(fh.read()).decode()
-    body = {"model": a["model"], "temperature": 0.2, "max_tokens": 600,
+    body = {"model": a["model"], "temperature": 0.2, "max_tokens": a.get("max_tokens", 1500), **a.get("extra_body", {}),
             "messages": [{"role": "user", "content": [
                 {"type": "text", "text": PROMPT + "\n\nSUMMARY JSON:\n" + summary},
                 {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}}]}]}
@@ -41,16 +41,48 @@ def cortex_vlm(cfg, png, summary):
         "X-HKOS-Trace": f"claude:{trace}" if trace else "tess-hunt:pipeline"})
     with urllib.request.urlopen(req, timeout=a["timeout_s"]) as r:
         out = json.load(r)
-    return out["choices"][0]["message"]["content"].strip()
+    note = (out["choices"][0]["message"].get("content") or "").strip()
+    if not note:
+        raise RuntimeError(f"empty reply (finish_reason={out['choices'][0].get('finish_reason')}); thinking model out of budget?")
+    return note
 
 
 def claude_cli(cfg, png, summary):
     """Fresh headless Claude Code session restricted to the Read tool, run in the candidate dir."""
     d = os.path.dirname(png)
     p = PROMPT + f"\n\nRead the image {os.path.basename(png)} and use this summary JSON:\n" + summary
-    r = subprocess.run(["claude", "-p", p, "--allowedTools", "Read", "--disallowedTools", "Bash,Edit,Write"],
+    r = subprocess.run(["claude", "-p", p, "--allowedTools", "Read", "--disallowedTools", "Bash", "Edit", "Write", "WebFetch", "WebSearch"],
                        cwd=d, capture_output=True, text=True, timeout=cfg["audit"]["timeout_s"])
     return r.stdout.strip()
+
+
+def compare(cfg, models, out_dir):
+    """Run several cortex models over a snapshot of survivor files (sig*.png + sig*.json) in out_dir;
+    writes <tic>/sig<N>.audit.<model>.txt. For model comparisons only; never touches the DB."""
+    import copy
+    import time
+    done = []
+    for root, _, files in sorted(os.walk(out_dir)):
+        for f in sorted(files):
+            if not (f.startswith("sig") and f.endswith(".json")):
+                continue
+            stem = f[:-5]
+            png, js = os.path.join(root, stem + ".png"), os.path.join(root, f)
+            for m in models:
+                c = copy.deepcopy(cfg)
+                c["audit"]["model"] = m
+                dest = os.path.join(root, f"{stem}.audit.{m}.txt")
+                if os.path.exists(dest):
+                    continue
+                t = time.time()
+                try:
+                    note = cortex_vlm(c, png, _summary_text(js))
+                except Exception as ex:
+                    note = f"[audit failed: {type(ex).__name__}: {ex}]"
+                with open(dest, "w") as fh:
+                    fh.write(note + "\n")
+                done.append((root, stem, m, round(time.time() - t)))
+    return done
 
 
 def run(cfg, redo=False):

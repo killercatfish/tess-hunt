@@ -21,6 +21,9 @@ def main(argv=None):
     sub.add_parser("report")
     s = sub.add_parser("audit")
     s.add_argument("--redo", action="store_true")
+    s = sub.add_parser("audit-compare", help="run several cortex models over a snapshot dir of survivors")
+    s.add_argument("dir")
+    s.add_argument("--models", nargs="+", default=["qwen3vl", "qwen38"])
     sub.add_parser("status")
     s = sub.add_parser("requeue", help="put error stars back in the queue")
     s.add_argument("--status", default="error")
@@ -55,6 +58,10 @@ def main(argv=None):
         from . import audit, report
         print("audited", audit.run(cfg, a.redo))
         report.build(cfg)
+    elif a.cmd == "audit-compare":
+        from . import audit
+        for row in audit.compare(cfg, a.models, a.dir):
+            print(*row)
     elif a.cmd == "status":
         con = db.connect(cfg["paths"]["db"])
         for row in con.execute("SELECT label, status, COUNT(*) FROM targets GROUP BY 1,2 ORDER BY 1,2"):

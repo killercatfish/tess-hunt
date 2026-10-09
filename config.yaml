@@ -78,6 +78,8 @@ audit:
   enabled: true
   backend: cortex_vlm            # cortex_vlm (local, sovereign) | claude_cli (run from the Mac)
   endpoint: http://127.0.0.1:11434/v1/chat/completions
-  model: qwen3vl
+  model: qwen38                  # vision-capable; thinking disabled below (it spent 4000 tokens thinking otherwise)
+  max_tokens: 1500
+  extra_body: {chat_template_kwargs: {enable_thinking: false}}
   requester: tess.audit
   timeout_s: 600
