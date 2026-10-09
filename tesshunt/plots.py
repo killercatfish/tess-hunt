@@ -120,6 +120,9 @@ def diagnostic(path, tic, sig, lc, prior, star, cfg):
              f"SDE={sig['sde']:.1f}  SNR={sig['snr']:.1f}  N_tr={sig['n_transits']}  Rp={sig.get('rp_rearth') or float('nan'):.2f} R⊕",
              f"BLS cross-check P={sig.get('bls_period')}", f"VERDICT: {sig.get('verdict')}", ""]
     for name, r in tests.items():
+        if name == "systematics" and r.get("pass") is None:
+            lines.append("run  systematics: run-level, see report/json")
+            continue
         extra = r.get("why") or r.get("error") or ""
         lines.append(f"{MARK.get(r.get('pass'))}  {name} {extra[:38]}")
     ax.text(0, 1, "\n".join(lines), va="top", family="monospace", fontsize=7.5)

@@ -76,7 +76,8 @@ kill_tests:
 
 audit:
   enabled: true
-  backend: cortex_vlm            # cortex_vlm (local, sovereign) | claude_cli (run from the Mac)
+  backend: mac_claude            # mac_claude: scripts/audit_from_mac.sh (fresh read-only claude -p per survivor)
+                                 # cortex_vlm: local model below (validation: misreads statistics; see validation/AUDIT_COMPARISON.md)
   endpoint: http://127.0.0.1:11434/v1/chat/completions
   model: qwen38                  # vision-capable; thinking disabled below (it spent 4000 tokens thinking otherwise)
   max_tokens: 1500

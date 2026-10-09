@@ -21,6 +21,7 @@ def main(argv=None):
     sub.add_parser("report")
     s = sub.add_parser("audit")
     s.add_argument("--redo", action="store_true")
+    s.add_argument("--import-notes", action="store_true", help="load sig*.audit.txt files written on the Mac")
     s = sub.add_parser("audit-compare", help="run several cortex models over a snapshot dir of survivors")
     s.add_argument("dir")
     s.add_argument("--models", nargs="+", default=["qwen3vl", "qwen38"])
@@ -56,7 +57,8 @@ def main(argv=None):
         print(report.build(cfg))
     elif a.cmd == "audit":
         from . import audit, report
-        print("audited", audit.run(cfg, a.redo))
+        print("imported" if a.import_notes else "audited",
+              audit.import_notes(cfg) if a.import_notes else audit.run(cfg, a.redo))
         report.build(cfg)
     elif a.cmd == "audit-compare":
         from . import audit

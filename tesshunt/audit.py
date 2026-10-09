@@ -83,9 +83,24 @@ def compare(cfg, models, out_dir):
     return done
 
 
+def import_notes(cfg):
+    """Load sig<N>.audit.txt files (e.g. written on the Mac by scripts/audit_from_mac.sh) into the DB."""
+    con = db.connect(cfg["paths"]["db"])
+    n = 0
+    for tic, it in con.execute("SELECT tic, iteration FROM signals WHERE verdict='survivor'").fetchall():
+        f = os.path.join(cfg["paths"]["candidates_dir"], str(tic), f"sig{it}.audit.txt")
+        if os.path.exists(f):
+            with open(f) as fh, con:
+                con.execute("UPDATE signals SET audit=? WHERE tic=? AND iteration=?", (fh.read().strip(), tic, it))
+            n += 1
+    return n
+
+
 def run(cfg, redo=False):
     con = db.connect(cfg["paths"]["db"])
     q = "SELECT tic, iteration FROM signals WHERE verdict='survivor'" + ("" if redo else " AND audit IS NULL")
+    if cfg["audit"]["backend"] == "mac_claude":
+        raise SystemExit("audit backend is mac_claude: run scripts/audit_from_mac.sh on the Mac")
     fn = {"cortex_vlm": cortex_vlm, "claude_cli": claude_cli}[cfg["audit"]["backend"]]
     n = 0
     for tic, it in con.execute(q).fetchall():
