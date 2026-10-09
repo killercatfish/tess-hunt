@@ -1,0 +1,15 @@
+# Copy to ~/.config/systemd/user/ then: systemctl --user daemon-reload && systemctl --user start tess-hunt
+# (loginctl enable-linger $USER keeps it running after logout)
+[Unit]
+Description=tess-hunt pipeline (resumable)
+
+[Service]
+Type=simple
+WorkingDirectory=%h/dev/tess-hunt
+ExecStart=%h/dev/tess-hunt/run.sh
+Nice=19
+IOSchedulingClass=idle
+KillSignal=SIGINT
+
+[Install]
+WantedBy=default.target

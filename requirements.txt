@@ -1,0 +1,14 @@
+lightkurve
+astropy
+numpy
+scipy
+pandas
+transitleastsquares
+wotan
+astroquery
+matplotlib
+pyyaml
+batman-package
+setuptools   # batman imports distutils, gone from the 3.12 stdlib
+psutil
+tabulate

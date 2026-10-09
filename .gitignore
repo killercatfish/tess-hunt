@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+# run data lives on Cortex only
+data/
+results*.db
+candidates/
+report*.html
+validation/out/
+logs/
+PAUSE
