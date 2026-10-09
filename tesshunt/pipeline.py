@@ -179,3 +179,10 @@ def postprocess(cfg):
             v = killtests.verdict(sig, cfg)
             con.execute("UPDATE signals SET tests=?, verdict=?, score=? WHERE tic=? AND iteration=?",
                         (json.dumps(tests, default=db._json_default), v, killtests.score(sig, cfg), tic, it))
+            js = os.path.join(cfg["paths"]["candidates_dir"], str(tic), f"sig{it}.json")
+            if os.path.exists(js):  # keep the per-candidate summary in step with the DB
+                with open(js) as fh:
+                    d = json.load(fh)
+                d["signal"].update(tests=tests, verdict=v)
+                with open(js, "w") as fh:
+                    json.dump(d, fh, indent=1, default=db._json_default)
