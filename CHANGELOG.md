@@ -20,3 +20,9 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   (span covered / total baseline). On multi-year stitched data (~0.05) this made durations ~20x too
   short and TLS SNR ~4x too low (smoke test: L 168-9 b duration 0.07 h vs 1.45 h expected, and
   masking failed so iterations re-found the same planet). `search.py` sets the factor to 1.
+- METHOD (found on the validation set, so flagged explicitly): the secondary-eclipse test now
+  combines per-epoch depths robustly (drops single epochs > 5 sigma from the median when >= 5
+  epochs). TOI-1450 A b (real planet, 40 sectors) was killed by a 6.4 sigma "secondary" at phase
+  0.63 made by a few stray deep events belonging to a separate junk signal. A true secondary
+  repeats every orbit, so clipping lone events doesn't weaken the EB test. Thresholds unchanged
+  (3 sigma at 0.5, 5 sigma scan). Whole validation set re-run on this code.

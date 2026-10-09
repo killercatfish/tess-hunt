@@ -78,6 +78,17 @@ def combine(d, e):
     return float(np.sum(w * d) / np.sum(w)), float(1 / np.sqrt(np.sum(w)))
 
 
+def combine_robust(d, e, clip=5.0):
+    """As combine(), but first drop single epochs > clip sigma from the median. A real eclipse
+    repeats every orbit; a few stray deep events (flares' rebound, momentum dumps, another
+    signal's dips) must not masquerade as one."""
+    if len(d) >= 5:
+        keep = np.abs(d - np.median(d)) / e <= clip
+        if keep.sum() >= 3:
+            d, e = d[keep], e[keep]
+    return combine(d, e)
+
+
 # ---------------------------------------------------------------- individual tests
 
 def odd_even(ctx):
@@ -99,7 +110,7 @@ def secondary(ctx):
     pt = ctx.per_transit(0.5)
     if pt is None:
         return {"pass": None, "why": "no data at phase 0.5"}
-    d, e = combine(pt["depth"], pt["err"])
+    d, e = combine_robust(pt["depth"], pt["err"])
     sig_half = d / e
     step = max(ctx.dur / ctx.P / 2, 0.002)
     best = (0.0, 0.5, 0.0)
@@ -107,7 +118,7 @@ def secondary(ctx):
         p = ctx.per_transit(ph)
         if p is None:
             continue
-        dd, ee = combine(p["depth"], p["err"])
+        dd, ee = combine_robust(p["depth"], p["err"])
         if dd / ee > best[0]:
             best = (dd / ee, ph, dd)
     ok = sig_half <= k["secondary_sigma_half"] and best[0] <= k["secondary_sigma_scan"]
