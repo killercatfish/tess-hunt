@@ -76,8 +76,8 @@ def evaluate(cfg):
     prow = []
     for r in pl.itertuples():
         s = sig[(sig.tic == r.tic) & (sig.passes_threshold == 1)]
-        exact = s[[_pmatch(x, r.pl_orbper) for x in s.period]]
-        alias = s[[_pmatch(x, r.pl_orbper, aliases=(2, 0.5, 3, 1 / 3)) for x in s.period]]
+        exact = s[s.period.map(lambda x: _pmatch(x, r.pl_orbper)).astype(bool)]
+        alias = s[s.period.map(lambda x: _pmatch(x, r.pl_orbper, aliases=(2, 0.5, 3, 1 / 3))).astype(bool)]
         hit = exact.iloc[0] if len(exact) else None
         fails = []
         if hit is not None:
@@ -100,7 +100,7 @@ def evaluate(cfg):
     erow = []
     for r in eb.itertuples():
         s = sig[(sig.tic == r.tic) & (sig.passes_threshold == 1)]
-        rel = s[[_pmatch(x, r.Per, 0.01, (1, 2, 0.5)) for x in s.period]]
+        rel = s[s.period.map(lambda x: _pmatch(x, r.Per, 0.01, (1, 2, 0.5))).astype(bool)]
         surv = s[s.verdict == "survivor"]
         why = set()
         for t in rel.tests:
