@@ -38,9 +38,21 @@ def choose_products(sr, cfg):
     return {s: (i, a) for s, (_, i, a) in sorted(best.items())}
 
 
+def _retry(fn, tries=4, wait=20):
+    """MAST throws transient RemoteServiceErrors; back off rather than lose the star."""
+    import time
+    for k in range(tries):
+        try:
+            return fn()
+        except Exception:
+            if k == tries - 1:
+                raise
+            time.sleep(wait * (k + 1))
+
+
 def fetch(cfg, tic):
     import lightkurve as lk
-    sr = lk.search_lightcurve(f"TIC {tic}", mission="TESS")
+    sr = _retry(lambda: lk.search_lightcurve(f"TIC {tic}", mission="TESS"))
     chosen = choose_products(sr, cfg)
     if cfg["targets"].get("require_2min") and not any(a == "SPOC" for _, a in chosen.values()):
         raise NoData("no 2-min SPOC data")
@@ -50,7 +62,7 @@ def fetch(cfg, tic):
     for sector, (i, author) in chosen.items():
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            lc = sr[i].download(download_dir=star_cache(cfg, tic), quality_bitmask="default")
+            lc = _retry(lambda: sr[i].download(download_dir=star_cache(cfg, tic), quality_bitmask="default"))
         if lc is None:
             continue
         out.append((sector, author, lc))
