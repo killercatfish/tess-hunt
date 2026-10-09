@@ -62,26 +62,24 @@ def compare(cfg, models, out_dir):
     import copy
     import time
     done = []
+    items = []
     for root, _, files in sorted(os.walk(out_dir)):
-        for f in sorted(files):
-            if not (f.startswith("sig") and f.endswith(".json")):
+        items += [(root, f[:-5]) for f in sorted(files) if f.startswith("sig") and f.endswith(".json")]
+    for m in models:  # model-outer: one model load per model, not one per call
+        c = copy.deepcopy(cfg)
+        c["audit"]["model"] = m
+        for root, stem in items:
+            dest = os.path.join(root, f"{stem}.audit.{m}.txt")
+            if os.path.exists(dest):
                 continue
-            stem = f[:-5]
-            png, js = os.path.join(root, stem + ".png"), os.path.join(root, f)
-            for m in models:
-                c = copy.deepcopy(cfg)
-                c["audit"]["model"] = m
-                dest = os.path.join(root, f"{stem}.audit.{m}.txt")
-                if os.path.exists(dest):
-                    continue
-                t = time.time()
-                try:
-                    note = cortex_vlm(c, png, _summary_text(js))
-                except Exception as ex:
-                    note = f"[audit failed: {type(ex).__name__}: {ex}]"
-                with open(dest, "w") as fh:
-                    fh.write(note + "\n")
-                done.append((root, stem, m, round(time.time() - t)))
+            t = time.time()
+            try:
+                note = cortex_vlm(c, os.path.join(root, stem + ".png"), _summary_text(os.path.join(root, stem + ".json")))
+            except Exception as ex:
+                note = f"[audit failed: {type(ex).__name__}: {ex}]"
+            with open(dest, "w") as fh:
+                fh.write(note + "\n")
+            done.append((root, stem, m, round(time.time() - t)))
     return done
 
 
