@@ -113,17 +113,30 @@ def secondary(ctx):
     d, e = combine_robust(pt["depth"], pt["err"])
     sig_half = d / e
     step = max(ctx.dur / ctx.P / 2, 0.002)
-    best = (0.0, 0.5, 0.0)
+    best = (0.0, 0.5, 0.0, 0.0)   # (leave-one-out sigma, phase, depth, raw sigma)
     for ph in np.arange(0.3, 0.7 + 1e-9, step)[:400]:
         p = ctx.per_transit(ph)
         if p is None:
             continue
         dd, ee = combine_robust(p["depth"], p["err"])
-        if dd / ee > best[0]:
-            best = (dd / ee, ph, dd)
+        loo = _leave_one_out_sigma(p["depth"], p["err"])
+        if loo > best[0]:
+            best = (loo, ph, dd, dd / ee)
     ok = sig_half <= k["secondary_sigma_half"] and best[0] <= k["secondary_sigma_scan"]
     return {"pass": bool(ok), "sigma_half": sig_half, "depth_half_ppm": d * 1e6,
-            "scan_max_sigma": best[0], "scan_phase": best[1], "scan_depth_ppm": best[2] * 1e6}
+            "scan_max_sigma": best[0], "scan_raw_sigma": best[3], "scan_phase": best[1], "scan_depth_ppm": best[2] * 1e6}
+
+
+def _leave_one_out_sigma(d, e):
+    """Off-phase scan statistic: significance after dropping the single most significant epoch.
+    A real (eccentric) secondary repeats every orbit; one coincident dip from something else doesn't.
+    With a single epoch there is nothing left, so it can't count as a repeating eclipse."""
+    if len(d) < 2:
+        return 0.0
+    i = int(np.argmax(d / e))
+    keep = np.arange(len(d)) != i
+    dd, ee = combine_robust(d[keep], e[keep])
+    return dd / ee
 
 
 def duration(sig, star, cfg):

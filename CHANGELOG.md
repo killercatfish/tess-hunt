@@ -26,3 +26,11 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   0.63 made by a few stray deep events belonging to a separate junk signal. A true secondary
   repeats every orbit, so clipping lone events doesn't weaken the EB test. Thresholds unchanged
   (3 sigma at 0.5, 5 sigma scan). Whole validation set re-run on this code.
+- METHOD (approved by Josh 2026-10-09; found on validation, flagged): the off-phase secondary SCAN
+  (phases 0.3-0.7) now scores each phase by its significance after leaving out the single most
+  significant epoch. TOI-2540 b (2 sectors, 3 transits) was killed by an 8.4 sigma "eccentric secondary"
+  that was one coincident dip from a separate 27.8 d event. Phase-0.5 test unchanged and strict;
+  thresholds unchanged. Accepted risk: an eccentric EB with only 2 observed secondaries is no longer
+  caught by this test alone (odd/even, size, shape, sector consistency still apply). Validation re-run.
+- Audit default model: qwen38 with thinking disabled (qwen3vl misread statistics; qwen38 with
+  thinking on spent its whole 4000-token budget thinking). Comparison vs claude -p in progress.
