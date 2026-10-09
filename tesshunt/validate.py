@@ -28,6 +28,7 @@ def vcfg(cfg):
 
 def build_sets(n_hosts=20, n_eb_shallow=5, n_eb_deep=5, seed=7):
     """Draw the validation sets once from live catalogs and freeze them as CSV (committed)."""
+    os.makedirs(VDIR, exist_ok=True)
     rng = np.random.default_rng(seed)
     p = pd.read_csv(PS_QUERY)
     p["tic"] = p["tic_id"].str.replace("TIC ", "", regex=False).astype(int)
