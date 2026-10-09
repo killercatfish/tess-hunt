@@ -16,3 +16,7 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   windowed shortcut); BLS is a recorded cross-check only.
 - Added kill test `harmonic`: a re-search iteration whose period matches (x1, x2, x1/2) an
   earlier signal on the same star fails. Catches an EB's secondary resurfacing as a "new planet".
+- BUG FIX (method, not threshold): TLS multiplies its duration estimate by a data "fill factor"
+  (span covered / total baseline). On multi-year stitched data (~0.05) this made durations ~20x too
+  short and TLS SNR ~4x too low (smoke test: L 168-9 b duration 0.07 h vs 1.45 h expected, and
+  masking failed so iterations re-found the same planet). `search.py` sets the factor to 1.

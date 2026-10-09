@@ -9,6 +9,18 @@ from .lightcurves import bin_lc
 from . import stellar
 
 
+def _patch_tls_fill_factor():
+    """TLS scales its duration estimate by a 'fill factor' (data span / baseline). For multi-year
+    stitched light curves that is ~0.05, so durations come out ~20x too short and TLS's SNR (which
+    integrates over that in-transit window) ~4x too low. Phase coverage doesn't depend on the gaps
+    between years, so the correction is wrong for our data: neutralize it. See CHANGELOG 2026-10-09."""
+    import transitleastsquares.stats as st
+    st.calculate_fill_factor = lambda t: 1.0
+
+
+_patch_tls_fill_factor()
+
+
 def _star_kwargs(star, ab):
     r = star.get("rad") or 0.5
     m = star.get("mass") or 0.5
