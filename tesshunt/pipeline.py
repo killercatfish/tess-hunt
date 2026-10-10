@@ -42,6 +42,9 @@ def process_star(cfg, con, tic, catalogs):
     del sectors
     ab = stellar.limb_darkening(tic)
     sigs = search.iterative(lc, star, ab, cfg)
+    found = [s for s in sigs if s["passes_threshold"]]
+    if found and cfg["prep"].get("redetrend_masked", True):
+        lc = lightcurves.redetrend_masked(cfg, lc, found)  # kill tests + plots see un-eaten transits
     prior = []
     for s in sigs:
         if s["passes_threshold"]:

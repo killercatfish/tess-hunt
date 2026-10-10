@@ -33,6 +33,7 @@ prep:
   window_max_d: 1.5
   edge_cutoff_d: 0.0
   break_tolerance_d: 0.5
+  redetrend_masked: true         # after search, re-detrend with found transits masked before kill tests
 
 search:
   period_min_d: 0.5

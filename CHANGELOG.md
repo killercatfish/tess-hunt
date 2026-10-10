@@ -34,3 +34,8 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   caught by this test alone (odd/even, size, shape, sector consistency still apply). Validation re-run.
 - Audit default model: qwen38 with thinking disabled (qwen3vl misread statistics; qwen38 with
   thinking on spent its whole 4000-token budget thinking). Comparison vs claude -p in progress.
+- METHOD: after the search, the light curve is re-detrended with all threshold-passing transits
+  masked (trend fit out-of-transit, interpolated across), and kill tests + plots use that. Reason: the
+  Claude audits saw the folded baseline sitting +100-400 ppm high in ~15/24 validation survivors, i.e. the
+  biweight was partly fitting the transits, biasing every depth-based test. Search itself unchanged.
+  NOTE: the 200-star pilot was started (Josh's call) on the code BEFORE this change.

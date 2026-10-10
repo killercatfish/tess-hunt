@@ -123,6 +123,34 @@ def detrend_raw(cfg, t, raw, sector, window_d):
     return out
 
 
+def redetrend_masked(cfg, lc, signals):
+    """Re-detrend with the found transits masked: fit the biweight trend on out-of-transit points only
+    and interpolate it across the transits, so the filter can't eat into the dips. Returns a copy of lc
+    whose `flux` is the new detrended flux (raw flux untouched)."""
+    from wotan import flatten
+    from transitleastsquares import transit_mask
+    p = cfg["prep"]
+    t, raw = lc["time"], lc["raw"]
+    intr = np.zeros(len(t), bool)
+    for s in signals:
+        intr |= transit_mask(t, s["period"], cfg["search"]["mask_width_mult"] * s["duration_h"] / 24, s["t0"])
+    flat = np.array(lc["flux"], copy=True)
+    for sec in np.unique(lc["sector"]):
+        m = lc["sector"] == sec
+        oot = m & ~intr
+        if oot.sum() < 50:
+            continue
+        _, trend = flatten(t[oot], raw[oot], method="biweight", window_length=lc["window_d"],
+                           edge_cutoff=p["edge_cutoff_d"], break_tolerance=p["break_tolerance_d"], return_trend=True)
+        ok = np.isfinite(trend)
+        if ok.sum() < 10:
+            continue
+        flat[m] = raw[m] / np.interp(t[m], t[oot][ok], trend[ok])
+    out = dict(lc)
+    out["flux"] = flat
+    return out
+
+
 def bin_lc(t, f, e, minutes):
     w = minutes / 1440.0
     idx = np.floor((t - t.min()) / w).astype(np.int64)
