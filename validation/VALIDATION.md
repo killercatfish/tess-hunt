@@ -1,17 +1,17 @@
-# Step 0.5 validation (2026-10-09, Cortex; final = run 3, after both secondary-test fixes)
+# Step 0.5 validation (2026-10-09/10, Cortex; final = run 5, current code)
 
 Raw machine output: `validation/out/VALIDATION.md` on Cortex (run 1, before the fix: `VALIDATION_run1.md`).
 Sets are frozen in `validation/known_planets.csv` (20 TESS-discovered hosts, 26 planets, Rp < 4 R⊕,
 Teff < 5200 K, d < 100 pc) and `validation/known_ebs.csv` (10 Prša+2022 detached EBs; 5 shallow 0.5–5%, 5 deep).
 
 ## Known planets
-| | run 1 | run 2 (robust secondary) | run 3 (+ leave-one-out scan, final) |
-|---|---|---|---|
-| hosts with ≥1 planet at the right period | 18/20 | 18/20 | **18/20** |
-| planets at the right period | 23/26 | 23/26 | **23/26** (+1 only at an alias) |
-| recovered planets surviving every hard test | 21/23 | 22/23 | **23/23** |
-| EBs correctly rejected / detected | 9/9 | 9/9 | **9/9** (0 survivors on any EB star) |
-| secondary-test fails, all passing signals | 20 | 12 | 6 |
+| | run 1 | run 2 (robust secondary) | run 3 (+ leave-one-out scan) | run 4 (+ masked re-detrend) | run 5 (+ sector floor, final) |
+|---|---|---|---|---|---|
+| hosts with ≥1 planet at the right period | 18/20 | 18/20 | 18/20 | 18/20 | **18/20** |
+| planets at the right period | 23/26 | 23/26 | 23/26 | 23/26 | **23/26** (+1 only at an alias) |
+| recovered planets surviving every hard test | 21/23 | 22/23 | 23/23 | 21/23 | **23/23** |
+| EBs correctly rejected / detected | 9/9 | 9/9 | 9/9 | 9/9 | **8/9** (TIC 202509016 survives, see below) |
+| secondary-test fails, all passing signals | 20 | 12 | 6 | 7 | 7 |
 
 All recoveries are at the catalog period within 1%. Recovered planets include LHS 475 b (0.99 R⊕),
 TOI-6716 b (0.98 R⊕), TOI-1450 A b (1.13 R⊕), and all three of TOI-663 b/c/d and TOI-1260 b/c/d.
@@ -22,13 +22,21 @@ TOI-6716 b (0.98 R⊕), TOI-1450 A b (1.13 R⊕), and all three of TOI-663 b/c/d
 
 **Wrongly killed in runs 1–2, fixed in run 3:** TOI-1450 A b (run 1: stray events from another signal) and
 TOI-2540 b (runs 1–2: an "eccentric secondary" that was one coincident dip). Both fixes are in CHANGELOG.
-Both were found on this validation set, so treat these numbers as somewhat optimistic for unseen stars.
+**Wrongly killed in run 4, fixed in run 5:** TOI-712 b and TOI-2018 b, by sector consistency after the
+masked re-detrend (one sector at 2× depth; 32 sectors over 3 products with χ²/dof 2.5). Fix: 10% systematic
+floor per sector plus dropping the single worst sector (approved by Josh).
+All four fixes were found on this validation set, so treat these numbers as somewhat optimistic for unseen stars.
 
 ## Known eclipsing binaries
 - Detected at the EB period (or ×2/×½): **9/10**. TIC 192111972 (P = 22.8 d) had too few eclipses.
-- **Correctly rejected: 9/9.** No survivor of any kind on any EB star.
-- Most common killers: sector consistency, size, harmonic (the secondary re-surfacing), shape, odd/even.
-- Margin note: after the fix, TIC 202509016 is killed by sector consistency alone (run 1: also secondary).
+- **Correctly rejected: 8/9 (run 5).** Runs 1–4: 9/9.
+- Most common killers: size, shape, harmonic (the secondary re-surfacing), odd/even.
+- **Accepted limitation (Josh, option 1 of 3, 2026-10-10): TIC 202509016 survives.** It is a near-twin EB
+  (both eclipses ~2.2% deep, P = 38.60 d) found at P/2 = 19.30 d, so the eclipses stack: odd/even 0.4σ,
+  nothing at phase 0.5, not V-shaped enough (Δχ² 2.4), 12.4 R⊕ < 22, duration skipped (no TIC radius/mass).
+  Through run 4 only sector consistency killed it (per-sector depths 16,700–26,900 ppm); the run-5 floor
+  forgives that. The soft `known` flag still marks it as a catalogued EB at 2× the period, but an
+  **uncatalogued** twin EB like this could reach the survivor list. A 2%-deep, 12 R⊕ signal is obvious by eye.
 
 ## Injection-recovery grid (2 quiet stars, 50 injections)
 Recovered = right period (±1%) **and** passes SDE ≥ 9, SNR ≥ 7, ≥ 3 transits. Same map on both stars:
@@ -54,7 +62,7 @@ signal (likely rotation/spots) that the kill tests rejected.
 - `systematics` 0 fails: too few stars for the run-level test to bite. It matters on the pilot.
 
 ## Runtime
-Median 333 s per star, max 3,501 s (40-sector CVZ star), 4.9 CPU-h for 33 stars on 6 workers.
+Run 5: median 331 s per star, max 4,133 s (CVZ star), 5.2 CPU-h for 33 stars (3 workers, sharing Cortex with the pilot).
 Pilot estimate: 200 × ~330 s / 6 workers ≈ **3–5 h wall-clock**, longer if the sample has many CVZ stars.
 
 ## Audit step
@@ -66,3 +74,4 @@ correctly and found real pipeline issues. Backend is now `mac_claude` (`scripts/
 2. Secondary test hijacked by stray events from another signal (robust per-epoch combine).
 3. Transient MAST errors: retry with backoff.
 4. Report/runtime bookkeeping; `summary.json` not refreshed after postprocess.
+5. Biweight detrend partly fitting the transits (folded baseline +100–400 ppm high): re-detrend with transits masked.

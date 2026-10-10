@@ -46,3 +46,10 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   single most discrepant sector when >= 3 sectors (`sector_drop_worst`). Reason: after the masked
   re-detrend, real planets TOI-2018 b (one sector at 2x depth) and TOI-712 b (32 sectors, 3 products,
   chi2/dof 2.5) failed. Risk watched: EB TIC 202509016 was killed by this test alone.
+- KNOWN LIMITATION (accepted by Josh 2026-10-10, option 1 of 3; Claude proposed): with the floor and
+  worst-sector drop, EB TIC 202509016 now survives. It is a near-twin EB (both eclipses ~2.2%, P 38.60 d)
+  found at P/2 = 19.30 d, so odd/even (0.4 sigma) and phase-0.5 secondary cannot see it; shape is not
+  V-shaped enough; size 12.4 R_earth < 22; duration skipped (no TIC radius/mass). Only the soft `known`
+  flag catches it here. Uncatalogued equal-depth EBs found at half period can therefore reach the
+  survivor list; rely on review by eye and the audit. Alternatives declined: revert (kills TOI-712 b and
+  TOI-2018 b) or a new deep-signal hard flag (new threshold, not added). No thresholds changed.
