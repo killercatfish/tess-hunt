@@ -1,15 +1,17 @@
-# Step 0.5 validation (2026-10-09, Cortex, commit after the secondary-test fix)
+# Step 0.5 validation (2026-10-09, Cortex; final = run 3, after both secondary-test fixes)
 
 Raw machine output: `validation/out/VALIDATION.md` on Cortex (run 1, before the fix: `VALIDATION_run1.md`).
 Sets are frozen in `validation/known_planets.csv` (20 TESS-discovered hosts, 26 planets, Rp < 4 R⊕,
 Teff < 5200 K, d < 100 pc) and `validation/known_ebs.csv` (10 Prša+2022 detached EBs; 5 shallow 0.5–5%, 5 deep).
 
 ## Known planets
-| | run 1 | run 2 (final code) |
-|---|---|---|
-| hosts with ≥1 planet at the right period | 18/20 | **18/20** |
-| planets at the right period | 23/26 | **23/26** (+1 only at an alias) |
-| recovered planets surviving every hard test | 21/23 | **22/23** |
+| | run 1 | run 2 (robust secondary) | run 3 (+ leave-one-out scan, final) |
+|---|---|---|---|
+| hosts with ≥1 planet at the right period | 18/20 | 18/20 | **18/20** |
+| planets at the right period | 23/26 | 23/26 | **23/26** (+1 only at an alias) |
+| recovered planets surviving every hard test | 21/23 | 22/23 | **23/23** |
+| EBs correctly rejected / detected | 9/9 | 9/9 | **9/9** (0 survivors on any EB star) |
+| secondary-test fails, all passing signals | 20 | 12 | 6 |
 
 All recoveries are at the catalog period within 1%. Recovered planets include LHS 475 b (0.99 R⊕),
 TOI-6716 b (0.98 R⊕), TOI-1450 A b (1.13 R⊕), and all three of TOI-663 b/c/d and TOI-1260 b/c/d.
@@ -18,10 +20,9 @@ TOI-6716 b (0.98 R⊕), TOI-1450 A b (1.13 R⊕), and all three of TOI-663 b/c/d
 - **HD 15906 b, c**: only 2 sectors (4, 31). Not enough transits in TESS alone; the discovery relied on CHEOPS. Expected.
 - **TOI-2443 b** (15.7 d): 1 sector. Found only at an alias. Expected given ≥3 transits.
 
-**Wrongly killed (1):** TOI-2540 b (2 sectors, 3 transits). The eccentric-secondary scan found 8.4σ at
-phase 0.63 from what is effectively one epoch: the star's separate 27.8 d dip. Not fixed, to avoid tuning
-on the validation set. Proposed fix (needs your OK): count a *scan* detection (not phase 0.5) only if it
-survives leaving out its most significant epoch.
+**Wrongly killed in runs 1–2, fixed in run 3:** TOI-1450 A b (run 1: stray events from another signal) and
+TOI-2540 b (runs 1–2: an "eccentric secondary" that was one coincident dip). Both fixes are in CHANGELOG.
+Both were found on this validation set, so treat these numbers as somewhat optimistic for unseen stars.
 
 ## Known eclipsing binaries
 - Detected at the EB period (or ×2/×½): **9/10**. TIC 192111972 (P = 22.8 d) had too few eclipses.
@@ -53,13 +54,12 @@ signal (likely rotation/spots) that the kill tests rejected.
 - `systematics` 0 fails: too few stars for the run-level test to bite. It matters on the pilot.
 
 ## Runtime
-Median 329 s per star, max 3,560 s (40-sector CVZ star), 4.9 CPU-h for 33 stars on 6 workers.
+Median 333 s per star, max 3,501 s (40-sector CVZ star), 4.9 CPU-h for 33 stars on 6 workers.
 Pilot estimate: 200 × ~330 s / 6 workers ≈ **3–5 h wall-clock**, longer if the sample has many CVZ stars.
 
 ## Audit step
-Plumbing works: `qwen3vl` via the Cortex shim, labelled `tess.audit`, 20–30 s per candidate. **The content
-isn't trustworthy**: it misreads the statistics it's handed (calls 903 vs 889 ppm ± 50 an asymmetry, reads
-p = 0.54 as inconsistent, treats a confirmed-planet match as evidence of a false positive). Do not rely on it as-is.
+See `AUDIT_COMPARISON.md`. qwen3vl and qwen38 misread statistics; `claude -p` from the Mac reads them
+correctly and found real pipeline issues. Backend is now `mac_claude` (`scripts/audit_from_mac.sh`).
 
 ## Bugs found and fixed during validation
 1. TLS fill-factor bug: durations 20× too short and SNR about 4× too low on multi-year data. Biggest find.
