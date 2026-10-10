@@ -217,14 +217,25 @@ def sector_consistency(ctx):
         per[int(s)] = combine(pt["depth"][m], pt["err"][m])
     if len(per) < 2:
         return {"pass": None, "why": "transits in fewer than 2 sectors", "per_sector": per}
+    k = ctx.cfg["kill_tests"]
+    secs = np.array(list(per))
     d = np.array([v[0] for v in per.values()])
     e = np.array([v[1] for v in per.values()])
     mu, _ = combine(d, e)
+    # products/apertures differ by a few % in dilution: add a systematic floor to each sector's error
+    e = np.hypot(e, k.get("sector_sys_floor_frac", 0.0) * abs(mu))
+    dropped = None
+    if k.get("sector_drop_worst") and len(d) >= 3:  # one bad sector must not kill a real signal
+        i = int(np.argmax(np.abs(d - mu) / e))
+        dropped = int(secs[i])
+        keep = np.arange(len(d)) != i
+        d, e = d[keep], e[keep]
+        mu, _ = combine(d, e)
     chi2 = float(np.sum(((d - mu) / e) ** 2))
     p = float(stats.chi2.sf(chi2, len(d) - 1))
     n_det = int(np.sum(d / e >= 1))
-    return {"pass": bool(p >= ctx.cfg["kill_tests"]["sector_consistency_p"]), "chi2": chi2, "dof": len(d) - 1,
-            "p": p, "sectors_with_depth_1sigma": n_det, "n_sectors": len(d),
+    return {"pass": bool(p >= k["sector_consistency_p"]), "chi2": chi2, "dof": len(d) - 1,
+            "p": p, "sectors_with_depth_1sigma": n_det, "n_sectors": len(per), "dropped_sector": dropped,
             "per_sector_ppm": {s: (v[0] * 1e6, v[1] * 1e6) for s, v in per.items()}}
 
 

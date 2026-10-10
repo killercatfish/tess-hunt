@@ -39,3 +39,10 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   Claude audits saw the folded baseline sitting +100-400 ppm high in ~15/24 validation survivors, i.e. the
   biweight was partly fitting the transits, biasing every depth-based test. Search itself unchanged.
   NOTE: the 200-star pilot was started (Josh's call) on the code BEFORE this change.
+
+## 2026-10-10
+- THRESHOLD/METHOD (approved by Josh; found on validation, flagged): sector-consistency test now adds
+  10% of the depth in quadrature to each sector's depth error (`sector_sys_floor_frac`) and drops the
+  single most discrepant sector when >= 3 sectors (`sector_drop_worst`). Reason: after the masked
+  re-detrend, real planets TOI-2018 b (one sector at 2x depth) and TOI-712 b (32 sectors, 3 products,
+  chi2/dof 2.5) failed. Risk watched: EB TIC 202509016 was killed by this test alone.
