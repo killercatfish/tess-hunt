@@ -2,16 +2,17 @@
  "title": "Zenodo upload: Sector 114 pre-registration",
  "intro": "Reserved DOI 10.5281/zenodo.23290795. Fill the Zenodo form top to bottom; every box has a Copy button.",
  "files": [
-  "paper/prereg_s114/prereg_s114.pdf",
+  "paper/prereg_s114/prereg_s114.pdf  (the NEW one: replace the old file in the draft)",
   "paper/prereg_s114/predicted_transits_sector114.csv",
   "paper/prereg_s114/predicted_transits_2026-10_to_2027-12.csv",
-  "paper/prereg_s114/prereg_s114.tex"
+  "paper/prereg_s114/prereg_s114.tex  (NEW)",
+  "paper/prereg_s114/SHA256SUMS.txt  (NEW)"
  ],
  "fields": [
   {
    "label": "Resource type",
-   "value": "Publication / Preprint",
-   "note": "Pick it from the dropdown."
+   "value": "Other",
+   "note": "Pavel used 'Other' for his pre-registration; Preprint also works. Pick one."
   },
   {
    "label": "Title",
@@ -70,7 +71,7 @@
      "References",
      "10.5281/zenodo.23175179",
      "DOI",
-     "Publication / Other"
+     "Other"
     ],
     [
      "Is supplemented by",
@@ -86,8 +87,7 @@
   },
   {
    "label": "Reference string 2",
-   "value": "Rabtsevich, P. 2026, Preregistered TESS Sector 110 test, Zenodo, doi:10.5281/zenodo.23175179",
-   "note": "I don't know Pavel's exact title for this record; check it at doi.org/10.5281/zenodo.23175179 and fix before pasting."
+   "value": "Rabtsevich, P. 2026, A Pre-registered TESS Sector 110 Test of Two Transit-like Signals in TIC 4206066 (Version 1.1), Zenodo, doi:10.5281/zenodo.23175179"
   }
  ]
 }

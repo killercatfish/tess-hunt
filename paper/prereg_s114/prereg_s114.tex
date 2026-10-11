@@ -49,6 +49,7 @@ Using $D_\mathrm{exp} = 225$\,ppm and the measured $\sigma_{114}$:
 \toprule
 Outcome & Condition & $P$ if real & $P$ if no signal \\
 \midrule
+Insufficient data & fewer than 3 predicted transits with $\geq 50\%$ of the in-transit window covered by good data & --- & --- \\
 Supports & $D_{114} > 2\sigma_{114}$ and $|D_{114} - 225| < 2\sigma_{114}$ & 0.90 & 0.02 \\
 Inconclusive & otherwise, and not one of the rows below & 0.08 & 0.08 \\
 Disfavours & $D_{114} < 225 - 2\sigma_{114}$ (i.e.\ $\lesssim 87$\,ppm) & 0.02 & 0.90 \\
@@ -56,10 +57,13 @@ Too deep & $D_{114} > 225 + 2\sigma_{114}$ & 0.02 & $\approx 0$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-The probabilities assume $\sigma_{114} = 69$\,ppm and Gaussian errors. A ``too deep'' result would point to a blend or variability and will be reported as inconsistent with the planet interpretation as stated. Separately, the best-fit common time shift of the Sector 114 transits must lie within $\pm 48$\,min ($3\sigma$) of the prediction. A larger shift will be reported as an ephemeris failure.
+``Insufficient data'' is checked first; if it applies, no other outcome is reported and the test is deferred to the next sector that observes TOI-913. The probabilities assume $\sigma_{114} = 69$\,ppm and Gaussian errors. A ``too deep'' result would point to a blend or variability and will be reported as inconsistent with the planet interpretation as stated. Separately, the best-fit common time shift of the Sector 114 transits must lie within $\pm 48$\,min ($3\sigma$) of the prediction. A larger shift will be reported as an ephemeris failure.
 
 After the pre-registered test, we will also report, as clearly labelled secondary results: the nine-sector refit, the updated SNR, and any changes to the vetting results. A single sector cannot validate the candidate. A ``supports'' outcome means only that the signal reappeared where and as predicted.
 
+\section*{Integrity}
+SHA-256 checksums of every file in this record are listed in \texttt{SHA256SUMS.txt}. The code is archived as GitHub release v0.1.0 of tess-hunt, which contains commit \texttt{d7c59d1}.
+
 \section*{Acknowledgement}
-The practice of pre-registering a held-out TESS sector follows P.~Rabtsevich (Zenodo, \url{https://doi.org/10.5281/zenodo.23175179}) and the \texttt{eumemic/exoplanets} project.
+The practice of pre-registering a held-out TESS sector follows P.~Rabtsevich (``A Pre-registered TESS Sector 110 Test of Two Transit-like Signals in TIC 4206066'', Zenodo, \url{https://doi.org/10.5281/zenodo.23175179}) and the \texttt{eumemic/exoplanets} project.
 \end{document}
