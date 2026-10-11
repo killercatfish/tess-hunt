@@ -1,17 +1,17 @@
-# Step 0.5 validation (2026-10-09/10, Cortex; final = run 5, current code)
+# Step 0.5 validation (2026-10-09/11, Cortex; final = run 6, current code)
 
 Raw machine output: `validation/out/VALIDATION.md` on Cortex (run 1, before the fix: `VALIDATION_run1.md`).
 Sets are frozen in `validation/known_planets.csv` (20 TESS-discovered hosts, 26 planets, Rp < 4 R⊕,
 Teff < 5200 K, d < 100 pc) and `validation/known_ebs.csv` (10 Prša+2022 detached EBs; 5 shallow 0.5–5%, 5 deep).
 
 ## Known planets
-| | run 1 | run 2 (robust secondary) | run 3 (+ leave-one-out scan) | run 4 (+ masked re-detrend) | run 5 (+ sector floor, final) |
-|---|---|---|---|---|---|
-| hosts with ≥1 planet at the right period | 18/20 | 18/20 | 18/20 | 18/20 | **18/20** |
-| planets at the right period | 23/26 | 23/26 | 23/26 | 23/26 | **23/26** (+1 only at an alias) |
-| recovered planets surviving every hard test | 21/23 | 22/23 | 23/23 | 21/23 | **23/23** |
-| EBs correctly rejected / detected | 9/9 | 9/9 | 9/9 | 9/9 | **8/9** (TIC 202509016 survives, see below) |
-| secondary-test fails, all passing signals | 20 | 12 | 6 | 7 | 7 |
+| | run 1 | run 2 (robust secondary) | run 3 (+ leave-one-out scan) | run 4 (+ masked re-detrend) | run 5 (+ sector floor) | run 6 (drop worst only with ≥4 sectors, final) |
+|---|---|---|---|---|---|---|
+| hosts with ≥1 planet at the right period | 18/20 | 18/20 | 18/20 | 18/20 | 18/20 | **18/20** |
+| planets at the right period | 23/26 | 23/26 | 23/26 | 23/26 | 23/26 | **23/26** (+1 only at an alias) |
+| recovered planets surviving every hard test | 21/23 | 22/23 | 23/23 | 21/23 | 23/23 | **23/23** |
+| EBs correctly rejected / detected | 9/9 | 9/9 | 9/9 | 9/9 | 8/9 | **8/9** (TIC 202509016 survives, see below) |
+| secondary-test fails, all passing signals | 20 | 12 | 6 | 7 | 7 | 7 |
 
 All recoveries are at the catalog period within 1%. Recovered planets include LHS 475 b (0.99 R⊕),
 TOI-6716 b (0.98 R⊕), TOI-1450 A b (1.13 R⊕), and all three of TOI-663 b/c/d and TOI-1260 b/c/d.
@@ -22,6 +22,8 @@ TOI-6716 b (0.98 R⊕), TOI-1450 A b (1.13 R⊕), and all three of TOI-663 b/c/d
 
 **Wrongly killed in runs 1–2, fixed in run 3:** TOI-1450 A b (run 1: stray events from another signal) and
 TOI-2540 b (runs 1–2: an "eccentric secondary" that was one coincident dip). Both fixes are in CHANGELOG.
+**Run 6 (2026-10-11):** the worst-sector drop now needs ≥4 sectors. No recovered planet lost; sector-consistency fails across all passing signals went from 15 to 17. TIC 202509016 has 9 sectors, so the change doesn't touch it.
+
 **Wrongly killed in run 4, fixed in run 5:** TOI-712 b and TOI-2018 b, by sector consistency after the
 masked re-detrend (one sector at 2× depth; 32 sectors over 3 products with χ²/dof 2.5). Fix: 10% systematic
 floor per sector plus dropping the single worst sector (approved by Josh).

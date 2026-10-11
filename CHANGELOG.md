@@ -61,3 +61,5 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   passed only because dropping one of 3 sectors left a 2-sector comparison with almost no power.
   Risk: a real planet with exactly 3 sectors and one discrepant sector can be killed again;
   validation run 6 measures this.
+  Result (validation run 6, 2026-10-11): all 23 recovered planets still survive; EBs unchanged (8/9);
+  sector-consistency fails over all passing signals 15 -> 17. No real planet was lost.
