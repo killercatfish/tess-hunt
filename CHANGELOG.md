@@ -53,3 +53,11 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   flag catches it here. Uncatalogued equal-depth EBs found at half period can therefore reach the
   survivor list; rely on review by eye and the audit. Alternatives declined: revert (kills TOI-712 b and
   TOI-2018 b) or a new deep-signal hard flag (new threshold, not added). No thresholds changed.
+
+## 2026-10-11
+- THRESHOLD (Claude proposed, Josh approved 2026-10-11): the sector-consistency test drops its worst
+  sector only when a signal has >= 4 sectors with depth measurements (`sector_drop_min_sectors: 4`,
+  was effectively 3). Reason: in the 200-star pilot both junk survivors (TIC 243514635, TIC 219495254)
+  passed only because dropping one of 3 sectors left a 2-sector comparison with almost no power.
+  Risk: a real planet with exactly 3 sectors and one discrepant sector can be killed again;
+  validation run 6 measures this.

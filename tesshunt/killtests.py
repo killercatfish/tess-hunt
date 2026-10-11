@@ -225,7 +225,7 @@ def sector_consistency(ctx):
     # products/apertures differ by a few % in dilution: add a systematic floor to each sector's error
     e = np.hypot(e, k.get("sector_sys_floor_frac", 0.0) * abs(mu))
     dropped = None
-    if k.get("sector_drop_worst") and len(d) >= 3:  # one bad sector must not kill a real signal
+    if k.get("sector_drop_worst") and len(d) >= k.get("sector_drop_min_sectors", 3):  # one bad sector must not kill a real signal
         i = int(np.argmax(np.abs(d - mu) / e))
         dropped = int(secs[i])
         keep = np.arange(len(d)) != i

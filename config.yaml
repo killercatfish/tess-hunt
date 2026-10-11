@@ -68,7 +68,8 @@ kill_tests:
   contamination_max_eclipse: 0.5 # deepest plausible eclipse on a neighbour
   sector_consistency_p: 0.0027   # chi2 p-value below this -> depths inconsistent (3 sigma)
   sector_sys_floor_frac: 0.10    # add 10% of the depth in quadrature to each sector's error (dilution differences)
-  sector_drop_worst: true        # ignore the single most discrepant sector (needs >= 3 sectors)
+  sector_drop_worst: true        # ignore the single most discrepant sector...
+  sector_drop_min_sectors: 4     # ...only when at least this many sectors (3 left 2-sector "tests")
   season_gap_d: 200
   holdout_min_seasons: 3
   holdout_hit_sigma: 2.0
