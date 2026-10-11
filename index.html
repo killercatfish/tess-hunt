@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tess-hunt</title>
+<style>
+/* Layout: a one-page map of the project folder. Status strip on top, then grouped cards of links with one-line explanations. */
+:root{
+  --bg:#0d1220; --panel:#151c2e; --rule:#2a3550; --ink:#e8ebf3; --muted:#9aa5bf; --faint:#6c7895;
+  --accent:#ffad5c; --good:#7fd6a6; --wait:#f2c46b;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; --mono:ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);padding:40px 16px 80px}
+.wrap{max-width:1040px;margin:0 auto;display:grid;gap:32px}
+h1{font-size:2rem;margin:0}
+h2{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+p{margin:0}
+.muted{color:var(--muted)}
+a{color:var(--ink);text-decoration:none;font-weight:600}
+a:hover,a:focus-visible{color:var(--accent);text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;display:grid;gap:10px;align-content:start}
+.card h3{margin:0;font-size:1.05rem}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+li{display:grid;gap:1px}
+li span{color:var(--muted);font-size:.88rem}
+code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.status div{background:var(--panel);padding:14px 16px;display:grid;gap:4px}
+.status b{font:600 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.dot::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--c)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:grid;gap:8px">
+    <h1>tess-hunt</h1>
+    <p class="muted">A home pipeline that searches NASA TESS light curves for small transiting planets and then tries to kill every signal it finds. Code lives here on the Mac. Runs happen on Cortex (<code>~/dev/tess-hunt</code>), whose run data stays there.</p>
+  </header>
+
+  <section>
+    <h2>Where things stand · 2026-10-11</h2>
+    <div class="status">
+      <div><b>Candidate</b><span>TOI-913, 5.450 d, ~1.1 R⊕. Survived all vetting; not validated (NFPP 0.042).</span></div>
+      <div><b>Priority</b><span>eumemic/exoplanets detected it first (2026-10-08). Ours is independent detection plus vetting.</span></div>
+      <div><b>Outreach</b><span class="dot" style="--c:var(--good)">Issue posted · ExoFOP applied</span><span class="dot" style="--c:var(--wait)">Zenodo · Mistry · Pavel pending</span></div>
+      <div><b>Cortex</b><span>Idle. Pilot and validation outputs in <code>~/dev/tess-hunt</code>.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Pages to look at</h2>
+    <div class="grid">
+      <div class="card"><h3>Online</h3><ul>
+        <li><a href="https://claude.ai/artifact/Jr8EPzxaMafotKWXDAtugw">A Third Signal at TOI-913</a><span>Plain-English story with a live model of the system, sky chart and credits</span></li>
+        <li><a href="https://claude.ai/artifact/PjWtGdjVc34AZS1hm4AiwP">TESS Pilot Survivors</a><span>Review sheet for all 5 pilot survivors, with the pre-share dossier and pixel tests</span></li>
+        <li><a href="https://github.com/eumemic/exoplanets/issues/2">Our issue on eumemic/exoplanets</a><span>The note to the project that found the signal first</span></li>
+        <li><a href="https://exofop.ipac.caltech.edu/tess/target.php?id=407126408">ExoFOP: TIC 407126408</a><span>The professional follow-up record for TOI-913</span></li>
+      </ul></div>
+      <div class="card"><h3>The preprint</h3><ul>
+        <li><a href="paper/toi913_candidate.pdf">toi913_candidate.pdf</a><span>Zenodo-ready research note (8 pages)</span></li>
+        <li><a href="paper/toi913_candidate.tex">toi913_candidate.tex</a><span>LaTeX source; rebuild with <code>xelatex</code> twice</span></li>
+        <li><a href="paper/toi913_supplement.zip">toi913_supplement.zip</a><span>Code, result files and figures for the Zenodo upload</span></li>
+        <li><a href="paper/issue_eumemic.md">issue_eumemic.md</a><span>Text of the GitHub issue as posted</span></li>
+      </ul></div>
+      <div class="card"><h3>Figures and results</h3><ul>
+        <li><a href="paper/figures/fig1_fold.png">fig1_fold.png</a><span>Folded transits of the candidate and TOI-913 b with the joint model</span></li>
+        <li><a href="paper/figures/fig2_diagnostic.png">fig2_diagnostic.png</a><span>The pipeline's one-page diagnostic for the candidate</span></li>
+        <li><a href="paper/figures/fig3_pixel_giant.png">fig3_pixel_giant.png</a><span>Per-sector difference images (inconclusive)</span></li>
+        <li><a href="paper/data/">paper/data/</a><span>Transit fit, robustness, TRICERATOPS and pixel-test results (JSON/CSV)</span></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The pipeline</h2>
+    <div class="grid">
+      <div class="card"><h3>Read first</h3><ul>
+        <li><a href="README.md">README.md</a><span>Setup, commands, how runs work</span></li>
+        <li><a href="CHANGELOG.md">CHANGELOG.md</a><span>Every threshold or method change, with the reason and who decided</span></li>
+        <li><a href="config.yaml">config.yaml</a><span>All thresholds, resources and paths</span></li>
+        <li><a href="validation/VALIDATION.md">validation/VALIDATION.md</a><span>Known-planet and eclipsing-binary results, runs 1–5</span></li>
+        <li><a href="validation/AUDIT_COMPARISON.md">validation/AUDIT_COMPARISON.md</a><span>qwen3vl vs qwen38 vs Claude as the AI auditor</span></li>
+      </ul></div>
+      <div class="card"><h3>Code: <code>tesshunt/</code></h3><ul>
+        <li><a href="tesshunt/pipeline.py">pipeline.py</a><span>Per-star flow, worker pool, pause/RAM guard, postprocess</span></li>
+        <li><a href="tesshunt/lightcurves.py">lightcurves.py</a><span>Download, clean, detrend, masked re-detrend</span></li>
+        <li><a href="tesshunt/search.py">search.py</a><span>TLS search (with the fill-factor fix) and BLS cross-check</span></li>
+        <li><a href="tesshunt/killtests.py">killtests.py</a><span>The twelve kill tests and the score</span></li>
+        <li><a href="tesshunt/crossmatch.py">crossmatch.py</a><span>TOI, confirmed-planet and EB catalogue matching</span></li>
+        <li><a href="tesshunt/audit.py">audit.py</a><span>AI second-opinion step</span></li>
+        <li><a href="tesshunt/validate.py">validate.py</a><span>Validation sets and the injection grid</span></li>
+        <li><span>Also: <a href="tesshunt/targets.py">targets</a>, <a href="tesshunt/stellar.py">stellar</a>, <a href="tesshunt/db.py">db</a>, <a href="tesshunt/plots.py">plots</a>, <a href="tesshunt/report.py">report</a>, <a href="tesshunt/config.py">config</a></span></li>
+      </ul></div>
+      <div class="card"><h3>Scripts</h3><ul>
+        <li><span><a href="run.sh">run.sh</a> · <a href="status.sh">status.sh</a> · <a href="pause.sh">pause.sh</a> · <a href="resume.sh">resume.sh</a> · <a href="setup.sh">setup.sh</a>: run control on Cortex</span></li>
+        <li><a href="scripts/audit_from_mac.sh">scripts/audit_from_mac.sh</a><span>Runs the Claude audits on survivors from the Mac</span></li>
+        <li><a href="scripts/pixel_vet.py">scripts/pixel_vet.py</a><span>One-off: difference-image target vs neighbour test</span></li>
+        <li><a href="scripts/transit_fit.py">scripts/transit_fit.py</a><span>One-off: joint transit fit with stellar-density check</span></li>
+        <li><a href="scripts/robustness_check.py">scripts/robustness_check.py</a><span>One-off: detrending, product and jackknife variants</span></li>
+        <li><a href="scripts/triceratops_fpp.py">scripts/triceratops_fpp.py</a><span>One-off: TRICERATOPS false-positive probability</span></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Credit</h2>
+    <p class="muted">Inspired by Pavel Rabtsevich's openly shared TESS search (<a href="https://doi.org/10.5281/zenodo.22967456">preprint</a>, <a href="https://www.reddit.com/r/ClaudeAI/comments/1wzw8zd/i_think_i_found_a_planet_nobody_knew_existed_i/">Reddit post</a>). The 5.45 d signal was first detected by <a href="https://github.com/eumemic/exoplanets">eumemic/exoplanets</a>.</p>
+  </section>
+</div>
+</body>
+</html>
