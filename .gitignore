@@ -9,3 +9,5 @@ report*.html
 validation/out/
 logs/
 PAUSE
+paper/*.zip
+paper/*.log

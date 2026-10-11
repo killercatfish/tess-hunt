@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parskip}{4pt}
+
+\title{\textbf{An independently detected and vetted 5.45-day, Earth-sized transit candidate in the TOI-913 system (TIC 407126408)}}
+\author{Josh Gold\\ \small Independent researcher, Acton, Massachusetts, USA}
+\date{\small Preprint, 11 October 2026. Not peer reviewed.}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent We report a transit-like signal with period $P = 5.450138 \pm 0.000016$\,d and depth $196^{+24}_{-21}$\,ppm on the K dwarf TOI-913 (TIC 407126408; $V=10.5$, $d=65.2$\,pc), which hosts the confirmed sub-Neptune TOI-913\,b ($P = 11.0994$\,d). The signal was found by an automated multi-sector search of TESS 2-minute photometry spanning Sectors 12--102 (2019--2026; 34 transits) and corresponds to a radius of $1.12 \pm 0.09\,R_\oplus$ if it arises on the target. It passes ten automated false-positive tests, including odd/even depth, secondary eclipse, shape, per-sector consistency and a season-holdout prediction test. It is independently recovered as the strongest periodic signal in Quick-Look Pipeline full-frame-image photometry. A transit fit with free stellar density yields $\rho_\star = 2.43^{+0.96}_{-1.02}\,\rho_\odot$, consistent with the catalogue value $2.09 \pm 0.45\,\rho_\odot$. The only Gaia neighbour previously flagged as able to produce the depth, TIC 407126405 at $9.5''$, is a background giant ($R\approx10\,R_\odot$, $d\approx5$\,kpc) whose geometry cannot reproduce the observed 2.4\,h duration. With archival Gemini/Zorro speckle constraints, \textsc{TRICERATOPS} gives FPP $=0.054$ and NFPP $=0.042$. The residual nearby-eclipsing-binary probability is dominated by two faint stars at $26.5''$ and $56.9''$, which seeing-limited ground-based photometry could test. The signal was also detected by the independent open-source search \texttt{eumemic/exoplanets} (2026 October 8), which set it aside because of the $9.5''$ neighbour. We present it as a planet candidate, not a confirmed planet. If real, it lies near the 2:1 period commensurability with TOI-913\,b ($P_b/P_c = 2.037$).
+\end{abstract}
+
+\section{Introduction}
+Faint transit signals from small planets can become detectable only once several years of TESS photometry are combined. This project was inspired by the approach of P.~Rabtsevich \cite{rabtsevich}, who stacked TESS sectors from several years for a single star and then tried systematically to falsify the resulting candidate, including by hiding one observing season and predicting its transit times. We automated that approach for a sample of nearby K and M dwarfs. In a 200-star pilot, one previously unreported signal survived all automated tests. This note documents that signal and our attempts to rule it out.
+
+TOI-913 (TIC 407126408) is a K dwarf ($T_\mathrm{eff}=4969$\,K, $R_\star = 0.733\,R_\odot$, $M_\star = 0.82\,M_\odot$; TIC 8 \cite{stassun}) at 65.2\,pc (Gaia DR3 parallax $15.31\pm0.02$\,mas \cite{gaia}). It hosts TOI-913\,b, a $2.45\,R_\oplus$ planet at 11.0986\,d, statistically validated by Mistry et al.\ \cite{mistry}, and the long-period candidate TOI-913.02, seen in two transits.
+
+\section{Data and search}
+We used SPOC \cite{jenkins} PDCSAP 2-minute light curves for Sectors 12, 13, 65, 66, 93, 100, 101 and 102, retrieved with \texttt{lightkurve} \cite{lightkurve}. Quality-flagged cadences were removed and only upward outliers were clipped. Each sector was normalized and detrended with a biweight filter (\texttt{wotan} \cite{wotan}) with a 0.61\,d window. We searched with transit least squares (TLS \cite{tls}) over 0.5--40\,d on 10-minute bins, iteratively masking each detection. Detection required SDE $\geq 9$, SNR $\geq 7$ and $\geq 3$ transits. TLS 2.0 multiplies trial durations by a ``fill factor'' (data span over baseline). On multi-year data with large gaps, this shortened durations about $20\times$ and suppressed SNR about $4\times$, so we disabled it.
+
+After TOI-913\,b (SDE 125.5, SNR 34.3), the search found a 27.3\,d systematic, which the kill tests rejected, and then the 5.45\,d signal (SDE 23.6, SNR 8.9, 34 transits). Before the kill tests, the light curve was re-detrended with all detected transits masked.
+
+\paragraph{Pipeline validation.} Before the pilot, the pipeline was run on 20 hosts of 26 confirmed small planets and on 10 detached eclipsing binaries from the TESS EB catalogue \cite{prsa}. It recovered 23/26 planets at the correct period, and all 23 survived every hard test. The three misses had only 1--2 sectors. It rejected 8/9 detected binaries; the exception is a twin-eclipse binary detected at half its period. In an injection-recovery grid on two quiet stars, planets $\geq1.5\,R_\oplus$ were recovered out to 15\,d, and planets $\geq2\,R_\oplus$ out to 30\,d.
+
+\section{The signal}
+Figure~\ref{fig:fold} shows the folded transit. We fit both planets jointly with \texttt{batman} \cite{batman} and \texttt{emcee} \cite{emcee}. Each planet had a free period, epoch, $R_p/R_\star$ and impact parameter, on circular orbits, with quadratic limb darkening fixed to $(0.451, 0.189)$ and a jitter term. We ran two fits: one with a shared stellar density and a catalogue prior, and one with an independent density per planet and no prior. Table~\ref{tab:params} lists the results.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_fold.png}
+\caption{Phase-folded TESS photometry of TOI-913 (Sectors 12--102) at the candidate period (left) and at TOI-913\,b's period (right), each with the other planet's model removed. Grey: 2-minute data; black: 20-minute bins; orange: joint transit model.}
+\label{fig:fold}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+Parameter & Candidate (``.03'') & TOI-913\,b \\
+\midrule
+Period (d) & $5.450138 \pm 0.000016$ & $11.09938$ (fit) \\
+$T_0$ (BJD$_\mathrm{TDB}$) & $2458628.6479^{+0.0046}_{-0.0073}$ & --- \\
+Depth (ppm) & $196^{+24}_{-21}$ & $912^{+27}_{-24}$ \\
+$R_p/R_\star$ & $0.0140 \pm 0.0008$ & --- \\
+$R_p$ ($R_\oplus$) & $1.12 \pm 0.09$ & $2.4$ \\
+Impact parameter & $0.42^{+0.13}_{-0.21}$ & $0.19^{+0.16}_{-0.13}$ \\
+$T_{14}$ (h) & $2.37^{+0.16}_{-0.15}$ & $3.27$ \\
+$\rho_\star$, free fit ($\rho_\odot$) & $2.43^{+0.96}_{-1.02}$ & $1.61^{+0.40}_{-0.75}$ \\
+$a$ (AU), $T_\mathrm{eq}$ (K, $A=0$) & $0.057$, $\sim860$ & $0.091$, $\sim680$ \\
+\bottomrule
+\end{tabular}
+\caption{Transit parameters. The joint fit has a shared density with a catalogue prior of $2.09\pm0.45\,\rho_\odot$; the free fit has no prior. The $R_p$ uncertainty includes a 5\% uncertainty on $R_\star$.}
+\label{tab:params}
+\end{table}
+
+\section{Vetting}
+\subsection{Automated tests}
+The signal passed all hard tests: odd/even depth ($211$ vs $245$\,ppm, $0.4\sigma$); secondary eclipse at phase 0.5 and across phases 0.3--0.7 (maximum $2.4\sigma$); duration plausibility; size; per-sector depth consistency ($p=0.17$); harmonic relation to TOI-913\,b ($P_b/P = 2.037$, not an integer ratio); and an injection test at the same period and depth. The trapezoid shape test was inconclusive at this SNR. In a season-holdout test, each of the four observing seasons was hidden, the ephemeris was fitted on the rest, and depth was measured only at the predicted times. Three of four seasons showed the transit at $>2\sigma$. The fourth (Sector 93 alone) gave $1.8\sigma$. Figure~\ref{fig:diag} shows the diagnostic page. A fresh, read-only AI review of that page flagged the $9.5''$ neighbour and the depth scatter between sectors, both addressed below.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_diagnostic.png}
+\caption{Pipeline diagnostic page: full light curve with predicted transits (red), fold, odd/even, phase 0.5, depth per sector, the holdout test, and folds per season.}
+\label{fig:diag}
+\end{figure}
+
+\subsection{Robustness}
+We remeasured the depth over the central 60\% of the transit, with red-noise-aware errors, across variants (Table~\ref{tab:rob}). Every season and sector jackknife gives 196--244\,ppm. No transit departs by $>3\sigma$ from the mean, and removing the three deepest leaves $190\pm25$\,ppm. One of 34 transits lies within 0.5\,d of a data gap (8\% expected by chance), and none lie within 0.1\,d of the 231 momentum dumps. The only non-confirming variant is uncorrected SAP flux. There the signal is weaker ($159\pm24$\,ppm, SNR 6.6) and a narrow search drifts to 5.427\,d.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{lccl}
+\toprule
+Variant & Depth (ppm) & SNR & Full 0.5--40\,d TLS search \\
+\midrule
+PDCSAP, biweight 0.61\,d & $225 \pm 24$ & 9.5 & rank 6 (systematics unmasked) \\
+Biweight 0.5 / 0.75 / 1.0 / 1.5\,d & 230 / 232 / 231 / 235 & 9.0--9.9 & --- \\
+Cosine detrending & $297 \pm 23$ & 13.1 & \textbf{5.4501\,d top peak} (SDE 12.8) \\
+QLP FFI photometry (8 sectors) & $250 \pm 23$ & 10.6 & \textbf{5.4501\,d top peak} (SDE 15.2) \\
+TESS-SPOC FFI & $185 \pm 31$ & 6.0 & --- \\
+SAP flux (uncorrected) & $159 \pm 24$ & 6.6 & not recovered \\
+\bottomrule
+\end{tabular}
+\caption{Signal depth across data products and detrending choices, with TOI-913\,b and TOI-913.02 masked.}
+\label{tab:rob}
+\end{table}
+
+\subsection{Is the signal on the target?}
+\textbf{Stellar density.} With no prior, the transit shape implies $\rho_\star = 2.43^{+0.96}_{-1.02}\,\rho_\odot$. That agrees with the TIC value ($2.09\pm0.45$) and with the density from TOI-913\,b's transit.
+
+\textbf{The $9.5''$ neighbour.} TIC 407126405 ($T=14.05$, $\Delta T = 4.4$) lies within one TESS pixel. It is a background giant: Gaia parallax $0.16\pm0.02$\,mas, TIC $R = 10.0\,R_\odot$, luminosity class giant. To produce the observed dilution it would need a $\approx1.1\%$ eclipse. An orbit with $P=5.45$\,d around a $10\,R_\odot$, 1--3\,$M_\odot$ star has $a/R_\star \approx 1.4$--$1.9$, so a central transit lasts $\approx23$--33\,h. A grazing chord short enough to last 2.4\,h would occult at most $\sim$0.02\% of the stellar disk. We therefore exclude this star as the source. \textsc{TRICERATOPS} independently assigns it negligible probability ($\sim10^{-26}$).
+
+\textbf{Pixel-level tests.} We stacked per-sector difference images and compared fits with the source at the target or at a neighbour (Figure~\ref{fig:pix}). For the $9.5''$ star, the test has little power at this SNR. A control on TOI-913\,b prefers the target at only $\approx2\sigma$, and the candidate gives no preference ($0.5\sigma$). It is likewise inconclusive for the two faint neighbours below ($0.8\sigma$ and $0.2\sigma$). In one sector (S65), the fit prefers the $56.9''$ star at $\approx3\sigma$, but this is not significant over all sectors. We report these as non-constraining.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_pixel_giant.png}
+\caption{Per-sector difference images (top: lost flux over noise) and out-of-transit images (bottom). $\times$: target; $\circ$: TIC 407126405; $\star$: best-fit location. TESS's $21''$ pixels cannot separate the $9.5''$ pair at this SNR.}
+\label{fig:pix}
+\end{figure}
+
+\textbf{High-resolution imaging.} Archival speckle imaging on ExoFOP shows no companions to contrasts of $\Delta m = 6.47$ at $0.5''$ (Gemini/Zorro, 832\,nm, 2020 March 14) and $\Delta m = 6.9$ at $1''$ (SOAR/HRCam, $I$, 2019 August 12).
+
+\subsection{False-positive probability}
+We ran \textsc{TRICERATOPS} v1.1 \cite{triceratops} on the folded light curve, using the SPOC apertures of all eight sectors and 8 runs of $N=10^6$. Without the contrast curve, FPP $=0.155\pm0.008$ and NFPP $=0.032\pm0.001$. With the Zorro 832\,nm curve, FPP $=0.054\pm0.002$ and NFPP $=0.042\pm0.001$. The probability of a planet on the target is 0.92. NFPP is dominated by NEB scenarios on TIC 407126406 ($T=16.97$, $26.5''$; would need a 22.7\% eclipse) and TIC 10001766874 ($T=15.91$, $56.9''$; 31.7\%). The candidate therefore meets the FPP criterion for a ``likely planet'' but not the NFPP $<10^{-3}$ criterion \cite{triceratops}, and it is not statistically validated. TIC 10001766874 has an unusual TIC identifier and may be a catalogue artefact.
+
+\section{Prior detections}
+No CTOI exists for this star on ExoFOP. SPOC multi-sector searches through Sectors 65, 69 and 96 produced TCEs only for TOI-913\,b and TOI-913.02. Scaled to the five sectors available through S96, our signal would have SNR $\approx7.0$, near the SPOC threshold of 7.1. In Sectors 12--13 alone, it has SNR 5.4, which explains its absence from searches limited to early data. The RAVEN FFI survey \cite{raven} (Sectors 1--55) lists a weak second signal on this star at 3.70\,d, which we do not recover in eight sectors (TLS SNR $<6$ near 3.70\,d). The independent open-source search \texttt{eumemic/exoplanets} \cite{eumemic} detected the same signal ($P=5.450121$\,d, 220\,ppm, MES 8.0) in its 2026 October 8 release, with the status ``close neighbour could produce the depth''. Our analysis of that neighbour (Section 4.3) addresses this concern.
+
+\section{Discussion}
+If confirmed, the candidate would be a $\sim1.1\,R_\oplus$ planet interior to TOI-913\,b, with $P_b/P_c = 2.037$, just wide of the 2:1 commensurability. For a near-resonant pair, transit-timing variations are expected with a super-period of $|1/P_c - 2/P_b|^{-1}$; this ratio places it near 304\,d. Its mass, with an expected RV semi-amplitude of order 0.5\,m\,s$^{-1}$, is beyond most current spectrographs. The most direct next step is seeing-limited photometry of TIC 407126406 and TIC 10001766874 during a predicted transit, to exclude the remaining nearby-eclipsing-binary scenarios. The ephemeris uncertainty in late 2026 is about $\pm15$\,min.
+
+\section{Conclusion}
+We present TIC 407126408.03 (proposed designation, pending any CTOI assignment) as a planet candidate. It is a $1.12\pm0.09\,R_\oplus$, 5.450138\,d transit signal that survives automated vetting, independent-product recovery, stellar-density consistency and high-resolution imaging constraints, with FPP $=0.054$. It is not statistically validated (NFPP $=0.042$). Ground-based photometry of two faint neighbours is needed to resolve the remaining false-positive scenarios.
+
+\section*{Acknowledgements}
+This work was inspired by P.~Rabtsevich, who shared his TESS candidate search and methods openly \cite{rabtsevich}. We thank the \texttt{eumemic/exoplanets} project for publishing its independent search openly. This paper includes data collected by the TESS mission, funded by NASA's Science Mission Directorate, and obtained from MAST at STScI. It uses data and services from ExoFOP-TESS, including high-resolution imaging contributed by S.~Howell (Gemini/Zorro) and A.~Tokovinin (SOAR/HRCam), and data from ESA's Gaia mission. We used QLP and SPOC data products, \texttt{lightkurve}, \texttt{wotan}, \texttt{transitleastsquares}, \texttt{batman}, \texttt{emcee}, \texttt{astropy}, \texttt{astroquery} and \textsc{TRICERATOPS}.
+
+\paragraph{AI assistance.} The search pipeline, vetting code and much of this analysis were written and run with substantial assistance from Anthropic's Claude AI coding agent, directed and reviewed by the author. Independent fresh AI sessions were used as adversarial reviewers of diagnostic plots. All numbers in this note come from the released code and data.
+
+\paragraph{Data availability.} Code, per-test result files and figures accompany this preprint in the same Zenodo record.
+
+\begin{thebibliography}{99}\small
+\bibitem{rabtsevich} Rabtsevich, P. 2026, preprint, Zenodo, \href{https://doi.org/10.5281/zenodo.22967456}{doi:10.5281/zenodo.22967456}
+\bibitem{eumemic} eumemic 2026, \emph{Multi-sector TESS transit searches of nearby K and M dwarfs and of TOI hosts}, \url{https://github.com/eumemic/exoplanets}
+\bibitem{mistry} Mistry, P., et al. 2023, AJ, 166, 9 (VaTEST II)
+\bibitem{ricker} Ricker, G.~R., et al. 2015, JATIS, 1, 014003
+\bibitem{jenkins} Jenkins, J.~M., et al. 2016, Proc.\ SPIE, 9913, 99133E
+\bibitem{qlp} Huang, C.~X., et al. 2020, RNAAS, 4, 204
+\bibitem{stassun} Stassun, K.~G., et al. 2019, AJ, 158, 138
+\bibitem{gaia} Gaia Collaboration, Vallenari, A., et al. 2023, A\&A, 674, A1
+\bibitem{lightkurve} Lightkurve Collaboration 2018, ASCL, 1812.013
+\bibitem{wotan} Hippke, M., David, T.~J., Mulders, G.~D., \& Heller, R. 2019, AJ, 158, 143
+\bibitem{tls} Hippke, M., \& Heller, R. 2019, A\&A, 623, A39
+\bibitem{batman} Kreidberg, L. 2015, PASP, 127, 1161
+\bibitem{emcee} Foreman-Mackey, D., et al. 2013, PASP, 125, 306
+\bibitem{triceratops} Giacalone, S., et al. 2021, AJ, 161, 24
+\bibitem{prsa} Pr\v{s}a, A., et al. 2022, ApJS, 258, 16
+\bibitem{raven} Lafarga, M., et al. 2026, arXiv:2603.22597
+\end{thebibliography}
+\end{document}
