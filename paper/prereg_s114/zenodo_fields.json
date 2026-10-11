@@ -1,0 +1,93 @@
+{
+ "title": "Zenodo upload: Sector 114 pre-registration",
+ "intro": "Reserved DOI 10.5281/zenodo.23290795. Fill the Zenodo form top to bottom; every box has a Copy button.",
+ "files": [
+  "paper/prereg_s114/prereg_s114.pdf",
+  "paper/prereg_s114/predicted_transits_sector114.csv",
+  "paper/prereg_s114/predicted_transits_2026-10_to_2027-12.csv",
+  "paper/prereg_s114/prereg_s114.tex"
+ ],
+ "fields": [
+  {
+   "label": "Resource type",
+   "value": "Publication / Preprint",
+   "note": "Pick it from the dropdown."
+  },
+  {
+   "label": "Title",
+   "value": "Pre-registered prediction: TESS Sector 114 transits of the 5.45-day candidate on TOI-913 (TIC 407126408)"
+  },
+  {
+   "label": "Publication date",
+   "value": "2026-10-11"
+  },
+  {
+   "label": "Author: family name",
+   "value": "Gold"
+  },
+  {
+   "label": "Author: given names",
+   "value": "Josh"
+  },
+  {
+   "label": "Author: affiliation",
+   "value": "Independent researcher",
+   "note": "Type it, then choose 'Create'. Identifiers: paste your ORCID iD. Role: leave blank."
+  },
+  {
+   "label": "Description",
+   "value": "Predicted mid-transit times, expected depth and frozen pass/fail criteria for the 5.45-day TOI-913 candidate in TESS Sector 114 (planned 2027 Feb 13 – Mar 14), registered before the data exist. The result will be published as a new version of this record whatever it is."
+  },
+  {
+   "label": "License",
+   "value": "Creative Commons Attribution 4.0 International",
+   "note": "Search 'CC BY 4.0' in the license picker."
+  },
+  {
+   "label": "Keywords (add one at a time)",
+   "value": "TESS",
+   "note": "Then: pre-registration · exoplanets · transit photometry · TOI-913 · TIC 407126408"
+  },
+  {
+   "label": "Related works",
+   "header": [
+    "Relation",
+    "Identifier",
+    "Scheme",
+    "Resource type"
+   ],
+   "copy_cols": [
+    1
+   ],
+   "rows": [
+    [
+     "Is supplement to",
+     "10.5281/zenodo.23290579",
+     "DOI",
+     "Publication / Preprint"
+    ],
+    [
+     "References",
+     "10.5281/zenodo.23175179",
+     "DOI",
+     "Publication / Other"
+    ],
+    [
+     "Is supplemented by",
+     "https://github.com/killercatfish/tess-hunt",
+     "URL",
+     "Software"
+    ]
+   ]
+  },
+  {
+   "label": "Reference string 1",
+   "value": "Gold, J. 2026, An independently detected and vetted 5.45-day, Earth-sized transit candidate in the TOI-913 system (TIC 407126408), Zenodo, doi:10.5281/zenodo.23290579"
+  },
+  {
+   "label": "Reference string 2",
+   "value": "Rabtsevich, P. 2026, Preregistered TESS Sector 110 test, Zenodo, doi:10.5281/zenodo.23175179",
+   "note": "I don't know Pavel's exact title for this record; check it at doi.org/10.5281/zenodo.23175179 and fix before pasting."
+  }
+ ]
+}
