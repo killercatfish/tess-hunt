@@ -1,13 +1,14 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
 \usepackage[hidelinks]{hyperref}
 \setlength{\parskip}{4pt}
 \title{\textbf{Pre-registered prediction: TESS Sector 114 transits of the 5.45-day candidate on TOI-913 (TIC 407126408)}}
 \author{Josh Gold\\ \small Independent researcher, Acton, Massachusetts, USA}
 \date{\small Registered 11 October 2026, before Sector 114 is observed (planned 2027 February 13 -- March 14).\\ Companion to doi:\href{https://doi.org/10.5281/zenodo.23290579}{10.5281/zenodo.23290579}}
 \begin{document}
+\sloppy
 \maketitle
 
 \section*{Purpose}
@@ -16,7 +17,7 @@ The candidate in the companion preprint has SNR $\approx 9$ over eight TESS sect
 \section*{Prediction}
 Ephemeris from the joint fit in the companion preprint: $P = 5.450138 \pm 0.000016$\,d, $T_0 = 2458628.6479$\,BJD$_\mathrm{TDB}$ ($\sigma_{T_0}$ taken conservatively as 0.0073\,d), $T_{14} = 2.37$\,h. Uncertainties use $\sigma_n = \sqrt{\sigma_{T_0}^2 + (n\,\sigma_P)^2}$ and ignore the negative $T_0$--$P$ covariance, so they are conservative.
 
-\begin{center}\small
+\begin{center}\footnotesize
 \begin{tabular}{rcccc}
 \toprule
 Epoch & Mid-transit (BJD$_\mathrm{TDB}$) & $\sigma$ (min) & Mid-transit (UTC, geocentric) & Window (UTC) \\
@@ -43,10 +44,10 @@ Transits that fall in data gaps or outside the final sector boundaries will be r
 
 \section*{Pre-registered outcomes}
 Using $D_\mathrm{exp} = 225$\,ppm and the measured $\sigma_{114}$:
-\begin{center}\small
-\begin{tabular}{llcc}
+\begin{center}\footnotesize
+\begin{tabular}{lp{2.6in}cc}
 \toprule
-Outcome & Condition & $P$ if real ($D=225$) & $P$ if no signal ($D=0$) \\
+Outcome & Condition & $P$ if real & $P$ if no signal \\
 \midrule
 Supports & $D_{114} > 2\sigma_{114}$ and $|D_{114} - 225| < 2\sigma_{114}$ & 0.90 & 0.02 \\
 Inconclusive & otherwise, and not one of the rows below & 0.08 & 0.08 \\
@@ -60,5 +61,5 @@ The probabilities assume $\sigma_{114} = 69$\,ppm and Gaussian errors. A ``too d
 After the pre-registered test, we will also report, as clearly labelled secondary results: the nine-sector refit, the updated SNR, and any changes to the vetting results. A single sector cannot validate the candidate. A ``supports'' outcome means only that the signal reappeared where and as predicted.
 
 \section*{Acknowledgement}
-The practice of pre-registering a held-out TESS sector follows P.~Rabtsevich (Zenodo, doi:10.5281/zenodo.23175179) and the \texttt{eumemic/exoplanets} project.
+The practice of pre-registering a held-out TESS sector follows P.~Rabtsevich (Zenodo, \url{https://doi.org/10.5281/zenodo.23175179}) and the \texttt{eumemic/exoplanets} project.
 \end{document}
