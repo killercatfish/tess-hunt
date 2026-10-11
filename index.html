@@ -47,7 +47,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
       <div><b>Candidate</b><span>TOI-913, 5.450 d, ~1.1 R⊕. Survived all vetting; not validated (NFPP 0.042).</span></div>
       <div><b>Priority</b><span>eumemic/exoplanets detected it first (2026-10-08). Ours is independent detection plus vetting.</span></div>
       <div><b>Outreach</b><span class="dot" style="--c:var(--good)">Issue posted · ExoFOP applied · Pavel emailed · preprint + pre-registration on Zenodo · code v0.1.0</span><span class="dot" style="--c:var(--wait)">Mistry email pending</span></div>
-      <div><b>Cortex</b><span>Idle. Pilot and validation outputs in <code>~/dev/tess-hunt</code>.</span></div>
+      <div><b>Cortex</b><span>Idle. Pilot, validation runs 1–6 and the eumemic re-vet are done. Outputs live in <code>~/dev/tess-hunt</code>.</span></div>
     </div>
   </section>
 
@@ -86,7 +86,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><a href="README.md">README.md</a><span>Setup, commands, how runs work</span></li>
         <li><a href="CHANGELOG.md">CHANGELOG.md</a><span>Every threshold or method change, with the reason and who decided</span></li>
         <li><a href="config.yaml">config.yaml</a><span>All thresholds, resources and paths</span></li>
-        <li><a href="validation/VALIDATION.md">validation/VALIDATION.md</a><span>Known-planet and eclipsing-binary results, runs 1–5</span></li>
+        <li><a href="validation/VALIDATION.md">validation/VALIDATION.md</a><span>Known-planet and eclipsing-binary results, runs 1–6 (run 6: 4-sector rule, 23/23 survive)</span></li>
         <li><a href="validation/AUDIT_COMPARISON.md">validation/AUDIT_COMPARISON.md</a><span>qwen3vl vs qwen38 vs Claude as the AI auditor</span></li>
       </ul></div>
       <div class="card"><h3>Code: <code>tesshunt/</code></h3><ul>
@@ -106,6 +106,9 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><a href="scripts/transit_fit.py">scripts/transit_fit.py</a><span>One-off: joint transit fit with stellar-density check</span></li>
         <li><a href="scripts/robustness_check.py">scripts/robustness_check.py</a><span>One-off: detrending, product and jackknife variants</span></li>
         <li><a href="scripts/triceratops_fpp.py">scripts/triceratops_fpp.py</a><span>One-off: TRICERATOPS false-positive probability</span></li>
+        <li><a href="scripts/neighbour_geometry.py">scripts/neighbour_geometry.py</a><span>One-off: can a neighbour star physically make this transit duration?</span></li>
+        <li><a href="scripts/preregister.py">scripts/preregister.py</a><span>Predicted transit times (BJD and UTC) for a future sector</span></li>
+        <li><a href="scripts/upload_sheet.py">scripts/upload_sheet.py</a><span>JSON spec to copy-paste HTML sheet for any upload form</span></li>
       </ul></div>
     </div>
   </section>
