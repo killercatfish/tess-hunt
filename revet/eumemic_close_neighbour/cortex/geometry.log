@@ -1,0 +1,351 @@
+TIC 231725883 P=4.659315 T14=2.32 h depth=423.0 ppm: 4 capable, 4 not excluded
+      734629420   13.3" T=18.15 need  22.18%  R=None M=1.0 plx=0.358 DWARF  -> radius unknown (not excluded)
+      231725880   47.4" T=14.46 need   0.78%  R=1.748 M=1.29 plx=0.414 DWARF  -> possible
+      734629421   54.8" T=18.66 need  35.22%  R=0.359 M=0.43 plx=1.209 DWARF  -> possible
+      231724467   55.1" T=16.76 need   6.21%  R=0.663 M=1.03 plx=0.434 DWARF  -> possible
+TIC 231725883 P=18.965313 T14=3.67 h depth=699.0 ppm: 4 capable, 4 not excluded
+      734629420   13.3" T=18.15 need  36.66%  R=None M=1.0 plx=0.358 DWARF  -> radius unknown (not excluded)
+      231725880   47.4" T=14.46 need   1.29%  R=1.748 M=1.29 plx=0.414 DWARF  -> possible
+      734629421   54.8" T=18.66 need  58.20%  R=0.359 M=0.43 plx=1.209 DWARF  -> possible
+      231724467   55.1" T=16.76 need  10.26%  R=0.663 M=1.03 plx=0.434 DWARF  -> possible
+TIC 88407114 P=1.49751 T14=0.69 h depth=289.0 ppm: 2 capable, 2 not excluded
+      651465050    3.4" T=17.08 need  17.58%  R=None M=1.0 plx=13.597 None  -> radius unknown (not excluded)
+       88407113   47.7" T=17.00 need  16.36%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+TIC 24621747 P=5.20863 T14=1.6 h depth=973.0 ppm: 13 capable, 9 not excluded
+      874918401   11.2" T=15.14 need   4.42%  R=None M=1.0 plx=0.644 None  -> radius unknown (not excluded)
+       24621743   11.3" T=15.14 need   4.42%  R=None M=1.0 plx=0.644 None  -> radius unknown (not excluded)
+      874918400   11.4" T=15.92 need   8.93%  R=0.955 M=1.09 plx=0.47 DWARF  -> possible
+      874918402   14.5" T=18.27 need  77.47%  R=None M=1.0 plx=0.157 DWARF  -> radius unknown (not excluded)
+       24621741   16.3" T=14.50 need   2.48%  R=1.271 M=1.02 plx=0.756 DWARF  -> possible
+       24621738   25.9" T=16.89 need  21.66%  R=1.254 M=1.05 plx=0.066 DWARF  -> excluded by geometry
+       24621734   27.1" T=18.27 need  77.20%  R=None M=1.0 plx=0.605 DWARF  -> radius unknown (not excluded)
+       24621735   31.2" T=16.40 need  13.88%  R=1.085 M=1.1 plx=0.288 DWARF  -> excluded by geometry
+      874918395   38.1" T=18.16 need  69.95%  R=None M=1.0 plx=0.333 DWARF  -> radius unknown (not excluded)
+      874918396   42.1" T=18.12 need  67.31%  R=None M=1.0 plx=0.476 None  -> radius unknown (not excluded)
+      874918443   45.3" T=18.21 need  72.71%  R=0.573 M=1.08 plx=-0.338 DWARF  -> excluded by geometry
+       24621748   45.7" T=17.30 need  31.61%  R=0.9 M=0.73 plx=0.394 DWARF  -> excluded by geometry
+      874918442   54.8" T=17.81 need  50.50%  R=0.504 M=0.81 plx=0.496 DWARF  -> possible
+TIC 304655480 P=6.747383 T14=1.97 h depth=1159.0 ppm: 73 capable, 31 not excluded
+      928635009    2.5" T=17.20 need  23.87%  R=None M=1.0 plx=0.346 None  -> radius unknown (not excluded)
+      928635008   11.3" T=18.59 need  85.37%  R=0.698 M=0.92 plx=-0.125 DWARF  -> excluded by geometry
+      928635012   11.8" T=18.54 need  81.55%  R=0.841 M=0.81 plx=-0.031 DWARF  -> excluded by geometry
+      304655499   12.3" T=15.81 need   6.70%  R=4.778 M=1.2 plx=0.105 GIANT  -> excluded by geometry
+      304655471   13.2" T=16.13 need   8.95%  R=4.08 M=1.2 plx=0.081 GIANT  -> excluded by geometry
+      304655484   13.6" T=14.48 need   2.05%  R=10.108 M=1.2 plx=0.107 GIANT  -> excluded by geometry
+      928635018   14.0" T=17.59 need  34.04%  R=0.908 M=1.02 plx=0.224 DWARF  -> excluded by geometry
+      304655470   14.2" T=15.32 need   4.32%  R=1.031 M=1.13 plx=0.613 DWARF  -> possible
+      928635006   14.2" T=18.23 need  61.00%  R=0.874 M=0.98 plx=-0.123 DWARF  -> excluded by geometry
+      304655473   16.0" T=16.76 need  15.86%  R=0.977 M=0.81 plx=0.507 DWARF  -> excluded by geometry
+      928635040   17.9" T=18.42 need  72.98%  R=None M=1.0 plx=1.102 None  -> radius unknown (not excluded)
+      928635011   21.2" T=17.50 need  31.42%  R=0.415 M=0.62 plx=1.369 DWARF  -> possible
+      304655511   22.3" T=15.97 need   7.72%  R=1.988 M=1.2 plx=0.313 GIANT  -> excluded by geometry
+      304655503   23.3" T=15.85 need   6.96%  R=1.279 M=1.03 plx=0.43 DWARF  -> excluded by geometry
+      928635027   23.7" T=16.27 need  10.14%  R=1.47 M=1.2 plx=0.259 DWARF  -> excluded by geometry
+      928635004   23.9" T=18.68 need  92.28%  R=0.843 M=0.94 plx=-0.484 DWARF  -> excluded by geometry
+      928635062   24.4" T=18.33 need  67.19%  R=None M=1.0 plx=0.236 None  -> radius unknown (not excluded)
+      928635028   25.2" T=18.34 need  68.07%  R=None M=1.0 plx=0.589 None  -> radius unknown (not excluded)
+      928635063   25.2" T=17.88 need  44.61%  R=0.966 M=1.04 plx=0.049 DWARF  -> excluded by geometry
+      928635016   25.5" T=18.31 need  66.02%  R=None M=1.0 plx=0.582 None  -> radius unknown (not excluded)
+      928635013   25.6" T=18.52 need  79.79%  R=None M=1.0 plx=1.829 DWARF  -> radius unknown (not excluded)
+      928635061   26.7" T=18.08 need  53.19%  R=0.651 M=1.02 plx=0.262 DWARF  -> possible
+      304655454   26.8" T=15.61 need   5.58%  R=1.505 M=1.29 plx=0.339 DWARF  -> excluded by geometry
+      928635043   27.3" T=18.29 need  64.94%  R=None M=1.0 plx=0.396 None  -> radius unknown (not excluded)
+      304655477   29.0" T=17.39 need  28.35%  R=None M=1.0 plx=-0.007 None  -> radius unknown (not excluded)
+      928635042   30.2" T=17.64 need  35.65%  R=0.692 M=0.74 plx=0.561 DWARF  -> possible
+      304655448   31.4" T=17.04 need  20.48%  R=1.201 M=1.0 plx=0.243 DWARF  -> excluded by geometry
+      928635048   32.0" T=17.71 need  37.94%  R=1.176 M=0.98 plx=0.039 DWARF  -> excluded by geometry
+      304655527   32.6" T=16.14 need   9.01%  R=1.548 M=1.05 plx=0.297 DWARF  -> excluded by geometry
+      304655475   32.9" T=15.26 need   4.07%  R=4.994 M=1.2 plx=0.185 GIANT  -> excluded by geometry
+      304655514   33.0" T=13.88 need   1.23%  R=25.649 M=1.2 plx=0.071 GIANT  -> excluded by geometry
+      928635044   35.2" T=18.29 need  64.78%  R=None M=1.0 plx=0.239 None  -> radius unknown (not excluded)
+      928635049   35.4" T=17.95 need  47.53%  R=0.815 M=0.7 plx=0.458 DWARF  -> excluded by geometry
+      304655465   39.4" T=15.48 need   4.96%  R=2.269 M=1.0 plx=0.293 DWARF  -> excluded by geometry
+      928634980   39.7" T=18.18 need  58.60%  R=0.852 M=0.94 plx=0.056 DWARF  -> excluded by geometry
+      928634359   40.0" T=18.36 need  68.77%  R=None M=1.0 plx=0.702 None  -> radius unknown (not excluded)
+      304655540   41.7" T=11.09 need   0.20%  R=9.053 M=1.2 plx=0.768 GIANT  -> excluded by geometry
+      928634358   42.0" T=18.39 need  71.04%  R=0.549 M=0.7 plx=0.617 DWARF  -> possible
+      304655468   43.8" T=16.75 need  15.73%  R=0.671 M=0.92 plx=0.625 DWARF  -> possible
+      928634983   44.9" T=18.07 need  52.85%  R=0.844 M=1.14 plx=-0.027 DWARF  -> excluded by geometry
+      928634354   46.4" T=18.62 need  87.96%  R=None M=1.0 plx=1.124 None  -> radius unknown (not excluded)
+      928634925   46.6" T=18.57 need  83.65%  R=None M=1.0 plx=-0.217 None  -> radius unknown (not excluded)
+      304655455   46.6" T=15.76 need   6.43%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      304655451   46.7" T=17.36 need  27.52%  R=1.142 M=0.98 plx=0.19 DWARF  -> excluded by geometry
+      928634926   46.9" T=18.60 need  86.37%  R=None M=1.0 plx=0.345 None  -> radius unknown (not excluded)
+      928634347   47.4" T=18.75 need  99.13%  R=None M=1.0 plx=0.617 DWARF  -> radius unknown (not excluded)
+      304655515   48.3" T=14.03 need   1.40%  R=1.103 M=1.22 plx=0.958 DWARF  -> possible
+      928634928   48.5" T=17.84 need  42.66%  R=None M=1.0 plx=-0.094 None  -> radius unknown (not excluded)
+      928635090   49.5" T=17.63 need  35.46%  R=None M=1.0 plx=0.206 DWARF  -> radius unknown (not excluded)
+      928635072   49.7" T=18.75 need  98.73%  R=None M=1.0 plx=-0.078 DWARF  -> radius unknown (not excluded)
+      304655496   49.8" T=17.63 need  35.40%  R=0.838 M=1.03 plx=0.24 DWARF  -> excluded by geometry
+      928635031   49.8" T=17.47 need  30.34%  R=0.982 M=0.93 plx=0.276 DWARF  -> excluded by geometry
+      304655556   49.9" T=15.55 need   5.30%  R=1.705 M=1.1 plx=0.345 DWARF  -> excluded by geometry
+      304655446   50.4" T=15.93 need   7.46%  R=2.356 M=1.11 plx=0.185 DWARF  -> excluded by geometry
+      928635035   51.1" T=18.54 need  81.59%  R=0.766 M=0.92 plx=-0.152 DWARF  -> excluded by geometry
+      928634981   51.3" T=17.46 need  30.29%  R=1.161 M=1.12 plx=0.094 DWARF  -> excluded by geometry
+      304655449   51.5" T=16.05 need   8.30%  R=0.496 M=0.494 plx=2.308 DWARF  -> possible
+      304655535   53.1" T=14.95 need   3.09%  R=1.279 M=1.04 plx=0.637 DWARF  -> possible
+      304655429   53.5" T=15.56 need   5.33%  R=0.897 M=1.0 plx=0.714 DWARF  -> possible
+      928635097   53.5" T=18.40 need  71.94%  R=0.722 M=1.25 plx=-0.186 DWARF  -> excluded by geometry
+      304655431   53.7" T=15.20 need   3.87%  R=6.249 M=1.2 plx=0.143 GIANT  -> excluded by geometry
+      304655550   53.9" T=17.64 need  35.77%  R=0.954 M=0.66 plx=0.523 DWARF  -> excluded by geometry
+      304655500   54.5" T=15.97 need   7.75%  R=5.725 M=1.2 plx=0.018 GIANT  -> excluded by geometry
+      304655562   54.8" T=16.15 need   9.12%  R=2.296 M=1.48 plx=0.103 DWARF  -> excluded by geometry
+      928635091   56.6" T=17.83 need  42.38%  R=None M=1.0 plx=-0.073 None  -> radius unknown (not excluded)
+      304655545   57.0" T=16.05 need   8.31%  R=2.806 M=1.2 plx=0.208 GIANT  -> excluded by geometry
+      928634329   57.1" T=18.64 need  89.13%  R=None M=1.0 plx=1.495 DWARF  -> radius unknown (not excluded)
+      928634708   57.3" T=18.29 need  64.49%  R=0.544 M=0.71 plx=0.607 DWARF  -> possible
+      928635389   57.6" T=17.59 need  33.99%  R=1.149 M=1.16 plx=0.015 DWARF  -> excluded by geometry
+      928635093   57.8" T=17.66 need  36.32%  R=1.329 M=1.01 plx=-0.07 DWARF  -> excluded by geometry
+      928635066   58.8" T=17.25 need  24.84%  R=0.855 M=1.25 plx=0.265 DWARF  -> excluded by geometry
+      928634985   59.1" T=17.77 need  40.00%  R=0.903 M=0.94 plx=0.225 DWARF  -> excluded by geometry
+      304655423   59.9" T=16.77 need  16.02%  R=1.579 M=1.08 plx=0.172 DWARF  -> excluded by geometry
+TIC 422677298 P=12.364255 T14=3.48 h depth=870.0 ppm: 2 capable, 2 not excluded
+      422677299    4.0" T= 9.45 need   0.14%  R=0.58 M=0.571 plx=41.773 DWARF  -> possible
+      471011165    4.1" T=10.89 need   0.30%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+TIC 420529106 P=21.958436 T14=3.44 h depth=899.0 ppm: 28 capable, 9 not excluded
+      420529092   14.8" T=16.94 need  40.93%  R=1.051 M=0.94 plx=0.493 DWARF  -> excluded by geometry
+      420529086   18.2" T=17.78 need  88.59%  R=1.829 M=0.88 plx=-0.206 DWARF  -> excluded by geometry
+      420529108   21.6" T=14.79 need   5.72%  R=1.746 M=1.1 plx=0.594 DWARF  -> excluded by geometry
+      420529134   22.2" T=15.37 need   9.69%  R=9.432 M=1.2 plx=0.028 GIANT  -> excluded by geometry
+      420529078   26.6" T=15.45 need  10.43%  R=3.544 M=1.2 plx=0.325 GIANT  -> excluded by geometry
+      420529152   33.0" T=12.48 need   0.76%  R=35.276 M=1.2 plx=0.154 GIANT  -> excluded by geometry
+      420529114   38.6" T=17.39 need  61.44%  R=0.695 M=0.9 plx=0.63 DWARF  -> possible
+      420529133   38.9" T=16.60 need  29.91%  R=0.881 M=1.0 plx=0.619 DWARF  -> possible
+      420529159   39.9" T=17.65 need  78.52%  R=0.815 M=0.94 plx=0.471 DWARF  -> excluded by geometry
+      420529121   40.6" T=16.93 need  40.45%  R=2.102 M=1.2 plx=0.219 GIANT  -> excluded by geometry
+      420529161   42.7" T=17.43 need  64.12%  R=2.177 M=1.03 plx=-0.216 DWARF  -> excluded by geometry
+      420529079   44.8" T=16.11 need  19.00%  R=0.58 M=0.571 plx=1.758 DWARF  -> possible
+      420529131   45.7" T=17.44 need  64.78%  R=0.512 M=0.509 plx=1.36 DWARF  -> possible
+     1042462185   46.9" T=16.61 need  30.06%  R=1.584 M=0.97 plx=0.34 DWARF  -> excluded by geometry
+      420529069   46.9" T=16.90 need  39.24%  R=3.732 M=1.2 plx=-0.071 GIANT  -> excluded by geometry
+      420529165   48.0" T=17.73 need  84.53%  R=0.537 M=0.82 plx=0.771 DWARF  -> possible
+      420529065   48.0" T=17.58 need  73.50%  R=1.259 M=0.99 plx=0.195 DWARF  -> excluded by geometry
+      420529123   48.8" T=15.28 need   8.92%  R=6.854 M=1.2 plx=0.134 GIANT  -> excluded by geometry
+      420529142   49.4" T=17.43 need  63.95%  R=0.741 M=0.74 plx=0.742 DWARF  -> excluded by geometry
+      420529089   51.0" T=17.48 need  66.72%  R=0.738 M=0.89 plx=0.582 DWARF  -> possible
+      420529061   51.5" T=17.82 need  91.59%  R=1.42 M=0.87 plx=0.135 DWARF  -> excluded by geometry
+      420529052   53.8" T=15.44 need  10.31%  R=1.135 M=1.02 plx=0.713 DWARF  -> possible
+      420529043   54.8" T=17.29 need  56.23%  R=1.35 M=0.97 plx=0.267 DWARF  -> excluded by geometry
+      420529040   55.1" T=16.71 need  32.97%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+     1042462192   55.6" T=17.37 need  60.68%  R=1.951 M=1.07 plx=-0.478 DWARF  -> excluded by geometry
+      420529143   56.2" T=15.69 need  13.01%  R=3.823 M=1.2 plx=0.224 GIANT  -> excluded by geometry
+      420529081   57.5" T=17.48 need  67.17%  R=1.631 M=0.99 plx=0.037 DWARF  -> excluded by geometry
+      420529120   57.8" T=17.39 need  61.89%  R=None M=1.0 plx=0.798 DWARF  -> radius unknown (not excluded)
+TIC 147163875 P=5.579849 T14=1.72 h depth=909.0 ppm: 7 capable, 5 not excluded
+      147163874   11.0" T=12.43 need   0.37%  R=0.338 M=0.32 plx=20.876 DWARF  -> possible
+      147163876   27.9" T=17.86 need  41.30%  R=0.599 M=0.75 plx=0.424 DWARF  -> possible
+      147163869   39.0" T=18.30 need  61.92%  R=0.712 M=0.47 plx=0.76 DWARF  -> excluded by geometry
+      147163878   39.4" T=15.92 need   7.02%  R=1.458 M=1.03 plx=0.27 DWARF  -> excluded by geometry
+    10001213703   45.0" T=16.50 need  11.92%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      147163877   45.1" T=16.21 need   9.15%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      147163867   55.6" T=18.17 need  55.09%  R=None M=1.0 plx=0.727 DWARF  -> radius unknown (not excluded)
+TIC 48439430 P=0.551576 T14=1.08 h depth=385.0 ppm: 20 capable, 17 not excluded
+     1174403579    8.7" T=19.28 need  83.25%  R=None M=1.0 plx=2.353 DWARF  -> radius unknown (not excluded)
+     1174403578    8.8" T=18.92 need  59.87%  R=None M=1.0 plx=0.386 None  -> radius unknown (not excluded)
+     1174403582   10.3" T=17.13 need  11.51%  R=1.272 M=0.93 plx=0.079 DWARF  -> excluded by geometry
+       48439432   14.7" T=17.25 need  12.80%  R=2.374 M=1.2 plx=0.112 GIANT  -> excluded by geometry
+       48439431   24.0" T=15.43 need   2.44%  R=1.697 M=1.1 plx=0.317 DWARF  -> possible
+     1174403576   24.9" T=17.70 need  19.49%  R=0.634 M=1.02 plx=0.339 DWARF  -> possible
+     1174403585   29.2" T=17.92 need  23.86%  R=0.652 M=0.88 plx=0.4 DWARF  -> possible
+     1174403574   31.9" T=19.02 need  65.28%  R=None M=1.0 plx=2.011 DWARF  -> radius unknown (not excluded)
+     1174403577   33.1" T=19.18 need  75.58%  R=None M=1.0 plx=1.854 DWARF  -> radius unknown (not excluded)
+       48439424   35.2" T=13.59 need   0.48%  R=1.069 M=1.08 plx=1.262 DWARF  -> possible
+       48439422   43.1" T=16.51 need   6.51%  R=0.885 M=0.98 plx=0.461 DWARF  -> possible
+       48439419   47.4" T=16.59 need   7.02%  R=1.559 M=0.94 plx=0.168 DWARF  -> excluded by geometry
+       48439434   51.0" T=17.40 need  14.72%  R=0.55 M=0.83 plx=0.698 DWARF  -> possible
+     1174403473   51.6" T=18.17 need  29.94%  R=0.745 M=0.84 plx=0.066 DWARF  -> possible
+       48439441   53.8" T=15.81 need   3.43%  R=0.812 M=1.01 plx=0.654 DWARF  -> possible
+     1174403600   54.2" T=18.09 need  27.87%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+     1174403592   55.0" T=19.44 need  96.13%  R=None M=1.0 plx=0.961 None  -> radius unknown (not excluded)
+     1174403602   55.3" T=18.15 need  29.28%  R=None M=1.0 plx=0.488 None  -> radius unknown (not excluded)
+     1174403583   55.5" T=17.36 need  14.27%  R=0.572 M=1.09 plx=0.465 DWARF  -> possible
+       48439433   58.1" T=16.17 need   4.78%  R=0.654 M=0.63 plx=1.324 DWARF  -> possible
+TIC 306990399 P=4.705146 T14=1.76 h depth=1125.0 ppm: 33 capable, 24 not excluded
+     1510357983   12.7" T=17.52 need  17.22%  R=0.7 M=1.1 plx=0.291 DWARF  -> possible
+      306990394   20.3" T=16.78 need   8.75%  R=1.131 M=1.08 plx=0.246 DWARF  -> possible
+     1510358012   20.8" T=19.06 need  70.61%  R=None M=1.0 plx=0.278 DWARF  -> radius unknown (not excluded)
+     1510357982   23.9" T=18.34 need  36.64%  R=1.054 M=0.81 plx=-0.279 DWARF  -> excluded by geometry
+     1510358014   27.4" T=19.03 need  68.77%  R=None M=1.0 plx=-0.57 DWARF  -> radius unknown (not excluded)
+     1510358013   27.4" T=17.94 need  25.23%  R=0.684 M=0.92 plx=0.315 DWARF  -> possible
+      306990405   29.4" T=16.84 need   9.30%  R=0.562 M=0.82 plx=0.765 DWARF  -> possible
+     1510357993   31.9" T=19.09 need  72.96%  R=None M=1.0 plx=-0.094 None  -> radius unknown (not excluded)
+     1510358002   32.5" T=18.84 need  57.83%  R=None M=1.0 plx=-0.146 DWARF  -> radius unknown (not excluded)
+      306990400   32.7" T=16.30 need   5.66%  R=1.168 M=1.04 plx=0.335 DWARF  -> possible
+     1510357975   35.3" T=18.52 need  43.32%  R=0.964 M=0.76 plx=-0.243 DWARF  -> excluded by geometry
+      306990390   35.6" T=16.88 need   9.59%  R=1.121 M=0.99 plx=0.266 DWARF  -> excluded by geometry
+     1510358015   37.7" T=18.76 need  53.90%  R=None M=1.0 plx=0.454 DWARF  -> radius unknown (not excluded)
+      306990406   38.1" T=17.30 need  14.12%  R=1.823 M=1.2 plx=-0.019 GIANT  -> excluded by geometry
+     1510358019   39.4" T=18.13 need  30.02%  R=0.742 M=0.58 plx=0.744 DWARF  -> possible
+     1510358011   40.2" T=18.85 need  58.26%  R=None M=1.0 plx=-0.261 DWARF  -> radius unknown (not excluded)
+      306990412   42.6" T=17.66 need  19.57%  R=None M=1.0 plx=0.861 DWARF  -> radius unknown (not excluded)
+      306990419   43.0" T=17.25 need  13.43%  R=1.101 M=0.98 plx=0.195 DWARF  -> excluded by geometry
+     1510357987   45.6" T=17.50 need  16.95%  R=0.946 M=0.98 plx=0.2 DWARF  -> excluded by geometry
+      306990391   47.2" T=14.00 need   0.78%  R=1.108 M=1.16 plx=0.954 DWARF  -> possible
+     1510358029   47.9" T=17.85 need  23.29%  R=1.09 M=0.93 plx=-0.09 DWARF  -> excluded by geometry
+      306990395   47.9" T=14.64 need   1.32%  R=8.204 M=1.2 plx=0.11 GIANT  -> excluded by geometry
+      306990378   48.8" T=17.05 need  11.20%  R=0.754 M=0.78 plx=0.564 DWARF  -> possible
+     1510357989   49.6" T=17.65 need  19.38%  R=0.774 M=0.78 plx=0.431 DWARF  -> possible
+      306990401   52.9" T=16.28 need   5.60%  R=0.727 M=0.77 plx=0.817 DWARF  -> possible
+     1510357999   53.3" T=17.32 need  14.33%  R=None M=1.0 plx=0.373 DWARF  -> radius unknown (not excluded)
+     1510357994   53.4" T=19.00 need  67.15%  R=None M=1.0 plx=0.474 None  -> radius unknown (not excluded)
+     1510358031   53.9" T=17.91 need  24.75%  R=None M=1.0 plx=1.391 DWARF  -> radius unknown (not excluded)
+     1510357995   53.9" T=19.08 need  72.29%  R=None M=1.0 plx=0.777 None  -> radius unknown (not excluded)
+     1510358030   54.9" T=17.86 need  23.60%  R=0.651 M=0.68 plx=0.637 DWARF  -> possible
+     1510357990   55.3" T=19.00 need  66.84%  R=None M=1.0 plx=3.1 None  -> radius unknown (not excluded)
+     1510358021   55.4" T=17.87 need  23.75%  R=0.913 M=1.11 plx=-0.025 DWARF  -> excluded by geometry
+      306990397   55.6" T=16.18 need   5.08%  R=0.854 M=1.03 plx=0.503 DWARF  -> possible
+TIC 408310006 P=27.017032 T14=4.7 h depth=563.0 ppm: 2 capable, 1 not excluded
+      408310005    5.6" T=15.16 need  18.52%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      408310014   52.4" T=15.51 need  25.55%  R=4.198 M=1.2 plx=-0.016 GIANT  -> excluded by geometry
+TIC 163029327 P=0.946925 T14=1.73 h depth=568.0 ppm: 40 capable, 40 not excluded
+      163045023    5.6" T=16.69 need   3.10%  R=1.51 M=0.93 plx=0.004 DWARF  -> possible
+      995431094    7.2" T=19.19 need  30.67%  R=None M=1.0 plx=0.842 None  -> radius unknown (not excluded)
+      995431093   13.5" T=18.90 need  23.46%  R=None M=1.0 plx=0.009 DWARF  -> radius unknown (not excluded)
+      995431099   16.6" T=18.73 need  20.02%  R=None M=1.0 plx=-0.764 DWARF  -> radius unknown (not excluded)
+      995431092   17.8" T=19.80 need  53.49%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431261   20.4" T=18.95 need  24.56%  R=None M=1.0 plx=0.528 None  -> radius unknown (not excluded)
+      995431091   21.8" T=19.41 need  37.27%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431097   23.4" T=19.94 need  60.71%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431095   24.5" T=20.02 need  65.83%  R=None M=1.0 plx=2.611 None  -> radius unknown (not excluded)
+      163046120   25.8" T=17.74 need   8.07%  R=0.547 M=0.64 plx=0.967 DWARF  -> possible
+      995431098   27.6" T=20.11 need  71.04%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431259   30.5" T=18.33 need  13.83%  R=1.084 M=0.63 plx=-0.592 DWARF  -> possible
+      995431096   30.8" T=19.77 need  51.87%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431077   32.0" T=19.97 need  62.43%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431394   33.0" T=19.99 need  63.92%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431397   34.0" T=18.51 need  16.38%  R=0.543 M=0.82 plx=-0.105 DWARF  -> possible
+      163046627   34.2" T=17.26 need   5.19%  R=0.784 M=0.91 plx=0.336 DWARF  -> possible
+      163046859   37.5" T=16.52 need   2.66%  R=1.15 M=1.0 plx=0.27 DWARF  -> possible
+      995431090   38.4" T=18.28 need  13.25%  R=None M=1.0 plx=0.531 DWARF  -> radius unknown (not excluded)
+      995431076   38.9" T=18.39 need  14.71%  R=None M=1.0 plx=0.855 DWARF  -> radius unknown (not excluded)
+      995431391   39.2" T=18.04 need  10.60%  R=0.73 M=0.86 plx=-0.135 DWARF  -> possible
+      995431396   40.7" T=18.88 need  23.07%  R=None M=1.0 plx=0.097 DWARF  -> radius unknown (not excluded)
+      163046636   43.8" T=15.79 need   1.39%  R=0.54 M=0.536 plx=2.217 DWARF  -> possible
+      163039934   43.8" T=17.23 need   5.06%  R=1.071 M=0.91 plx=0.011 DWARF  -> possible
+      995431075   43.8" T=19.00 need  25.78%  R=None M=1.0 plx=1.383 None  -> radius unknown (not excluded)
+      163043871   44.8" T=17.53 need   6.66%  R=0.795 M=0.82 plx=0.303 DWARF  -> possible
+      163044147   45.5" T=16.39 need   2.38%  R=1.264 M=1.04 plx=0.222 DWARF  -> possible
+      995431262   45.5" T=19.39 need  36.68%  R=None M=1.0 plx=0.864 DWARF  -> radius unknown (not excluded)
+      163046348   46.3" T=17.18 need   4.86%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431089   50.9" T=18.04 need  10.62%  R=0.785 M=0.91 plx=-0.511 DWARF  -> possible
+      163034175   51.2" T=16.09 need   1.82%  R=0.872 M=0.92 plx=0.616 DWARF  -> possible
+      995431260   51.6" T=18.21 need  12.48%  R=None M=1.0 plx=0.346 None  -> radius unknown (not excluded)
+      163037939   53.3" T=17.12 need   4.57%  R=0.588 M=0.64 plx=1.099 DWARF  -> possible
+      163045496   53.9" T=16.86 need   3.63%  R=0.749 M=0.98 plx=0.445 DWARF  -> possible
+      995431078   54.5" T=19.10 need  28.19%  R=None M=1.0 plx=0.962 DWARF  -> radius unknown (not excluded)
+      163037730   54.7" T=16.28 need   2.15%  R=2.122 M=1.06 plx=-0.172 DWARF  -> possible
+      995431255   55.2" T=17.52 need   6.60%  R=0.713 M=1.01 plx=0.109 DWARF  -> possible
+      163043600   56.2" T=16.98 need   4.02%  R=1.205 M=0.72 plx=0.345 DWARF  -> possible
+      995431274   56.9" T=19.21 need  31.23%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      995431256   59.0" T=18.82 need  21.81%  R=None M=1.0 plx=1.398 DWARF  -> radius unknown (not excluded)
+TIC 146282666 P=9.995027 T14=4.53 h depth=272.0 ppm: 4 capable, 4 not excluded
+      632015734    5.7" T=15.36 need   8.54%  R=1.511 M=1.24 plx=0.253 DWARF  -> possible
+      632016189   31.1" T=17.98 need  94.83%  R=0.586 M=0.73 plx=0.16 DWARF  -> possible
+      146282669   34.3" T=15.61 need  10.74%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      632015732   35.2" T=15.82 need  12.93%  R=None M=1.0 plx=0.974 None  -> radius unknown (not excluded)
+TIC 422217860 P=4.992141 T14=1.37 h depth=1776.0 ppm: 2 capable, 2 not excluded
+      953452969    1.8" T=14.82 need   2.87%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      422217857   46.3" T=16.41 need  11.79%  R=0.733 M=0.74 plx=0.769 DWARF  -> possible
+TIC 247166992 P=10.166239 T14=2.37 h depth=1538.0 ppm: 9 capable, 9 not excluded
+      247166991    5.1" T=15.45 need   5.90%  R=0.715 M=0.71 plx=1.355 DWARF  -> possible
+      247166985   27.3" T=15.18 need   4.65%  R=1.014 M=0.98 plx=0.678 DWARF  -> possible
+      247166995   33.8" T=12.87 need   0.69%  R=1.532 M=0.98 plx=1.347 DWARF  -> possible
+      247166998   39.7" T=17.54 need  39.66%  R=None M=1.0 plx=1.278 DWARF  -> radius unknown (not excluded)
+      247167952   41.2" T=17.33 need  32.61%  R=0.607 M=0.63 plx=0.888 DWARF  -> possible
+      247167000   47.3" T=17.06 need  25.52%  R=0.378 M=0.367 plx=2.127 DWARF  -> possible
+      247167959   54.4" T=17.45 need  36.35%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      247166994   55.9" T=12.80 need   0.66%  R=1.4 M=1.3 plx=1.171 DWARF  -> possible
+      247167955   57.4" T=14.36 need   2.25%  R=1.728 M=1.21 plx=0.466 DWARF  -> possible
+TIC 76228620 P=24.524859 T14=3.02 h depth=1951.0 ppm: 22 capable, 9 not excluded
+       76228618   10.7" T=16.72 need  29.67%  R=1.056 M=0.77 plx=0.478 DWARF  -> excluded by geometry
+       76228619   16.7" T=17.47 need  59.09%  R=1.136 M=1.04 plx=0.117 DWARF  -> excluded by geometry
+       76228613   17.6" T=16.89 need  34.81%  R=None M=1.0 plx=0.233 None  -> radius unknown (not excluded)
+     1513082409   25.8" T=17.50 need  60.56%  R=1.394 M=0.93 plx=0.075 DWARF  -> excluded by geometry
+       76228632   28.1" T=16.38 need  21.67%  R=0.92 M=0.97 plx=0.476 DWARF  -> excluded by geometry
+     1513082387   28.7" T=18.02 need  97.69%  R=1.003 M=1.0 plx=-0.004 DWARF  -> excluded by geometry
+       76228604   32.5" T=17.16 need  44.34%  R=1.762 M=0.94 plx=0.052 DWARF  -> excluded by geometry
+       76228595   33.8" T=17.48 need  59.27%  R=None M=1.0 plx=1.249 DWARF  -> radius unknown (not excluded)
+       76228641   41.0" T=17.27 need  49.31%  R=0.564 M=0.83 plx=0.648 DWARF  -> possible
+     1513082378   41.4" T=17.95 need  91.81%  R=0.8 M=1.08 plx=0.149 DWARF  -> excluded by geometry
+       76228592   44.9" T=13.49 need   1.70%  R=7.729 M=1.2 plx=0.284 GIANT  -> excluded by geometry
+       76228643   45.8" T=16.67 need  28.41%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+       76228609   46.4" T=17.13 need  43.04%  R=0.994 M=0.98 plx=0.297 DWARF  -> excluded by geometry
+       76228624   47.3" T=14.97 need   6.08%  R=0.813 M=0.93 plx=1.076 DWARF  -> possible
+     1513082393   47.5" T=17.35 need  52.95%  R=None M=1.0 plx=0.003 None  -> radius unknown (not excluded)
+       76228630   48.8" T=17.92 need  88.98%  R=1.259 M=0.53 plx=0.694 DWARF  -> excluded by geometry
+       76228646   49.2" T=17.29 need  49.87%  R=1.739 M=1.2 plx=0.16 GIANT  -> excluded by geometry
+       76228608   50.6" T=15.99 need  15.20%  R=1.06 M=0.94 plx=0.51 DWARF  -> excluded by geometry
+       76228645   50.7" T=15.78 need  12.64%  R=1.305 M=0.96 plx=0.436 DWARF  -> excluded by geometry
+     1513082420   57.0" T=17.56 need  63.99%  R=None M=1.0 plx=-0.168 None  -> radius unknown (not excluded)
+     1513081257   57.7" T=17.65 need  69.88%  R=None M=1.0 plx=0.508 DWARF  -> radius unknown (not excluded)
+     1513082347   59.8" T=17.89 need  86.77%  R=0.538 M=1.02 plx=0.421 DWARF  -> possible
+TIC 165337974 P=8.95644 T14=3.31 h depth=927.0 ppm: 69 capable, 60 not excluded
+      165337971    6.3" T=16.06 need   5.92%  R=0.965 M=0.88 plx=0.65 DWARF  -> possible
+     1960403158    6.7" T=18.82 need  73.96%  R=None M=1.0 plx=0.328 None  -> radius unknown (not excluded)
+      165337972   11.3" T=17.26 need  17.59%  R=0.755 M=0.96 plx=0.423 DWARF  -> possible
+     1960403154   13.2" T=18.77 need  70.86%  R=None M=1.0 plx=-0.092 DWARF  -> radius unknown (not excluded)
+      165337956   15.2" T=17.01 need  13.97%  R=1.036 M=0.95 plx=0.34 DWARF  -> possible
+     1960403168   17.7" T=18.24 need  43.18%  R=0.645 M=0.62 plx=0.721 DWARF  -> possible
+     1960403160   18.6" T=17.69 need  26.16%  R=0.99 M=0.93 plx=0.198 DWARF  -> possible
+     1960403187   21.3" T=18.32 need  46.69%  R=0.74 M=0.95 plx=0.057 DWARF  -> possible
+      165337955   22.0" T=17.45 need  20.90%  R=0.801 M=0.61 plx=0.822 DWARF  -> possible
+     1960403188   22.4" T=18.08 need  37.51%  R=0.837 M=0.78 plx=0.279 DWARF  -> possible
+     1960403163   22.5" T=17.89 need  31.49%  R=0.838 M=1.03 plx=0.149 DWARF  -> possible
+      165337947   23.8" T=16.80 need  11.57%  R=0.796 M=1.02 plx=0.462 DWARF  -> possible
+     1960403170   25.1" T=18.50 need  54.93%  R=0.739 M=0.85 plx=0.112 DWARF  -> possible
+      165337951   25.4" T=15.98 need   5.50%  R=2.566 M=1.02 plx=0.175 DWARF  -> excluded by geometry
+     1960403162   25.6" T=18.56 need  58.06%  R=None M=1.0 plx=0.423 DWARF  -> radius unknown (not excluded)
+     1960403152   25.7" T=18.65 need  63.32%  R=None M=1.0 plx=0.667 DWARF  -> radius unknown (not excluded)
+      165337938   27.4" T=16.37 need   7.80%  R=None M=1.0 plx=None DWARF  -> radius unknown (not excluded)
+     1960403191   27.8" T=18.31 need  46.06%  R=None M=1.0 plx=-0.019 None  -> radius unknown (not excluded)
+     1960403136   27.8" T=17.79 need  28.61%  R=1.267 M=1.08 plx=-0.137 DWARF  -> excluded by geometry
+     1960403202   27.9" T=17.26 need  17.60%  R=None M=1.0 plx=0.287 None  -> radius unknown (not excluded)
+     1960403150   30.9" T=19.01 need  87.60%  R=0.604 M=0.81 plx=-0.064 DWARF  -> possible
+     1960403172   33.5" T=18.08 need  37.41%  R=0.714 M=0.79 plx=0.377 DWARF  -> possible
+     1960403186   33.7" T=18.66 need  63.70%  R=0.779 M=0.92 plx=-0.227 DWARF  -> possible
+     1960403145   34.8" T=18.73 need  67.94%  R=None M=1.0 plx=1.914 DWARF  -> radius unknown (not excluded)
+      165337939   34.8" T=16.85 need  12.09%  R=1.442 M=0.92 plx=0.248 DWARF  -> possible
+     1960403218   37.4" T=17.91 need  31.91%  R=0.945 M=1.02 plx=0.061 DWARF  -> possible
+      165338020   37.9" T=17.42 need  20.38%  R=1.635 M=0.87 plx=0.049 DWARF  -> excluded by geometry
+     1960403190   38.1" T=17.83 need  29.78%  R=0.542 M=0.94 plx=0.477 DWARF  -> possible
+      165338001   38.1" T=15.81 need   4.70%  R=1.845 M=1.19 plx=0.258 DWARF  -> possible
+     1960403217   40.8" T=18.61 need  60.62%  R=0.592 M=0.93 plx=0.132 DWARF  -> possible
+      165338007   41.7" T=17.74 need  27.33%  R=None M=1.0 plx=None None  -> radius unknown (not excluded)
+      165337937   41.9" T=17.40 need  19.98%  R=1.397 M=0.89 plx=0.139 DWARF  -> excluded by geometry
+     1960403165   42.1" T=17.73 need  27.21%  R=None M=1.0 plx=0.439 None  -> radius unknown (not excluded)
+     1960403166   42.4" T=18.49 need  54.75%  R=1.029 M=0.72 plx=-0.111 DWARF  -> excluded by geometry
+      165338025   44.2" T=17.62 need  24.46%  R=0.429 M=0.57 plx=1.435 DWARF  -> possible
+      165338032   45.4" T=17.33 need  18.77%  R=1.011 M=0.63 plx=0.637 DWARF  -> possible
+      165338005   45.6" T=16.76 need  11.12%  R=2.189 M=1.2 plx=0.17 GIANT  -> excluded by geometry
+     1960403240   46.9" T=17.48 need  21.62%  R=0.691 M=0.91 plx=0.446 DWARF  -> possible
+     1960403135   47.1" T=18.88 need  78.21%  R=0.629 M=0.73 plx=0.21 DWARF  -> possible
+      165337981   47.2" T=17.53 need  22.67%  R=0.946 M=1.01 plx=0.225 DWARF  -> possible
+     1960403219   47.4" T=18.80 need  72.64%  R=None M=1.0 plx=0.011 DWARF  -> radius unknown (not excluded)
+     1960403167   47.8" T=18.25 need  43.80%  R=None M=1.0 plx=0.695 DWARF  -> radius unknown (not excluded)
+      165338028   48.2" T=18.40 need  50.32%  R=None M=1.0 plx=None DWARF  -> radius unknown (not excluded)
+      165337914   48.4" T=16.79 need  11.46%  R=1.134 M=0.81 plx=0.427 DWARF  -> possible
+     1960403195   49.1" T=18.47 need  53.55%  R=None M=1.0 plx=0.31 None  -> radius unknown (not excluded)
+      165338011   49.6" T=17.36 need  19.25%  R=0.802 M=0.9 plx=0.411 DWARF  -> possible
+      165337918   49.8" T=16.77 need  11.22%  R=0.739 M=1.0 plx=0.519 DWARF  -> possible
+      165338018   50.0" T=16.09 need   6.08%  R=0.365 M=0.351 plx=3.648 DWARF  -> possible
+      165337993   50.3" T=16.89 need  12.61%  R=1.398 M=0.91 plx=0.259 DWARF  -> possible
+     1960403133   50.6" T=18.24 need  43.41%  R=0.578 M=0.9 plx=0.357 DWARF  -> possible
+      165337920   51.0" T=16.33 need   7.51%  R=2.62 M=1.02 plx=0.112 DWARF  -> excluded by geometry
+      165338019   51.6" T=14.86 need   2.02%  R=1.146 M=0.9 plx=0.919 DWARF  -> possible
+     1960403134   52.3" T=18.64 need  62.50%  R=0.708 M=0.81 plx=0.109 DWARF  -> possible
+     1960397959   52.4" T=18.35 need  47.97%  R=0.862 M=1.06 plx=-0.166 DWARF  -> possible
+     1960403278   53.4" T=18.12 need  38.64%  R=None M=1.0 plx=-0.347 None  -> radius unknown (not excluded)
+     1960403131   53.6" T=17.92 need  32.25%  R=0.912 M=1.01 plx=0.086 DWARF  -> possible
+     1960403177   54.5" T=18.84 need  75.18%  R=None M=1.0 plx=0.788 DWARF  -> radius unknown (not excluded)
+      165337948   54.7" T=17.30 need  18.21%  R=0.454 M=0.451 plx=1.612 DWARF  -> possible
+      165337916   55.3" T=17.67 need  25.70%  R=None M=1.0 plx=0.621 DWARF  -> radius unknown (not excluded)
+     1960403271   55.7" T=17.89 need  31.53%  R=0.92 M=0.86 plx=0.215 DWARF  -> possible
+      165338048   56.5" T=17.98 need  34.06%  R=None M=1.0 plx=1.896 None  -> radius unknown (not excluded)
+     1960403171   56.6" T=18.14 need  39.36%  R=1.17 M=0.73 plx=0.05 DWARF  -> excluded by geometry
+      165437030   56.9" T=17.16 need  16.14%  R=0.618 M=0.602 plx=0.97 DWARF  -> possible
+      165436980   57.0" T=17.39 need  19.83%  R=1.002 M=0.8 plx=0.377 DWARF  -> possible
+      165337926   57.6" T=18.30 need  45.80%  R=None M=1.0 plx=2.053 DWARF  -> radius unknown (not excluded)
+      165338049   57.8" T=16.47 need   8.55%  R=2.335 M=1.2 plx=0.239 GIANT  -> excluded by geometry
+     1960403234   58.4" T=19.14 need  98.96%  R=None M=1.0 plx=-0.035 DWARF  -> radius unknown (not excluded)
+     1960403235   59.1" T=17.89 need  31.39%  R=0.729 M=0.87 plx=0.347 DWARF  -> possible
+     1960403280   59.6" T=18.54 need  57.19%  R=None M=1.0 plx=0.351 None  -> radius unknown (not excluded)

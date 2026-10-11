@@ -1,0 +1,36 @@
+197 bins, sigma 442 ppm, central depth 2345 ppm
+In preparation for Gaia DR4, the Gaia archive is in evolution. Unfortunately, it may be unstable at times and particular types of queries may time out. Please consider registering for a user account (https://www.cosmos.esa.int/web/gaia-users/register). For questions or advice, please contact the Gaia helpdesk (https://www.cosmos.esa.int/web/gaia/gaia-helpdesk).
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TessCut for sector 66
+Getting TessCut for sector 93
+Getting TessCut for sector 100
+Getting TessCut for sector 103
+Getting TessCut for sector 104
+Estimated missing stellar parameters for 422 of 848 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 33 appear evolved and were assigned a nominal 1 M_Sun.
+848 stars in field; 7 could produce the depth (tdepth <= 1):
+      ID    Tmag         ra        dec  sep (arcsec)  fluxratio   tdepth
+76228620 11.2723 269.247264 -55.787886         0.000   0.928060 0.002345
+76228618 16.7204 269.242053 -55.788355        10.682   0.005947 0.365902
+76228619 17.4718 269.239062 -55.788328        16.678   0.002741 0.793855
+76228613 16.8947 269.239015 -55.789444        17.614   0.004575 0.475582
+76228632 16.3766 269.253898 -55.781043        28.057   0.004074 0.534120
+76228592 13.4908 269.233993 -55.797870        44.868   0.026767 0.081292
+76228624 14.9703 269.270361 -55.785895        47.297   0.003510 0.619925
+run 1: FPP 0.5788  NFPP 0.000282  (49 s)
+run 2: FPP 0.6828  NFPP 0.000338  (42 s)
+run 3: FPP 0.6383  NFPP 0.00045  (32 s)
+run 4: FPP 0.5826  NFPP 0.000237  (32 s)
+
+FPP  0.6206 ± 0.043   NFPP 0.000327 ± 8e-05   (4 runs, N=1000000)
+                       mean       std
+ID       scenario                    
+76228620 STP       0.355413  0.045983
+         TP        0.271626  0.043061
+         SEB       0.169165  0.026866
+         PTP       0.099195  0.029802
+         BEB       0.044218  0.027005
+         SEBx2P    0.033810  0.018730
+         DTP       0.008577  0.006199
+         EBx2P     0.005272  0.003551
+         PEBx2P    0.005156  0.008355
+         BEBx2P    0.004577  0.000758

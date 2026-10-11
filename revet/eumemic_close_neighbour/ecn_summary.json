@@ -1,0 +1,909 @@
+[
+ {
+  "tic": 231725883,
+  "their_P": 4.659315,
+  "their_depth_ppm": 423.0,
+  "their_T14_h": 2.32,
+  "their_MES": 10.8,
+  "recovered_blind": true,
+  "our_P": 4.659322215042036,
+  "our_verdict": "survivor",
+  "our_snr": 8.1,
+  "our_depth_ppm": 329,
+  "failed": [
+   "contamination"
+  ],
+  "neighbours_within_16": [
+   {
+    "tic": 734629420,
+    "sep": 13.32,
+    "tmag": 18.15,
+    "need": 0.2218,
+    "rad": null,
+    "lum": "DWARF",
+    "plx": 0.358,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 4,
+  "n_not_excluded_60": 4,
+  "triceratops": {
+   "FPP": 0.0729,
+   "FPP_std": 0.0036,
+   "NFPP": 0.0019140393421648884,
+   "NFPP_std": 0.0001234426817883443,
+   "depth_used_ppm": 391
+  }
+ },
+ {
+  "tic": 231725883,
+  "their_P": 18.965313,
+  "their_depth_ppm": 699.0,
+  "their_T14_h": 3.67,
+  "their_MES": 10.7,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 18.965313,
+   "depth_at_ephem_ppm": 854,
+   "null_sigma_ppm": 107,
+   "sigma": 8.0,
+   "tls_P": 18.96533,
+   "tls_snr": 10.8,
+   "tls_depth_ppm": 795,
+   "tls_ntr": 16,
+   "masked_signals": [
+    9.0988,
+    39.9888,
+    4.6593,
+    31.9278
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 734629420,
+    "sep": 13.32,
+    "tmag": 18.15,
+    "need": 0.3666,
+    "rad": null,
+    "lum": "DWARF",
+    "plx": 0.358,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 4,
+  "n_not_excluded_60": 4
+ },
+ {
+  "tic": 88407114,
+  "their_P": 1.49751,
+  "their_depth_ppm": 289.0,
+  "their_T14_h": 0.69,
+  "their_MES": 9.7,
+  "recovered_blind": true,
+  "our_P": 1.4975112486626712,
+  "our_verdict": "survivor",
+  "our_snr": 7.6,
+  "our_depth_ppm": 231,
+  "failed": [
+   "contamination"
+  ],
+  "known_matches": {},
+  "neighbours_within_16": [
+   {
+    "tic": 651465050,
+    "sep": 3.42,
+    "tmag": 17.08,
+    "need": 0.1758,
+    "rad": null,
+    "lum": null,
+    "plx": 13.597,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 2,
+  "n_not_excluded_60": 2,
+  "triceratops": {
+   "FPP": 0.228,
+   "FPP_std": 0.0064,
+   "NFPP": 6.636964719076172e-05,
+   "NFPP_std": 1.7666217255212646e-06,
+   "depth_used_ppm": 152
+  }
+ },
+ {
+  "tic": 24621747,
+  "their_P": 5.20863,
+  "their_depth_ppm": 973.0,
+  "their_T14_h": 1.6,
+  "their_MES": 11.2,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 5.20863,
+   "depth_at_ephem_ppm": 1144,
+   "null_sigma_ppm": 150,
+   "sigma": 7.6,
+   "tls_P": 5.20867,
+   "tls_snr": 10.7,
+   "tls_depth_ppm": 1109,
+   "tls_ntr": 19,
+   "masked_signals": [
+    27.8031
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 874918401,
+    "sep": 11.25,
+    "tmag": 15.14,
+    "need": 0.0442,
+    "rad": null,
+    "lum": null,
+    "plx": 0.644,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 24621743,
+    "sep": 11.31,
+    "tmag": 15.14,
+    "need": 0.0442,
+    "rad": null,
+    "lum": null,
+    "plx": 0.644,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 874918400,
+    "sep": 11.4,
+    "tmag": 15.92,
+    "need": 0.0893,
+    "rad": 0.955,
+    "lum": "DWARF",
+    "plx": 0.47,
+    "verdict": "possible"
+   },
+   {
+    "tic": 874918402,
+    "sep": 14.53,
+    "tmag": 18.27,
+    "need": 0.7747,
+    "rad": null,
+    "lum": "DWARF",
+    "plx": 0.157,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 13,
+  "n_not_excluded_60": 9
+ },
+ {
+  "tic": 304655480,
+  "their_P": 6.747383,
+  "their_depth_ppm": 1159.0,
+  "their_T14_h": 1.97,
+  "their_MES": 11.6,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 6.747383,
+   "depth_at_ephem_ppm": 1427,
+   "null_sigma_ppm": 223,
+   "sigma": 6.4,
+   "tls_P": 6.74736,
+   "tls_snr": 12.4,
+   "tls_depth_ppm": 1425,
+   "tls_ntr": 24,
+   "masked_signals": [
+    26.9778
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 928635009,
+    "sep": 2.46,
+    "tmag": 17.2,
+    "need": 0.2387,
+    "rad": null,
+    "lum": null,
+    "plx": 0.346,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 928635008,
+    "sep": 11.28,
+    "tmag": 18.59,
+    "need": 0.8537,
+    "rad": 0.698,
+    "lum": "DWARF",
+    "plx": -0.125,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 928635012,
+    "sep": 11.84,
+    "tmag": 18.54,
+    "need": 0.8155,
+    "rad": 0.841,
+    "lum": "DWARF",
+    "plx": -0.031,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 304655499,
+    "sep": 12.3,
+    "tmag": 15.81,
+    "need": 0.067,
+    "rad": 4.778,
+    "lum": "GIANT",
+    "plx": 0.105,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 304655471,
+    "sep": 13.23,
+    "tmag": 16.13,
+    "need": 0.0895,
+    "rad": 4.08,
+    "lum": "GIANT",
+    "plx": 0.081,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 304655484,
+    "sep": 13.62,
+    "tmag": 14.48,
+    "need": 0.0205,
+    "rad": 10.108,
+    "lum": "GIANT",
+    "plx": 0.107,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 928635018,
+    "sep": 13.98,
+    "tmag": 17.59,
+    "need": 0.3404,
+    "rad": 0.908,
+    "lum": "DWARF",
+    "plx": 0.224,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 304655470,
+    "sep": 14.24,
+    "tmag": 15.32,
+    "need": 0.0432,
+    "rad": 1.031,
+    "lum": "DWARF",
+    "plx": 0.613,
+    "verdict": "possible"
+   },
+   {
+    "tic": 928635006,
+    "sep": 14.24,
+    "tmag": 18.23,
+    "need": 0.61,
+    "rad": 0.874,
+    "lum": "DWARF",
+    "plx": -0.123,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 304655473,
+    "sep": 15.99,
+    "tmag": 16.76,
+    "need": 0.1586,
+    "rad": 0.977,
+    "lum": "DWARF",
+    "plx": 0.507,
+    "verdict": "excluded by geometry"
+   }
+  ],
+  "n_capable_60": 73,
+  "n_not_excluded_60": 31
+ },
+ {
+  "tic": 422677298,
+  "their_P": 12.364255,
+  "their_depth_ppm": 870.0,
+  "their_T14_h": 3.48,
+  "their_MES": 8.4,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 12.364255,
+   "depth_at_ephem_ppm": 1140,
+   "null_sigma_ppm": 196,
+   "sigma": 5.8,
+   "tls_P": 12.36415,
+   "tls_snr": 7.5,
+   "tls_depth_ppm": 1259,
+   "tls_ntr": 11,
+   "masked_signals": [
+    18.3585,
+    36.3641,
+    33.9321,
+    33.1069
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 422677299,
+    "sep": 3.96,
+    "tmag": 9.45,
+    "need": 0.0014,
+    "rad": 0.58,
+    "lum": "DWARF",
+    "plx": 41.773,
+    "verdict": "possible"
+   },
+   {
+    "tic": 471011165,
+    "sep": 4.07,
+    "tmag": 10.89,
+    "need": 0.003,
+    "rad": null,
+    "lum": null,
+    "plx": null,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 2,
+  "n_not_excluded_60": 2
+ },
+ {
+  "tic": 420529106,
+  "their_P": 21.958436,
+  "their_depth_ppm": 899.0,
+  "their_T14_h": 3.44,
+  "their_MES": 13.5,
+  "recovered_blind": true,
+  "our_P": 21.958764587346717,
+  "our_verdict": "survivor",
+  "our_snr": 10.8,
+  "our_depth_ppm": 712,
+  "failed": [
+   "known",
+   "contamination"
+  ],
+  "known_matches": {
+   "toi": [
+    {
+     "name": "TOI-6558.01",
+     "period": 9.5327064,
+     "period_match": false,
+     "disposition": "PC"
+    }
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 420529092,
+    "sep": 14.77,
+    "tmag": 16.94,
+    "need": 0.4093,
+    "rad": 1.051,
+    "lum": "DWARF",
+    "plx": 0.493,
+    "verdict": "excluded by geometry"
+   }
+  ],
+  "n_capable_60": 28,
+  "n_not_excluded_60": 9,
+  "triceratops": {
+   "FPP": 0.0478,
+   "FPP_std": 0.004,
+   "NFPP": 0.02350635189898549,
+   "NFPP_std": 0.0007305700999587385,
+   "depth_used_ppm": 970
+  }
+ },
+ {
+  "tic": 147163875,
+  "their_P": 5.579849,
+  "their_depth_ppm": 909.0,
+  "their_T14_h": 1.72,
+  "their_MES": 8.7,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 5.579849,
+   "depth_at_ephem_ppm": 1000,
+   "null_sigma_ppm": 193,
+   "sigma": 5.2,
+   "tls_P": 5.63378,
+   "tls_snr": 15.1,
+   "tls_depth_ppm": 1753,
+   "tls_ntr": 15,
+   "masked_signals": [
+    39.7457
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 147163874,
+    "sep": 10.99,
+    "tmag": 12.43,
+    "need": 0.0037,
+    "rad": 0.338,
+    "lum": "DWARF",
+    "plx": 20.876,
+    "verdict": "possible"
+   }
+  ],
+  "n_capable_60": 7,
+  "n_not_excluded_60": 5
+ },
+ {
+  "tic": 48439430,
+  "their_P": 0.551576,
+  "their_depth_ppm": 385.0,
+  "their_T14_h": 1.08,
+  "their_MES": 13.3,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 0.551576,
+   "depth_at_ephem_ppm": 463,
+   "null_sigma_ppm": 69,
+   "sigma": 6.7,
+   "tls_P": 0.55158,
+   "tls_snr": 10.6,
+   "tls_depth_ppm": 970,
+   "tls_ntr": 114,
+   "masked_signals": [
+    24.6533
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 1174403579,
+    "sep": 8.71,
+    "tmag": 19.28,
+    "need": 0.8325,
+    "rad": null,
+    "lum": "DWARF",
+    "plx": 2.353,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 1174403578,
+    "sep": 8.82,
+    "tmag": 18.92,
+    "need": 0.5987,
+    "rad": null,
+    "lum": null,
+    "plx": 0.386,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 1174403582,
+    "sep": 10.32,
+    "tmag": 17.13,
+    "need": 0.1151,
+    "rad": 1.272,
+    "lum": "DWARF",
+    "plx": 0.079,
+    "verdict": "excluded by geometry"
+   },
+   {
+    "tic": 48439432,
+    "sep": 14.73,
+    "tmag": 17.25,
+    "need": 0.128,
+    "rad": 2.374,
+    "lum": "GIANT",
+    "plx": 0.112,
+    "verdict": "excluded by geometry"
+   }
+  ],
+  "n_capable_60": 20,
+  "n_not_excluded_60": 17
+ },
+ {
+  "tic": 306990399,
+  "their_P": 4.705146,
+  "their_depth_ppm": 1125.0,
+  "their_T14_h": 1.76,
+  "their_MES": 12.8,
+  "recovered_blind": true,
+  "our_P": 4.705163654815324,
+  "our_verdict": "survivor",
+  "our_snr": 11.4,
+  "our_depth_ppm": 1020,
+  "failed": [
+   "known",
+   "contamination"
+  ],
+  "known_matches": {
+   "toi": [
+    {
+     "name": "TOI-5034.01",
+     "period": 8.7042937,
+     "period_match": false,
+     "disposition": "PC"
+    }
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 1510357983,
+    "sep": 12.7,
+    "tmag": 17.52,
+    "need": 0.1722,
+    "rad": 0.7,
+    "lum": "DWARF",
+    "plx": 0.291,
+    "verdict": "possible"
+   }
+  ],
+  "n_capable_60": 33,
+  "n_not_excluded_60": 24,
+  "triceratops": {
+   "FPP": 0.0654,
+   "FPP_std": 0.001,
+   "NFPP": 0.03863173991280809,
+   "NFPP_std": 0.00036285790572908083,
+   "depth_used_ppm": 1096
+  }
+ },
+ {
+  "tic": 408310006,
+  "their_P": 27.017032,
+  "their_depth_ppm": 563.0,
+  "their_T14_h": 4.7,
+  "their_MES": 15.8,
+  "recovered_blind": true,
+  "our_P": 27.0168016399189,
+  "our_verdict": "survivor",
+  "our_snr": 15.1,
+  "our_depth_ppm": 429,
+  "failed": [
+   "known",
+   "contamination"
+  ],
+  "known_matches": {
+   "toi": [
+    {
+     "name": "TOI-576.01",
+     "period": 5.4435354,
+     "period_match": false,
+     "disposition": "CP"
+    }
+   ],
+   "confirmed": [
+    {
+     "name": "WASP-166 b",
+     "period": 5.44354,
+     "period_match": false
+    }
+   ],
+   "eb": [
+    {
+     "name": "EB",
+     "period": 5.4435063,
+     "period_match": false
+    }
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 408310005,
+    "sep": 5.61,
+    "tmag": 15.16,
+    "need": 0.1852,
+    "rad": null,
+    "lum": null,
+    "plx": null,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 2,
+  "n_not_excluded_60": 1,
+  "triceratops": {
+   "FPP": 0.0128,
+   "FPP_std": 0.0054,
+   "NFPP": 3.930766535990905e-06,
+   "NFPP_std": 1.452806978914359e-06,
+   "depth_used_ppm": 637
+  }
+ },
+ {
+  "tic": 163029327,
+  "their_P": 0.946925,
+  "their_depth_ppm": 568.0,
+  "their_T14_h": 1.73,
+  "their_MES": 10.2,
+  "recovered_blind": true,
+  "our_P": 0.9469178016254433,
+  "our_verdict": "below_threshold",
+  "our_snr": 6.8,
+  "our_depth_ppm": 430,
+  "failed": [],
+  "known_matches": null,
+  "neighbours_within_16": [
+   {
+    "tic": 163045023,
+    "sep": 5.6,
+    "tmag": 16.69,
+    "need": 0.031,
+    "rad": 1.51,
+    "lum": "DWARF",
+    "plx": 0.004,
+    "verdict": "possible"
+   },
+   {
+    "tic": 995431094,
+    "sep": 7.2,
+    "tmag": 19.19,
+    "need": 0.3067,
+    "rad": null,
+    "lum": null,
+    "plx": 0.842,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 995431093,
+    "sep": 13.49,
+    "tmag": 18.9,
+    "need": 0.2346,
+    "rad": null,
+    "lum": "DWARF",
+    "plx": 0.009,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 40,
+  "n_not_excluded_60": 40
+ },
+ {
+  "tic": 146282666,
+  "their_P": 9.995027,
+  "their_depth_ppm": 272.0,
+  "their_T14_h": 4.53,
+  "their_MES": 14.8,
+  "recovered_blind": true,
+  "our_P": 9.994903528661068,
+  "our_verdict": "survivor",
+  "our_snr": 10.7,
+  "our_depth_ppm": 191,
+  "failed": [
+   "known",
+   "contamination"
+  ],
+  "known_matches": {
+   "toi": [
+    {
+     "name": "TOI-4298.01",
+     "period": 722.2619756368,
+     "period_match": false,
+     "disposition": "PC"
+    }
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 632015734,
+    "sep": 5.71,
+    "tmag": 15.36,
+    "need": 0.0854,
+    "rad": 1.511,
+    "lum": "DWARF",
+    "plx": 0.253,
+    "verdict": "possible"
+   }
+  ],
+  "n_capable_60": 4,
+  "n_not_excluded_60": 4,
+  "triceratops": {
+   "FPP": 0.046,
+   "FPP_std": 0.0085,
+   "NFPP": 0.013637912175404977,
+   "NFPP_std": 0.0013794200192777475,
+   "depth_used_ppm": 294
+  }
+ },
+ {
+  "tic": 422217860,
+  "their_P": 4.992141,
+  "their_depth_ppm": 1776.0,
+  "their_T14_h": 1.37,
+  "their_MES": 10.2,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 4.992141,
+   "depth_at_ephem_ppm": 1909,
+   "null_sigma_ppm": 247,
+   "sigma": 7.7,
+   "tls_P": 4.99216,
+   "tls_snr": 8.9,
+   "tls_depth_ppm": 1916,
+   "tls_ntr": 10,
+   "masked_signals": [
+    2.3144,
+    39.4732
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 953452969,
+    "sep": 1.8,
+    "tmag": 14.82,
+    "need": 0.0287,
+    "rad": null,
+    "lum": null,
+    "plx": null,
+    "verdict": "radius unknown (not excluded)"
+   }
+  ],
+  "n_capable_60": 2,
+  "n_not_excluded_60": 2
+ },
+ {
+  "tic": 247166992,
+  "their_P": 10.166239,
+  "their_depth_ppm": 1538.0,
+  "their_T14_h": 2.37,
+  "their_MES": 10.8,
+  "recovered_blind": false,
+  "fixed_ephemeris": {
+   "P": 10.166239,
+   "depth_at_ephem_ppm": 1650,
+   "null_sigma_ppm": 242,
+   "sigma": 6.8,
+   "tls_P": 10.16629,
+   "tls_snr": 10.3,
+   "tls_depth_ppm": 1649,
+   "tls_ntr": 10,
+   "masked_signals": [
+    39.7277,
+    12.9223,
+    31.6089,
+    15.0702
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 247166991,
+    "sep": 5.12,
+    "tmag": 15.45,
+    "need": 0.059,
+    "rad": 0.715,
+    "lum": "DWARF",
+    "plx": 1.355,
+    "verdict": "possible"
+   }
+  ],
+  "n_capable_60": 9,
+  "n_not_excluded_60": 9
+ },
+ {
+  "tic": 76228620,
+  "their_P": 24.524859,
+  "their_depth_ppm": 1951.0,
+  "their_T14_h": 3.02,
+  "their_MES": 15.7,
+  "recovered_blind": true,
+  "our_P": 24.524442463475484,
+  "our_verdict": "survivor",
+  "our_snr": 13.5,
+  "our_depth_ppm": 1533,
+  "failed": [
+   "known",
+   "contamination"
+  ],
+  "known_matches": {
+   "toi": [
+    {
+     "name": "TOI-4998.01",
+     "period": 9.7800223,
+     "period_match": false,
+     "disposition": "PC"
+    }
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 76228618,
+    "sep": 10.68,
+    "tmag": 16.72,
+    "need": 0.2967,
+    "rad": 1.056,
+    "lum": "DWARF",
+    "plx": 0.478,
+    "verdict": "excluded by geometry"
+   }
+  ],
+  "n_capable_60": 22,
+  "n_not_excluded_60": 9,
+  "triceratops": {
+   "FPP": 0.6206,
+   "FPP_std": 0.043,
+   "NFPP": 0.0003266544589266397,
+   "NFPP_std": 7.960716563381437e-05,
+   "depth_used_ppm": 2345
+  }
+ },
+ {
+  "tic": 165337974,
+  "their_P": 8.95644,
+  "their_depth_ppm": 927.0,
+  "their_T14_h": 3.31,
+  "their_MES": 12.2,
+  "recovered_blind": true,
+  "our_P": 8.956466052798545,
+  "our_verdict": "survivor",
+  "our_snr": 8.2,
+  "our_depth_ppm": 842,
+  "failed": [
+   "known",
+   "contamination"
+  ],
+  "known_matches": {
+   "toi": [
+    {
+     "name": "TOI-7084.01",
+     "period": 21.8153374,
+     "period_match": false,
+     "disposition": "PC"
+    }
+   ]
+  },
+  "neighbours_within_16": [
+   {
+    "tic": 165337971,
+    "sep": 6.3,
+    "tmag": 16.06,
+    "need": 0.0592,
+    "rad": 0.965,
+    "lum": "DWARF",
+    "plx": 0.65,
+    "verdict": "possible"
+   },
+   {
+    "tic": 1960403158,
+    "sep": 6.73,
+    "tmag": 18.82,
+    "need": 0.7396,
+    "rad": null,
+    "lum": null,
+    "plx": 0.328,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 165337972,
+    "sep": 11.28,
+    "tmag": 17.26,
+    "need": 0.1759,
+    "rad": 0.755,
+    "lum": "DWARF",
+    "plx": 0.423,
+    "verdict": "possible"
+   },
+   {
+    "tic": 1960403154,
+    "sep": 13.25,
+    "tmag": 18.77,
+    "need": 0.7086,
+    "rad": null,
+    "lum": "DWARF",
+    "plx": -0.092,
+    "verdict": "radius unknown (not excluded)"
+   },
+   {
+    "tic": 165337956,
+    "sep": 15.23,
+    "tmag": 17.01,
+    "need": 0.1397,
+    "rad": 1.036,
+    "lum": "DWARF",
+    "plx": 0.34,
+    "verdict": "possible"
+   }
+  ],
+  "n_capable_60": 69,
+  "n_not_excluded_60": 60,
+  "triceratops": {
+   "FPP": 0.75,
+   "FPP_std": 0.0,
+   "NFPP": 0.0,
+   "NFPP_std": 0.0,
+   "depth_used_ppm": 817
+  }
+ }
+]

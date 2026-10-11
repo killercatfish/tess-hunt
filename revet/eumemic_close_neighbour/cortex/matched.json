@@ -1,0 +1,253 @@
+{
+ "88407114": {
+  "P": 1.4975112486626712,
+  "t0": 1411.6348124187018,
+  "dur": 1.0500160122394844,
+  "depth": 231.45765523846507,
+  "known": {
+   "pass": true,
+   "on_known_star": false,
+   "same_period_as_known": false,
+   "matches": {}
+  },
+  "odd_even": 1.5325108588758871,
+  "secondary": 1.6106668346794146,
+  "holdout": [
+   2,
+   3
+  ],
+  "sector": 0.9093976587391146,
+  "shape": "SNR 7.6 < 12.0: inconclusive",
+  "masks": []
+ },
+ "420529106": {
+  "P": 21.958764587346717,
+  "t0": 1612.3005079126665,
+  "dur": 4.1590393496204765,
+  "depth": 711.5985600574248,
+  "known": {
+   "pass": false,
+   "on_known_star": true,
+   "same_period_as_known": false,
+   "matches": {
+    "toi": [
+     {
+      "name": "TOI-6558.01",
+      "period": 9.5327064,
+      "period_match": false,
+      "disposition": "PC"
+     }
+    ]
+   }
+  },
+  "odd_even": 1.7473542689945407,
+  "secondary": 1.5292743756027858,
+  "holdout": [
+   1,
+   2
+  ],
+  "sector": 0.6772255378726977,
+  "shape": "SNR 10.8 < 12.0: inconclusive",
+  "masks": [
+   "9.532721,1603.21851,2.178"
+  ]
+ },
+ "306990399": {
+  "P": 4.705163654815324,
+  "t0": 1628.4246975502258,
+  "dur": 2.0896738862179416,
+  "depth": 1020.1672188314692,
+  "known": {
+   "pass": false,
+   "on_known_star": true,
+   "same_period_as_known": false,
+   "matches": {
+    "toi": [
+     {
+      "name": "TOI-5034.01",
+      "period": 8.7042937,
+      "period_match": false,
+      "disposition": "PC"
+     }
+    ]
+   }
+  },
+  "odd_even": 0.09545052215368545,
+  "secondary": 1.5603532641261206,
+  "holdout": [
+   5,
+   5
+  ],
+  "sector": 0.8667454809285775,
+  "shape": "SNR 11.4 < 12.0: inconclusive",
+  "masks": [
+   "8.704041,1628.56318,2.904",
+   "13.375232,1631.53681,4.050",
+   "26.047529,1653.05749,3.720"
+  ]
+ },
+ "408310006": {
+  "P": 27.0168016399189,
+  "t0": 1540.0123580653112,
+  "dur": 5.747383656306297,
+  "depth": 429.19818970132974,
+  "known": {
+   "pass": false,
+   "on_known_star": true,
+   "same_period_as_known": false,
+   "matches": {
+    "toi": [
+     {
+      "name": "TOI-576.01",
+      "period": 5.4435354,
+      "period_match": false,
+      "disposition": "CP"
+     }
+    ],
+    "confirmed": [
+     {
+      "name": "WASP-166 b",
+      "period": 5.44354,
+      "period_match": false
+     }
+    ],
+    "eb": [
+     {
+      "name": "EB",
+      "period": 5.4435063,
+      "period_match": false
+     }
+    ]
+   }
+  },
+  "odd_even": 1.0960872640479742,
+  "secondary": 1.5783182505926534,
+  "holdout": [
+   4,
+   4
+  ],
+  "sector": 0.9826268931714505,
+  "shape": true,
+  "masks": [
+   "5.443559,1518.96385,3.608",
+   "33.464707,1535.02131,4.855"
+  ]
+ },
+ "146282666": {
+  "P": 9.994903528661068,
+  "t0": 1389.3453480685623,
+  "dur": 5.3336144481367045,
+  "depth": 190.92695568534435,
+  "known": {
+   "pass": false,
+   "on_known_star": true,
+   "same_period_as_known": false,
+   "matches": {
+    "toi": [
+     {
+      "name": "TOI-4298.01",
+      "period": 722.2619756368,
+      "period_match": false,
+      "disposition": "PC"
+     }
+    ]
+   }
+  },
+  "odd_even": 2.651185516240335,
+  "secondary": 1.6912201589306384,
+  "holdout": [
+   3,
+   3
+  ],
+  "sector": 0.9668165091859907,
+  "shape": "SNR 10.7 < 12.0: inconclusive",
+  "masks": [
+   "28.895607,1398.39611,9.542"
+  ]
+ },
+ "76228620": {
+  "P": 24.524442463475484,
+  "t0": 1678.4070100788379,
+  "dur": 5.491533338727186,
+  "depth": 1533.355770810374,
+  "known": {
+   "pass": false,
+   "on_known_star": true,
+   "same_period_as_known": false,
+   "matches": {
+    "toi": [
+     {
+      "name": "TOI-4998.01",
+      "period": 9.7800223,
+      "period_match": false,
+      "disposition": "PC"
+     }
+    ]
+   }
+  },
+  "odd_even": 1.2921832494074879,
+  "secondary": 2.9013713606197244,
+  "holdout": [
+   3,
+   5
+  ],
+  "sector": 0.018763936702280593,
+  "shape": true,
+  "masks": [
+   "9.780367,1655.16352,3.877",
+   "34.084571,1662.48460,9.212",
+   "20.045646,1665.93257,7.241"
+  ]
+ },
+ "165337974": {
+  "P": 8.956466052798545,
+  "t0": 1712.3858505632809,
+  "dur": 3.284443839405335,
+  "depth": 842.2171689468349,
+  "known": {
+   "pass": false,
+   "on_known_star": true,
+   "same_period_as_known": false,
+   "matches": {
+    "toi": [
+     {
+      "name": "TOI-7084.01",
+      "period": 21.8153374,
+      "period_match": false,
+      "disposition": "PC"
+     }
+    ]
+   }
+  },
+  "odd_even": 1.115682460678625,
+  "secondary": 2.1373060896379856,
+  "holdout": [
+   3,
+   3
+  ],
+  "sector": 0.41866141034384696,
+  "shape": "SNR 8.2 < 12.0: inconclusive",
+  "masks": [
+   "21.815475,1711.70644,4.527",
+   "25.232843,1717.42192,3.266"
+  ]
+ },
+ "163029327": {
+  "P": 0.9469178016254433,
+  "t0": 1571.8755501435141,
+  "dur": 1.9282670585973642,
+  "depth": 429.5915588383714,
+  "known": null,
+  "odd_even": null,
+  "secondary": null,
+  "holdout": [
+   null,
+   null
+  ],
+  "sector": null,
+  "shape": null,
+  "masks": [
+   "2.564322,1571.78074,2.013"
+  ]
+ }
+}

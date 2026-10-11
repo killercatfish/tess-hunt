@@ -1,0 +1,41 @@
+149 bins, sigma 261 ppm, central depth 970 ppm
+In preparation for Gaia DR4, the Gaia archive is in evolution. Unfortunately, it may be unstable at times and particular types of queries may time out. Please consider registering for a user account (https://www.cosmos.esa.int/web/gaia-users/register). For questions or advice, please contact the Gaia helpdesk (https://www.cosmos.esa.int/web/gaia/gaia-helpdesk).
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TessCut for sector 99
+Getting TessCut for sector 101
+Getting TessCut for sector 102
+Estimated missing stellar parameters for 843 of 1536 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 83 appear evolved and were assigned a nominal 1 M_Sun.
+1536 stars in field; 14 could produce the depth (tdepth <= 1):
+       ID    Tmag         ra        dec  sep (arcsec)  fluxratio   tdepth
+420529106 10.3012 216.133926 -52.831342         0.000   0.872034 0.000970
+420529092 16.9445 216.135323 -52.835356        14.768   0.001842 0.459039
+420529108 14.7929 216.124091 -52.830443        21.633   0.012004 0.070451
+420529134 15.3720 216.136197 -52.825331        22.195   0.005645 0.149805
+420529078 15.4534 216.134428 -52.838718        26.577   0.006083 0.139037
+420529152 12.4781 216.131221 -52.822333        32.962   0.051041 0.016569
+420529133 16.6032 216.148834 -52.825360        38.926   0.000921 0.918413
+420529121 16.9318 216.115973 -52.828221        40.633   0.000937 0.902772
+420529079 16.1085 216.116548 -52.838036        44.823   0.002006 0.421576
+420529123 15.2818 216.155582 -52.827801        48.798   0.001648 0.513150
+420529052 15.4401 216.148117 -52.843586        53.809   0.001367 0.618776
+420529130 14.6342 216.102970 -52.826391        69.651   0.001112 0.760651
+420529037 10.4214 216.153150 -52.847996        73.091   0.015588 0.054253
+420529034 12.1889 216.107764 -52.848450        83.843   0.001803 0.468924
+run 1: FPP 0.04987  NFPP 0.0245  (63 s)
+run 2: FPP 0.04189  NFPP 0.0225  (55 s)
+run 3: FPP 0.04695  NFPP 0.0234  (56 s)
+run 4: FPP 0.05265  NFPP 0.0236  (55 s)
+
+FPP  0.04784 ± 0.004   NFPP 0.0235 ± 0.00073   (4 runs, N=1000000)
+                        mean       std
+ID        scenario                    
+420529106 TP        0.769963  0.012940
+          PTP       0.144046  0.005878
+          DTP       0.038152  0.002741
+          STP       0.023389  0.003593
+420529037 NEB       0.014464  0.001029
+420529108 NEB       0.008644  0.000331
+420529106 BEB       0.000609  0.000266
+          BTP       0.000217  0.000175
+420529108 NEBx2P    0.000211  0.000043
+420529037 NEBx2P    0.000180  0.000013

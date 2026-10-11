@@ -1,0 +1,34 @@
+118 bins, sigma 384 ppm, central depth 817 ppm
+In preparation for Gaia DR4, the Gaia archive is in evolution. Unfortunately, it may be unstable at times and particular types of queries may time out. Please consider registering for a user account (https://www.cosmos.esa.int/web/gaia-users/register). For questions or advice, please contact the Gaia helpdesk (https://www.cosmos.esa.int/web/gaia/gaia-helpdesk).
+INFO: Query finished. [astroquery.utils.tap.core]
+Getting TessCut for sector 15
+Getting TessCut for sector 55
+Getting TessCut for sector 56
+Getting TessCut for sector 75
+Getting TessCut for sector 76
+Getting TessCut for sector 82
+Getting TessCut for sector 83
+Estimated missing stellar parameters for 515 of 1112 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 44 appear evolved and were assigned a nominal 1 M_Sun.
+Could not get SPOC aperture for sector 15: No SPOC light curve found for TIC 165337974 in sector 15, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 55: No SPOC light curve found for TIC 165337974 in sector 55, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 56: No SPOC light curve found for TIC 165337974 in sector 56, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 75: No SPOC light curve found for TIC 165337974 in sector 75, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 76: No SPOC light curve found for TIC 165337974 in sector 76, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 82: No SPOC light curve found for TIC 165337974 in sector 82, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 83: No SPOC light curve found for TIC 165337974 in sector 83, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+dropping sectors without SPOC aperture: [15, 55, 56, 75, 76, 82, 83]
+INFO: Query finished. [astroquery.utils.tap.core]
+Estimated missing stellar parameters for 515 of 1112 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 44 appear evolved and were assigned a nominal 1 M_Sun.
+1112 stars in field; 0 could produce the depth (tdepth <= 1):
+Empty DataFrame
+Columns: [ID, Tmag, ra, dec, sep (arcsec), fluxratio, tdepth]
+Index: []
+run 1: FPP 0.75  NFPP 0  (0 s)
+run 2: FPP 0.75  NFPP 0  (0 s)
+run 3: FPP 0.75  NFPP 0  (0 s)
+run 4: FPP 0.75  NFPP 0  (0 s)
+
+FPP  0.75 ± 0   NFPP 0 ± 0   (4 runs, N=1000000)
+                 mean  std
+ID scenario               
+0            0.083333  0.0

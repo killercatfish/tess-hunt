@@ -1,0 +1,31 @@
+37 bins, sigma 62 ppm, central depth 152 ppm
+In preparation for Gaia DR4, the Gaia archive is in evolution. Unfortunately, it may be unstable at times and particular types of queries may time out. Please consider registering for a user account (https://www.cosmos.esa.int/web/gaia-users/register). For questions or advice, please contact the Gaia helpdesk (https://www.cosmos.esa.int/web/gaia/gaia-helpdesk).
+Getting TessCut for sector 4
+Getting TessCut for sector 31
+Getting TessCut for sector 105
+Getting TessCut for sector 106
+Estimated missing stellar parameters for 15 of 26 stars from photometry. See the 'params_estimated' column of the .stars dataframe.
+26 stars in field; 4 could produce the depth (tdepth <= 1):
+       ID    Tmag        ra        dec  sep (arcsec)  fluxratio   tdepth
+ 88407114 10.1239 45.435910 -27.395881         0.000   0.996768 0.000152
+651465050 17.0823 45.435836 -27.396828         3.417   0.001635 0.092554
+ 88407113 17.0040 45.450252 -27.392210        47.710   0.000756 0.200037
+ 88405872 12.3135 45.413502 -27.408286        84.397   0.000771 0.196278
+run 1: FPP 0.2352  NFPP 6.71e-05  (26 s)
+run 2: FPP 0.2315  NFPP 6.81e-05  (19 s)
+run 3: FPP 0.2274  NFPP 6.69e-05  (19 s)
+run 4: FPP 0.2181  NFPP 6.34e-05  (19 s)
+
+FPP  0.228 ± 0.0064   NFPP 6.64e-05 ± 1.8e-06   (4 runs, N=1000000)
+                       mean           std
+ID       scenario                        
+88407114 TP        0.648034  1.297484e-02
+         STP       0.227837  7.380994e-03
+         PTP       0.123338  7.203760e-03
+         DTP       0.000581  2.222796e-05
+         SEBx2P    0.000053  2.931766e-05
+88405872 NEB       0.000035  1.963721e-06
+88407114 BTP       0.000035  2.566208e-06
+         BEB       0.000026  1.322510e-06
+88407113 NEBx2P    0.000020  8.744671e-07
+88407114 BEBx2P    0.000015  9.283205e-07

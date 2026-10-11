@@ -1,0 +1,129 @@
+{
+ "24621747": {
+  "P": 5.20863,
+  "depth_at_ephem_ppm": 1144,
+  "null_sigma_ppm": 150,
+  "sigma": 7.6,
+  "tls_P": 5.20867,
+  "tls_snr": 10.7,
+  "tls_depth_ppm": 1109,
+  "tls_ntr": 19,
+  "masked_signals": [
+   27.8031
+  ]
+ },
+ "304655480": {
+  "P": 6.747383,
+  "depth_at_ephem_ppm": 1427,
+  "null_sigma_ppm": 223,
+  "sigma": 6.4,
+  "tls_P": 6.74736,
+  "tls_snr": 12.4,
+  "tls_depth_ppm": 1425,
+  "tls_ntr": 24,
+  "masked_signals": [
+   26.9778
+  ]
+ },
+ "422677298": {
+  "P": 12.364255,
+  "depth_at_ephem_ppm": 1140,
+  "null_sigma_ppm": 196,
+  "sigma": 5.8,
+  "tls_P": 12.36415,
+  "tls_snr": 7.5,
+  "tls_depth_ppm": 1259,
+  "tls_ntr": 11,
+  "masked_signals": [
+   18.3585,
+   36.3641,
+   33.9321,
+   33.1069
+  ]
+ },
+ "147163875": {
+  "P": 5.579849,
+  "depth_at_ephem_ppm": 1000,
+  "null_sigma_ppm": 193,
+  "sigma": 5.2,
+  "tls_P": 5.63378,
+  "tls_snr": 15.1,
+  "tls_depth_ppm": 1753,
+  "tls_ntr": 15,
+  "masked_signals": [
+   39.7457
+  ]
+ },
+ "48439430": {
+  "P": 0.551576,
+  "depth_at_ephem_ppm": 463,
+  "null_sigma_ppm": 69,
+  "sigma": 6.7,
+  "tls_P": 0.55158,
+  "tls_snr": 10.6,
+  "tls_depth_ppm": 970,
+  "tls_ntr": 114,
+  "masked_signals": [
+   24.6533
+  ]
+ },
+ "422217860": {
+  "P": 4.992141,
+  "depth_at_ephem_ppm": 1909,
+  "null_sigma_ppm": 247,
+  "sigma": 7.7,
+  "tls_P": 4.99216,
+  "tls_snr": 8.9,
+  "tls_depth_ppm": 1916,
+  "tls_ntr": 10,
+  "masked_signals": [
+   2.3144,
+   39.4732
+  ]
+ },
+ "247166992": {
+  "P": 10.166239,
+  "depth_at_ephem_ppm": 1650,
+  "null_sigma_ppm": 242,
+  "sigma": 6.8,
+  "tls_P": 10.16629,
+  "tls_snr": 10.3,
+  "tls_depth_ppm": 1649,
+  "tls_ntr": 10,
+  "masked_signals": [
+   39.7277,
+   12.9223,
+   31.6089,
+   15.0702
+  ]
+ },
+ "231725883": {
+  "P": 18.965313,
+  "depth_at_ephem_ppm": 854,
+  "null_sigma_ppm": 107,
+  "sigma": 8.0,
+  "tls_P": 18.96533,
+  "tls_snr": 10.8,
+  "tls_depth_ppm": 795,
+  "tls_ntr": 16,
+  "masked_signals": [
+   9.0988,
+   39.9888,
+   4.6593,
+   31.9278
+  ]
+ },
+ "163029327": {
+  "P": 0.946925,
+  "depth_at_ephem_ppm": 685,
+  "null_sigma_ppm": 87,
+  "sigma": 7.9,
+  "tls_P": 0.94692,
+  "tls_snr": 10.3,
+  "tls_depth_ppm": 723,
+  "tls_ntr": 162,
+  "masked_signals": [
+   2.5643
+  ]
+ }
+}

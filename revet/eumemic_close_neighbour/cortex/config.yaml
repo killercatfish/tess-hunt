@@ -1,0 +1,97 @@
+paths:
+  data_dir: /home/killercatfish/dev/tess-hunt/data
+  db: /tmp/ecn/results.db
+  candidates_dir: /tmp/ecn/candidates
+  report: /tmp/ecn/report.html
+resources:
+  workers: 6
+  threads_per_worker: 1
+  min_free_ram_gb: 6
+  cache_max_gb: 50
+targets:
+  pilot_size: 200
+  teff_max: 5200
+  teff_min: 2400
+  dist_max_pc: 100
+  tmag_max: 13
+  dwarfs_only: true
+  seed: 42
+  require_2min: false
+download:
+  authors:
+  - SPOC
+  - TESS-SPOC
+  - QLP
+  spoc_exptime: 120
+prep:
+  sigma_upper: 4.0
+  window_mult: 3.0
+  window_min_d: 0.5
+  window_max_d: 1.5
+  edge_cutoff_d: 0.0
+  break_tolerance_d: 0.5
+  redetrend_masked: true
+search:
+  period_min_d: 0.5
+  period_max_d: 40.0
+  bin_minutes: 10
+  oversampling: 3
+  duration_grid_step: 1.1
+  max_iterations: 4
+  mask_width_mult: 2.0
+  bls_max_periods: 100000
+  plot_rejected: true
+thresholds:
+  sde_min: 9.0
+  snr_min: 7.0
+  min_transits: 3
+kill_tests:
+  period_match_tol: 0.01
+  odd_even_sigma: 3.0
+  secondary_sigma_half: 3.0
+  secondary_sigma_scan: 5.0
+  duration_ratio_min: 0.2
+  duration_ratio_max: 1.6
+  max_radius_rearth: 22.0
+  shape_dchi2: 9.0
+  shape_min_snr: 12.0
+  systematics_period_tol: 0.002
+  systematics_max_targets: 3
+  instrumental_periods_d:
+  - 13.7
+  - 27.4
+  contamination_radius_arcsec: 42
+  contamination_max_eclipse: 0.5
+  sector_consistency_p: 0.0027
+  sector_sys_floor_frac: 0.1
+  sector_drop_worst: true
+  season_gap_d: 200
+  holdout_min_seasons: 3
+  holdout_hit_sigma: 2.0
+  holdout_min_hit_frac: 0.5
+  injection_period_tol: 0.01
+  hard_fail:
+  - harmonic
+  - odd_even
+  - secondary
+  - duration
+  - size
+  - shape
+  - systematics
+  - sector_consistency
+  - holdout
+  - injection
+  soft_flag:
+  - known
+  - contamination
+audit:
+  enabled: true
+  backend: mac_claude
+  endpoint: http://127.0.0.1:11434/v1/chat/completions
+  model: qwen38
+  max_tokens: 1500
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: false
+  requester: tess.audit
+  timeout_s: 600

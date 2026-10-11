@@ -1,0 +1,56 @@
+88 bins, sigma 137 ppm, central depth 391 ppm
+In preparation for Gaia DR4, the Gaia archive is in evolution. Unfortunately, it may be unstable at times and particular types of queries may time out. Please consider registering for a user account (https://www.cosmos.esa.int/web/gaia-users/register). For questions or advice, please contact the Gaia helpdesk (https://www.cosmos.esa.int/web/gaia/gaia-helpdesk).
+Getting TessCut for sector 4
+Getting TessCut for sector 5
+Getting TessCut for sector 6
+Getting TessCut for sector 27
+Getting TessCut for sector 31
+Getting TessCut for sector 32
+Getting TessCut for sector 33
+Getting TessCut for sector 37
+Getting TessCut for sector 64
+Getting TessCut for sector 67
+Getting TessCut for sector 87
+Getting TessCut for sector 94
+Getting TessCut for sector 98
+Estimated missing stellar parameters for 33 of 69 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 3 appear evolved and were assigned a nominal 1 M_Sun.
+Could not get SPOC aperture for sector 5: No SPOC light curve found for TIC 231725883 in sector 5, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 27: No SPOC light curve found for TIC 231725883 in sector 27, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 31: No SPOC light curve found for TIC 231725883 in sector 31, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 32: No SPOC light curve found for TIC 231725883 in sector 32, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 33: No SPOC light curve found for TIC 231725883 in sector 33, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 37: No SPOC light curve found for TIC 231725883 in sector 37, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 64: No SPOC light curve found for TIC 231725883 in sector 64, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 67: No SPOC light curve found for TIC 231725883 in sector 67, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 87: No SPOC light curve found for TIC 231725883 in sector 87, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 94: No SPOC light curve found for TIC 231725883 in sector 94, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+Could not get SPOC aperture for sector 98: No SPOC light curve found for TIC 231725883 in sector 98, so no aperture is available. This target may not have 2-minute cadence data in that sector.
+dropping sectors without SPOC aperture: [5, 27, 31, 32, 33, 37, 64, 67, 87, 94, 98]
+Getting TessCut for sector 4
+Getting TessCut for sector 6
+Estimated missing stellar parameters for 33 of 69 stars from photometry. See the 'params_estimated' column of the .stars dataframe. 3 appear evolved and were assigned a nominal 1 M_Sun.
+69 stars in field; 5 could produce the depth (tdepth <= 1):
+       ID    Tmag        ra        dec  sep (arcsec)  fluxratio   tdepth
+231725883 11.3551 81.206230 -51.798884         0.000   0.980937 0.000391
+734629420 18.1522 81.202612 -51.795938        13.317   0.001747 0.219789
+231725880 14.4630 81.198846 -51.811228        47.381   0.014533 0.026413
+231724467 16.7639 81.183734 -51.805293        55.140   0.000611 0.628579
+231725889 15.3304 81.210911 -51.781434        63.677   0.001379 0.278278
+run 1: FPP 0.0683  NFPP 0.0017  (33 s)
+run 2: FPP 0.07117  NFPP 0.00197  (25 s)
+run 3: FPP 0.07783  NFPP 0.00201  (25 s)
+run 4: FPP 0.07434  NFPP 0.00197  (28 s)
+
+FPP  0.07291 ± 0.0036   NFPP 0.00191 ± 0.00012   (4 runs, N=1000000)
+                        mean           std
+ID        scenario                        
+231725883 TP        0.747918  1.017836e-02
+          PTP       0.177398  7.522602e-03
+          STP       0.070745  3.990118e-03
+          DTP       0.001774  8.763343e-05
+231725880 NEB       0.001773  1.392330e-04
+231725883 BTP       0.000154  1.192562e-05
+          BEB       0.000091  5.200776e-06
+734629420 NEB       0.000085  3.013807e-06
+231725889 NEB       0.000046  2.338160e-06
+231725880 NEBx2P    0.000005  3.758141e-07
