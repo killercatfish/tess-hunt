@@ -1,0 +1,41 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Zenodo upload: TOI-913 preprint, version 2</title><style>
+:root{--bg:#0d1220;--panel:#151c2e;--rule:#2a3550;--ink:#e8ebf3;--muted:#9aa5bf;--accent:#ffad5c;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,system-ui,sans-serif;padding:32px 16px 64px}
+.wrap{max-width:860px;margin:0 auto;display:grid;gap:14px}h1{font-size:1.5rem;margin:0}.muted{color:var(--muted)}
+.f{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:8px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}.lab{font-weight:700}
+.val{font-family:ui-monospace,Menlo,monospace;font-size:.88rem;white-space:pre-wrap;word-break:break-word;background:#0a0f1c;border-radius:6px;padding:10px 12px}
+button{font:600 .8rem/1 -apple-system,system-ui,sans-serif;color:#1a1206;background:var(--accent);border:0;border-radius:999px;padding:7px 14px;cursor:pointer}
+button.done{background:#7fd6a6}table{border-collapse:collapse;width:100%;font-size:.88rem}td,th{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}td button{padding:5px 10px}ul{margin:0;padding-left:1.2em}
+</style></head><body><div class='wrap'>
+<h1>Zenodo upload: TOI-913 preprint, version 2</h1>
+<p class='muted'>Open the version 1 record (doi 10.5281/zenodo.23290579), click &#x27;New version&#x27;. Zenodo copies the old metadata, so only the boxes below change. Remove the two old files and upload the two new ones.</p>
+<div class='f'><span class='lab'>Files to upload</span><ul><li><code>paper/toi913_candidate.pdf  (version 2, 10 pages)</code></li><li><code>paper/toi913_supplement.zip  (version 2: adds periodogram_fap.py, periodogram_fig.py, three periodogram result files and fig4)</code></li></ul></div>
+<div class='f'>
+<div class='top'><span class='lab'>Version</span><button data-copy="2">Copy</button></div><div class='val'>2</div>
+</div>
+<div class='f'>
+<div class='top'><span class='lab'>Publication date</span><button data-copy="2026-10-12">Copy</button></div><div class='val'>2026-10-12</div>
+<span class='muted'>Change this to the day you actually upload.</span>
+</div>
+<div class='f'>
+<div class='top'><span class='lab'>Description</span><button data-copy="Preprint, version 2. A 5.450-day, 196 ppm transit-like signal (1.12 Earth radii if on the target) on TOI-913 (TIC 407126408), from a multi-sector search of TESS 2-minute photometry (Sectors 12-102), with code, result files and figures. Presented as a planet candidate: TRICERATOPS gives FPP 0.054 and NFPP 0.041, which is neither validated nor &#x27;likely planet&#x27;. Version 2 adds periodograms (GLS with false-alarm levels, spectral window, momentum dumps) and an empirical false-alarm test on 200 block-shuffled light curves (FAP &lt; 1.5%); corrects the TRICERATOPS classification and the momentum-dump count; states that the 9.5-arcsec background giant is excluded by transit duration alone; and adds an independent all-sector centroid analysis that disfavours two of the three faint neighbours. The signal was first detected by eumemic/exoplanets (2026 October 8). Predicted TESS Sector 114 transits are pre-registered at doi:10.5281/zenodo.23290795.">Copy</button></div><div class='val'>Preprint, version 2. A 5.450-day, 196 ppm transit-like signal (1.12 Earth radii if on the target) on TOI-913 (TIC 407126408), from a multi-sector search of TESS 2-minute photometry (Sectors 12-102), with code, result files and figures. Presented as a planet candidate: TRICERATOPS gives FPP 0.054 and NFPP 0.041, which is neither validated nor &#x27;likely planet&#x27;. Version 2 adds periodograms (GLS with false-alarm levels, spectral window, momentum dumps) and an empirical false-alarm test on 200 block-shuffled light curves (FAP &lt; 1.5%); corrects the TRICERATOPS classification and the momentum-dump count; states that the 9.5-arcsec background giant is excluded by transit duration alone; and adds an independent all-sector centroid analysis that disfavours two of the three faint neighbours. The signal was first detected by eumemic/exoplanets (2026 October 8). Predicted TESS Sector 114 transits are pre-registered at doi:10.5281/zenodo.23290795.</div>
+</div>
+<div class='f'>
+<span class='lab'>Related works (add these two; keep the existing ones)</span><table><tr><th>Relation</th><th>Identifier</th><th>Scheme</th><th>Resource type</th></tr>
+<tr><td>Is supplemented by </td><td>https://github.com/killercatfish/tess-hunt <button data-copy="https://github.com/killercatfish/tess-hunt">Copy</button></td><td>URL </td><td>Software </td></tr>
+<tr><td>References </td><td>https://github.com/eumemic/exoplanets/issues/2 <button data-copy="https://github.com/eumemic/exoplanets/issues/2">Copy</button></td><td>URL </td><td>Other </td></tr>
+</table>
+</div>
+<div class='f'>
+<div class='top'><span class='lab'>Keywords (add if missing)</span><button data-copy="false-alarm probability">Copy</button></div><div class='val'>false-alarm probability</div>
+<span class='muted'>The version 1 keywords carry over; only add this one.</span>
+</div>
+</div><script>
+function cp(b,t){const done=()=>{b.textContent='Copied';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done')},1500)};
+ if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,()=>fb(t,done))}else fb(t,done)}
+function fb(t,done){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();done()}
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>cp(b,b.dataset.copy)));
+</script></body></html>

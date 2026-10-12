@@ -1,0 +1,26 @@
+{
+ "title": "Zenodo upload: TOI-913 preprint, version 2",
+ "intro": "Open the version 1 record (doi 10.5281/zenodo.23290579), click 'New version'. Zenodo copies the old metadata, so only the boxes below change. Remove the two old files and upload the two new ones.",
+ "files": [
+  "paper/toi913_candidate.pdf  (version 2, 10 pages)",
+  "paper/toi913_supplement.zip  (version 2: adds periodogram_fap.py, periodogram_fig.py, three periodogram result files and fig4)"
+ ],
+ "fields": [
+  {"label": "Version", "value": "2"},
+  {"label": "Publication date", "value": "2026-10-12", "note": "Change this to the day you actually upload."},
+  {
+   "label": "Description",
+   "value": "Preprint, version 2. A 5.450-day, 196 ppm transit-like signal (1.12 Earth radii if on the target) on TOI-913 (TIC 407126408), from a multi-sector search of TESS 2-minute photometry (Sectors 12-102), with code, result files and figures. Presented as a planet candidate: TRICERATOPS gives FPP 0.054 and NFPP 0.041, which is neither validated nor 'likely planet'. Version 2 adds periodograms (GLS with false-alarm levels, spectral window, momentum dumps) and an empirical false-alarm test on 200 block-shuffled light curves (FAP < 1.5%); corrects the TRICERATOPS classification and the momentum-dump count; states that the 9.5-arcsec background giant is excluded by transit duration alone; and adds an independent all-sector centroid analysis that disfavours two of the three faint neighbours. The signal was first detected by eumemic/exoplanets (2026 October 8). Predicted TESS Sector 114 transits are pre-registered at doi:10.5281/zenodo.23290795."
+  },
+  {
+   "label": "Related works (add these two; keep the existing ones)",
+   "header": ["Relation", "Identifier", "Scheme", "Resource type"],
+   "copy_cols": [1],
+   "rows": [
+    ["Is supplemented by", "https://github.com/killercatfish/tess-hunt", "URL", "Software"],
+    ["References", "https://github.com/eumemic/exoplanets/issues/2", "URL", "Other"]
+   ]
+  },
+  {"label": "Keywords (add if missing)", "value": "false-alarm probability", "note": "The version 1 keywords carry over; only add this one."}
+ ]
+}
