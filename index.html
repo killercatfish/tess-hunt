@@ -46,7 +46,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
     <div class="status">
       <div><b>Candidate</b><span>TOI-913, 5.450 d, ~1.1 R⊕. Survived all vetting; not validated (NFPP 0.042).</span></div>
       <div><b>Priority</b><span>eumemic/exoplanets detected it first (2026-10-08). Ours is independent detection plus vetting.</span></div>
-      <div><b>Outreach</b><span class="dot" style="--c:var(--good)">Issue posted · ExoFOP applied · Pavel emailed · preprint + pre-registration on Zenodo · code v0.1.0</span><span class="dot" style="--c:var(--wait)">Mistry email pending</span></div>
+      <div><b>Outreach</b><span class="dot" style="--c:var(--good)">Issue posted · eumemic replied (0.36″ centroid, open to joint CTOI) · re-vet posted · ExoFOP applied · preprint + pre-registration on Zenodo · code v0.1.0</span><span class="dot" style="--c:var(--wait)">Mistry replied “not convinced”; answer with FAP drafted · Pavel reply drafted · FAP comment for the issue drafted · preprint v2 due (TRICERATOPS wording, dump count)</span></div>
       <div><b>Cortex</b><span>Idle. Pilot, validation runs 1–6 and the eumemic re-vet are done. Outputs live in <code>~/dev/tess-hunt</code>.</span></div>
     </div>
   </section>
@@ -65,6 +65,8 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><a href="paper/toi913_candidate.tex">toi913_candidate.tex</a><span>LaTeX source; rebuild with <code>xelatex</code> twice</span></li>
         <li><a href="paper/toi913_supplement.zip">toi913_supplement.zip</a><span>Code, result files and figures for the Zenodo upload</span></li>
         <li><a href="paper/issue_eumemic.md">issue_eumemic.md</a><span>Text of the GitHub issue as posted</span></li>
+        <li><a href="paper/issue_reply_eumemic_2.md">issue_reply_eumemic_2.md</a><span>Reply to eumemic, posted 2026-10-12</span></li>
+        <li><a href="paper/issue_reply_eumemic_3.md">issue_reply_eumemic_3.md</a><span>False-alarm result for the issue (draft, not posted)</span></li>
         <li><a href="https://doi.org/10.5281/zenodo.23290579">Preprint DOI 10.5281/zenodo.23290579</a><span>The published record on Zenodo</span></li>
         <li><a href="https://doi.org/10.5281/zenodo.23290795">Pre-registration DOI 10.5281/zenodo.23290795</a><span>Sector 114 prediction (files in <code>paper/prereg_s114/</code>)</span></li>
         <li><a href="revet/eumemic_close_neighbour/issue_comment_draft.md">Re-vet of eumemic's 17 set-asides</a><span>Draft summary comment (not posted). Data in <code>revet/eumemic_close_neighbour/</code>; best: WASP-166 at 27.0 d</span></li>
@@ -74,6 +76,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><a href="paper/figures/fig1_fold.png">fig1_fold.png</a><span>Folded transits of the candidate and TOI-913 b with the joint model</span></li>
         <li><a href="paper/figures/fig2_diagnostic.png">fig2_diagnostic.png</a><span>The pipeline's one-page diagnostic for the candidate</span></li>
         <li><a href="paper/figures/fig3_pixel_giant.png">fig3_pixel_giant.png</a><span>Per-sector difference images (inconclusive)</span></li>
+        <li><a href="paper/figures/fig4_periodograms.png">fig4_periodograms.png</a><span>GLS with FAP lines, spectral window, momentum dumps, TLS false-alarm test (FAP &lt; 1.5%)</span></li>
         <li><a href="paper/data/">paper/data/</a><span>Transit fit, robustness, TRICERATOPS and pixel-test results (JSON/CSV)</span></li>
       </ul></div>
     </div>
@@ -107,6 +110,8 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><a href="scripts/robustness_check.py">scripts/robustness_check.py</a><span>One-off: detrending, product and jackknife variants</span></li>
         <li><a href="scripts/triceratops_fpp.py">scripts/triceratops_fpp.py</a><span>One-off: TRICERATOPS false-positive probability</span></li>
         <li><a href="scripts/neighbour_geometry.py">scripts/neighbour_geometry.py</a><span>One-off: can a neighbour star physically make this transit duration?</span></li>
+        <li><a href="scripts/periodogram_fap.py">scripts/periodogram_fap.py</a><span>One-off: GLS, window, dump periodograms and a TLS false-alarm test on shuffled light curves</span></li>
+        <li><a href="scripts/periodogram_fig.py">scripts/periodogram_fig.py</a><span>One-off: the four-panel figure from that output</span></li>
         <li><a href="scripts/preregister.py">scripts/preregister.py</a><span>Predicted transit times (BJD and UTC) for a future sector</span></li>
         <li><a href="scripts/upload_sheet.py">scripts/upload_sheet.py</a><span>JSON spec to copy-paste HTML sheet for any upload form</span></li>
       </ul></div>
