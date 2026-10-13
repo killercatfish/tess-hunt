@@ -72,6 +72,7 @@ nav li{break-inside:avoid;margin-bottom:4px}
     <li><a href="#fpp">FPP, NFPP and "validated"</a></li>
     <li><a href="#words">Candidate, validated, confirmed</a></li>
     <li><a href="#prereg">Why the Sector 114 test matters most</a></li>
+    <li><a href="#setup">Set-up for Part 2</a></li>
     <li><a href="#h1">Hand check 1: the arithmetic</a></li>
     <li><a href="#h2">Hand check 2: the star on ExoFOP</a></li>
     <li><a href="#h3">Hand check 3: the neighbours</a></li>
@@ -208,6 +209,15 @@ nav li{break-inside:avoid;margin-bottom:4px}
 
 <section class="plain"><p class="muted">Do these in order. Each one says what to do, what you should see, and what would worry you. If something worries you, write it down and bring it to a Claude session. Don't let a session talk you out of it without showing you the data.</p></section>
 
+<section id="setup">
+  <h3>Before you start: set up the learning environment (terminal, 5 minutes)</h3>
+  <p>Hand checks 3 to 5 use Python with lightkurve, the standard community tool for TESS data. Set it up once. It goes in its own folder, <code>.venv-learn</code>, kept apart from the pipeline's environment and ignored by git:</p>
+  <pre>cd ~/dev/TESS
+python3 -m venv .venv-learn
+.venv-learn/bin/pip install lightkurve matplotlib</pre>
+  <div class="box see"><b class="k">You should see</b><p>A page of download messages ending in "Successfully installed …". A notice about a newer pip version is harmless.</p></div>
+</section>
+
 <section id="h1">
   <h3>Hand check 1: the arithmetic (calculator, 20 minutes)</h3>
   <ol>
@@ -237,7 +247,7 @@ nav li{break-inside:avoid;margin-bottom:4px}
 <section id="h3">
   <h3>Hand check 3: the neighbours (browser + terminal, 20 minutes)</h3>
   <p>Look at the sky: <a href="https://aladin.cds.unistra.fr/AladinLite/?target=TIC%20407126408&fov=0.04&survey=CDS%2FP%2F2MASS%2Fcolor">Aladin, 2MASS colour, 2.4′ field</a>. The target is the bright star in the middle. The 9.5″ giant is almost touching it, to the east. The galaxy is about 57″ due north. Switch the survey to DSS2 or PanSTARRS and see whether it looks fuzzy. It may be too faint to tell, which is why the catalogue flag is the real evidence.</p>
-  <p>Then query the catalogue yourself, after setting up the learning environment (hand check 4, step 1):</p>
+  <p>Then query the catalogue yourself, using the environment from <a href="#setup">set-up</a>:</p>
   <pre>cd ~/dev/TESS
 .venv-learn/bin/python -c "
 from astroquery.mast import Catalogs
@@ -249,10 +259,8 @@ print(t.sort_values('dstArcSec')[['ID','dstArcSec','Tmag','objType','disposition
 
 <section id="h4">
   <h3>Hand check 4: fold it yourself (terminal, 30 minutes)</h3>
-  <p>This is the most important check. It uses only lightkurve, the standard community tool, and none of our pipeline. Open <code>learn/fold_by_hand.py</code> and read all of it first. It's about 70 lines, and every step is commented. Then:</p>
+  <p>This is the most important check. It uses only lightkurve, the standard community tool, and none of our pipeline. Open <code>learn/fold_by_hand.py</code> and read all of it first. It's about 70 lines, and every step is commented. Then run it, using the environment from <a href="#setup">set-up</a>:</p>
   <pre>cd ~/dev/TESS
-python3 -m venv .venv-learn
-.venv-learn/bin/pip install lightkurve matplotlib
 .venv-learn/bin/python learn/fold_by_hand.py
 open learn/fold_by_hand.png</pre>
   <div class="box see"><b class="k">You should see</b><p>A table of 8 sectors (2019, 2023, 2025, 2026). Then <code>blind depth ~161 ppm</code> and <code>masked depth ~253 ppm</code>. In the picture, the grey cloud of single points shows nothing by eye, while the 20-minute bins dip inside the orange band in both panels. In the blind panel, the bins just outside the band sit a bit high: those are the shoulders from section 3. One bin near −0.5 h dips to about −350 ppm. That's a single noisy bin, also visible in the preprint's Figure 1. Compare your picture with <code>paper/figures/fig1_fold.png</code>.</p></div>
