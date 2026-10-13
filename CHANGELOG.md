@@ -63,3 +63,15 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   validation run 6 measures this.
   Result (validation run 6, 2026-10-11): all 23 recovered planets still survive; EBs unchanged (8/9);
   sector-consistency fails over all passing signals 15 -> 17. No real planet was lost.
+
+## 2026-10-12
+- METHOD (approved by Josh 2026-10-12): neighbour lookups skip TIC entries that are not stars: disposition
+  ARTIFACT or DUPLICATE (Paegert et al. 2021 say to ignore them) and objType EXTENDED (2MASS extended
+  sources, mostly galaxies). One helper, `stellar.is_real_star`, used by the `contamination` kill test,
+  `scripts/neighbour_geometry.py` and `scripts/pixel_vet.py`. Reason: eumemic found WASP-166's 5.6" neighbour
+  (TIC 408310005) is a TIC artifact, which is why our contamination test failed that signal; our check then
+  found TOI-913's 56.9" "neighbour" (TIC 10001766874) is 2MASX J15381760-8047167 and carried half its NFPP.
+  `scripts/triceratops_fpp.py` gains `--drop` (removed after calc_depths, so their light still dilutes).
+  Other re-vetted stars with non-star entries within 60": TIC 24621747 (duplicate, 11.3"), 147163875
+  (galaxy + duplicate, 45"), 422677298 (artifact, 4.1", T 10.9). Each also has a real neighbour that keeps
+  its verdict; the pilot's contamination results have not been rerun with the filter yet.

@@ -12,6 +12,9 @@ the null spread come from the same stack built at random off-transit phases.
 import argparse, json, os
 import numpy as np
 from scipy import ndimage
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tesshunt.stellar import is_real_star  # noqa: E402
 
 IN_FRAC = 0.3          # in-transit = central 60% of the transit (as in the kill tests)
 OOT_IN, OOT_OUT = 1.0, 3.0   # local out-of-transit window, in transit durations from mid-transit
@@ -62,8 +65,8 @@ def fit(D, sig, M, use):
 
 def neighbours(tic, radius=60):
     from astroquery.mast import Catalogs
-    r = Catalogs.query_object(f"TIC {tic}", radius=radius / 3600, catalog="TIC")
-    return r.to_pandas()
+    r = Catalogs.query_object(f"TIC {tic}", radius=radius / 3600, catalog="TIC").to_pandas()
+    return r[r.apply(is_real_star, axis=1)].reset_index(drop=True)   # drop artifacts, duplicates, galaxies
 
 
 def propagate(row, jd):

@@ -46,6 +46,22 @@ def expected_duration_d(period_d, rad_rsun, mass_msun, b=0.0):
     return period_d / np.pi * np.arcsin(min(x, 1.0))
 
 
+NOT_STARS = {"ARTIFACT", "DUPLICATE"}
+
+
+def is_real_star(row):
+    """False for TIC entries that are not stars: disposition ARTIFACT or DUPLICATE (Paegert et al. 2021 say
+    to ignore them) or objType EXTENDED (2MASS extended sources, mostly galaxies). Works on astropy rows and
+    pandas rows; masked or missing fields count as a real star."""
+    def field(k):
+        try:
+            v = row[k]
+        except (KeyError, IndexError, ValueError):
+            return ""
+        return "" if v is None or np.ma.is_masked(v) else str(v).strip().upper()
+    return field("disposition") not in NOT_STARS and field("objType") != "EXTENDED"
+
+
 def neighbours(ra, dec, radius_arcsec, tic):
     from astroquery.mast import Catalogs
     import astropy.units as u
@@ -54,7 +70,7 @@ def neighbours(ra, dec, radius_arcsec, tic):
     t = Catalogs.query_region(c, radius=radius_arcsec * u.arcsec, catalog="Tic")
     out = []
     for r in t:
-        if int(r["ID"]) == int(tic):
+        if int(r["ID"]) == int(tic) or not is_real_star(r):
             continue
         try:
             tm = float(r["Tmag"])

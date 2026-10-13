@@ -22,6 +22,9 @@ Conservative choices (all make exclusion harder):
 """
 import argparse, csv, json, time
 import numpy as np
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from tesshunt.stellar import is_real_star  # noqa: E402
 
 G = 6.674e-11; MSUN = 1.989e30; RSUN = 6.957e8; DAY = 86400.0
 
@@ -74,7 +77,8 @@ def cone(tic, radius):
     from astroquery.mast import Catalogs
     for i in range(5):
         try:
-            return Catalogs.query_object(f"TIC {tic}", radius=radius / 3600, catalog="TIC").to_pandas()
+            tab = Catalogs.query_object(f"TIC {tic}", radius=radius / 3600, catalog="TIC").to_pandas()
+            return tab[tab.apply(is_real_star, axis=1)].reset_index(drop=True)   # drop artifacts, duplicates, galaxies
         except Exception as e:
             print("  MAST retry", e); time.sleep(15)
     raise RuntimeError("MAST cone search failed")
