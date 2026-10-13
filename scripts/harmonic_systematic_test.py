@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import robustness_check as rc  # noqa: E402
 
 SYST = dict(period=27.285213, t0=1644.5582, duration_h=2.844)   # as in periodogram_fap.py (pipeline iteration 1)
-SIG = dict(period=5.450138, period_err=0.000016, t0=1628.659199, duration_h=2.361)
+SIG = dict(period=5.450138, period_err=0.000016, t0=1628.647932, duration_h=2.37)   # transit fit (joint)
 
 
 def box_depth(t, f, period, t0, dur_d):
