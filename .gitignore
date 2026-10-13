@@ -1,4 +1,5 @@
 .venv/
+.venv-learn/
 __pycache__/
 *.pyc
 # run data lives on Cortex only

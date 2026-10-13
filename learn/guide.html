@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning TOI-913</title>
+<style>
+/* Layout: a single reading column. Part 1 teaches one idea per section, each ending in "what it means for TOI-913".
+   Part 2 is a numbered walkthrough of checks to do by hand, each with "what you should see" and "what would worry you". */
+:root{
+  --bg:#0d1220; --panel:#151c2e; --rule:#2a3550; --ink:#e8ebf3; --muted:#9aa5bf; --faint:#6c7895;
+  --accent:#ffad5c; --good:#7fd6a6; --wait:#f2c46b; --bad:#ff8a80;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; --mono:ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#f7f6f2;--panel:#ffffff;--rule:#dcd8cc;--ink:#1d2233;--muted:#535c72;--faint:#7a8296;
+    --accent:#b85c00;--good:#1f7a4d;--wait:#8a6400;--bad:#b3261e;color-scheme:light}
+}
+:root[data-theme="light"]{--bg:#f7f6f2;--panel:#ffffff;--rule:#dcd8cc;--ink:#1d2233;--muted:#535c72;--faint:#7a8296;
+  --accent:#b85c00;--good:#1f7a4d;--wait:#8a6400;--bad:#b3261e;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);padding:40px 16px 96px}
+.wrap{max-width:760px;margin:0 auto;display:grid;gap:28px}
+h1{font-size:2rem;line-height:1.2;margin:0}
+h2{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:24px 0 0}
+h3{font-size:1.2rem;margin:0}
+p,ul,ol{margin:0}
+.muted{color:var(--muted)}
+a{color:var(--ink);font-weight:600;text-decoration-color:var(--accent)}
+a:hover,a:focus-visible{color:var(--accent)}
+section{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:20px 22px;display:grid;gap:12px}
+section.plain{background:none;border:0;padding:0}
+ul,ol{padding-left:1.3em;display:grid;gap:6px}
+code{font-family:var(--mono);font-size:.86em}
+pre{margin:0;background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;overflow-x:auto;font:13.5px/1.5 var(--mono)}
+.box{border-left:3px solid var(--c,var(--accent));padding:4px 0 4px 14px;display:grid;gap:6px}
+.box b.k{font:600 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--accent))}
+.see{--c:var(--good)} .worry{--c:var(--bad)} .toi{--c:var(--wait)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{color:var(--faint);font:600 .72rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.scroll{overflow-x:auto}
+.tick{display:flex;gap:10px;align-items:baseline}
+.tick input{transform:translateY(2px)}
+nav ol{columns:2;column-gap:28px;display:block}
+nav li{break-inside:avoid;margin-bottom:4px}
+@media (max-width:560px){nav ol{columns:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="display:grid;gap:10px">
+  <p class="muted"><a href="../index.html">← tess-hunt</a></p>
+  <h1>Understanding TOI-913, then checking it yourself</h1>
+  <p class="muted">Part 1 explains the ideas behind every number in the preprint, one at a time, each tied to this star. Part 2 walks you through the checks you can do by hand, with a calculator, a browser and one short script. Take it a section a night. When you're done, you'll be able to say what the evidence is in your own words, and where it stops.</p>
+</header>
+
+<nav class="plain">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#transit">What a transit is</a></li>
+    <li><a href="#tess">What TESS records</a></li>
+    <li><a href="#detrend">Detrending, and how it eats transits</a></li>
+    <li><a href="#search">Searching: folding, BLS/TLS, SDE and SNR</a></li>
+    <li><a href="#fluke">Fake signal 1: a noise fluke</a></li>
+    <li><a href="#syst">Fake signal 2: the spacecraft</a></li>
+    <li><a href="#eb">Fake signal 3: a binary star on the target</a></li>
+    <li><a href="#blend">Fake signal 4: a binary star next door</a></li>
+    <li><a href="#catalogue">Fake signal 5: the catalogue is wrong</a></li>
+    <li><a href="#fpp">FPP, NFPP and "validated"</a></li>
+    <li><a href="#words">Candidate, validated, confirmed</a></li>
+    <li><a href="#prereg">Why the Sector 114 test matters most</a></li>
+    <li><a href="#h1">Hand check 1: the arithmetic</a></li>
+    <li><a href="#h2">Hand check 2: the star on ExoFOP</a></li>
+    <li><a href="#h3">Hand check 3: the neighbours</a></li>
+    <li><a href="#h4">Hand check 4: fold it yourself</a></li>
+    <li><a href="#h5">Hand check 5: break it on purpose</a></li>
+    <li><a href="#h6">Hand check 6: one transit at a time</a></li>
+    <li><a href="#h7">Hand check 7: the preprint, number by number</a></li>
+    <li><a href="#cant">What you can't check yourself</a></li>
+    <li><a href="#say">What you can honestly say</a></li>
+  </ol>
+</nav>
+
+<h2>Part 1 · The ideas</h2>
+
+<section id="transit">
+  <h3>1. What a transit is</h3>
+  <p>When a planet crosses in front of its star, it blocks a small part of the star's disk, and the star gets slightly dimmer. The fraction of light blocked, the <b>depth</b>, is the planet's disk area divided by the star's:</p>
+  <pre>depth ≈ (R_planet / R_star)²</pre>
+  <p>Depth is measured in <b>ppm</b> (parts per million): 1,000 ppm = 0.1%. Earth crossing the Sun would block about 84 ppm. The edges of a star's disk are darker than its middle (<b>limb darkening</b>), so a real transit has a rounded "U" bottom, not a flat floor, and its middle is a little deeper than its average.</p>
+  <p>A transit also has a <b>duration</b>, set by how big the star is and how fast the planet moves. For a planet in a given orbit around a given star, there's only a narrow range of durations that makes physical sense. This matters later.</p>
+  <div class="box toi"><b class="k">TOI-913</b><p>A K dwarf, a bit smaller and cooler than the Sun (radius 0.73 R☉), 65 parsecs away. It has one confirmed planet, TOI-913 b: 11.10 days, about 910 ppm deep. The candidate is a second, much smaller dip: 5.45 days, 196 ppm, 2.4 hours long. If it's real and on this star, that's a planet about 1.1 times Earth's size.</p></div>
+</section>
+
+<section id="tess">
+  <h3>2. What TESS records</h3>
+  <ul>
+    <li><b>Sectors.</b> TESS stares at one strip of sky for about 27 days (a sector), split into two 13.7-day orbits with a short gap between them. Then it moves on. TOI-913 sits near the south ecliptic pole, so TESS came back to it in 2019, 2023, 2025 and 2026: eight sectors in all.</li>
+    <li><b>Cadence.</b> Selected stars get a brightness measurement every 2 minutes. That's the data used here.</li>
+    <li><b>Pixels.</b> Each TESS pixel is 21 arcseconds across. That's huge. Any star within about a pixel of the target leaks its light into the measurement. ("Arcsecond", written ″, is 1/3600 of a degree.)</li>
+    <li><b>Processing.</b> NASA's SPOC pipeline produces the light curves, the brightness-against-time series you download. The "PDCSAP" version has already had many spacecraft effects removed, and it's corrected for the light that known neighbours leak in.</li>
+    <li><b>Spacecraft hiccups.</b> Every few days, TESS fires thrusters to unload its reaction wheels (<b>momentum dumps</b>). Scattered light from Earth and the Moon also comes and goes with the orbit. Both can make dips that aren't astronomical.</li>
+  </ul>
+  <div class="box toi"><b class="k">TOI-913</b><p>8 sectors over 2019–2026, a baseline of about 2,500 days. At 5.45 days, 34 transits landed on data. Combining years is what makes a 196 ppm signal findable at all. Any single sector is far too noisy.</p></div>
+</section>
+
+<section id="detrend">
+  <h3>3. Detrending, and how it eats transits</h3>
+  <p>A raw light curve wanders: the star spins and its spots come and go, and the spacecraft drifts. To find a 2-hour dip, you first remove the slow wiggles with a smoothing filter that slides along the data (a <b>biweight</b> in our pipeline, a Savitzky–Golay filter in lightkurve). Then you divide the data by the smooth curve. This is <b>detrending</b> or <b>flattening</b>.</p>
+  <p>The trap: if the filter's window isn't much longer than the transit, the filter partly follows the dip down, and flattening removes part of the transit. It also leaves raised "shoulders" on either side. Telling the filter where the transits are (<b>masking</b>) prevents this. You can only do that once you know where they are, so the pipeline searches first, then re-detrends with the transits masked.</p>
+  <div class="box toi"><b class="k">TOI-913</b><p>You'll see this yourself in hand check 4: the same data gives 161 ppm with a "blind" filter and about 250 ppm (central depth) with a masked one. eumemic's inverted-light-curve test also found shoulders beside TOI-913 b's transits, for the same reason.</p></div>
+</section>
+
+<section id="search">
+  <h3>4. Searching: folding, BLS/TLS, SDE and SNR</h3>
+  <p><b>Folding</b> means cutting the light curve into pieces one trial period long and stacking them. If there's a real periodic dip at that period, every transit lands in the same place and the dip adds up. At the wrong period the dips smear out into nothing. A single 196 ppm transit is buried in about 125 ppm of noise per transit. Stack 34 of them and the noise drops by about √34 ≈ 6, so the dip stands out.</p>
+  <p><b>BLS</b> (box least squares) and <b>TLS</b> (transit least squares) do this for thousands of trial periods, durations and start times. At each period they score how well a transit-shaped dip fits. The result is a <b>periodogram</b>: a score for every trial period.</p>
+  <ul>
+    <li><b>SDE</b> (signal detection efficiency) is how far the best peak stands above the rest of the periodogram. Our search threshold was SDE ≥ 9.</li>
+    <li><b>SNR</b> (signal-to-noise ratio) is the depth divided by its uncertainty. SPOC's threshold for a detection is 7.1.</li>
+    <li><b>GLS</b> (Lomb–Scargle) is a different periodogram that looks for <i>sine waves</i>, such as a star spinning with spots. A 2-hour dip every 5 days looks nothing like a sine wave, so GLS barely sees transits, even TOI-913 b. Seeing no GLS peak tells you the star has no rotation-like signal at 5.45 d. It says nothing for or against a transit. Mistry was right that it shouldn't be offered as support, and the preprint now says so.</li>
+  </ul>
+  <div class="box toi"><b class="k">TOI-913</b><p>TLS found the 5.45 d signal at SDE 23.6 and SNR 8.9, but only after masking TOI-913 b and a 27.3-day systematic that ranked higher. With the systematic left in, 5.45 d ranks 6th. That's why the systematic matters so much (section 6).</p></div>
+</section>
+
+<section id="fluke">
+  <h3>5. Fake signal 1: a noise fluke</h3>
+  <p>Try enough periods and one of them will look good by chance. This is the <b>look-elsewhere effect</b>. The question is never "is there a peak?" but "how often would noise alone make a peak this tall in <i>this</i> light curve?" That's the <b>false-alarm probability</b> (FAP).</p>
+  <ul>
+    <li><b>Shuffle test.</b> Cut the light curve into 1-day blocks and shuffle them within each sector. Short-timescale noise survives, but any real periodic signal is destroyed. Search 200 shuffled copies. None reached SDE 21.8 (the highest was 18.8). Zero out of 200 gives a 95% upper limit of about 3/200 = 1.5% (the "rule of three"). Weakness: shuffling also destroys noise patterns that last several days, which are exactly the dangerous ones.</li>
+    <li><b>Inversion test</b> (eumemic's idea). Flip the light curve upside down. Every systematic keeps its timing and shape, but dips become bumps. Searching the flipped curve shows how strong a "transit" the systematics alone can make. The strongest one unrelated to b was SDE 14.5, against 21.7 for the signal.</li>
+  </ul>
+  <div class="box toi"><b class="k">TOI-913</b><p>Both tests put this light curve's noise ceiling around SDE 15–19, and the signal sits above it. That doesn't make it a planet. It makes "pure noise" unlikely. eumemic measured that across ~800,000 stars, about 37% of signals this weak turn out to be false alarms. A star-specific test is better than that average, but it's still one test.</p></div>
+</section>
+
+<section id="syst">
+  <h3>6. Fake signal 2: the spacecraft</h3>
+  <p>Systematics, dips made by the instrument, are often periodic: the orbit, the sector, the momentum dumps. A periodic systematic at period P<sub>s</sub> also creates false peaks at P<sub>s</sub>/2, P<sub>s</sub>/3, P<sub>s</sub>/5…, because folding at P<sub>s</sub>/5 still stacks every systematic event at one phase. These are <b>harmonics</b>, and the same thing happens with gaps in the data (the <b>window function</b>).</p>
+  <p>How to tell: a harmonic stays locked to its parent. If 5 × 5.45 d were exactly the systematic's period, every fifth transit would sit on a systematic event, and all of the depth would come from those transits.</p>
+  <div class="box toi"><b class="k">TOI-913</b><p>Mistry spotted that 5 × 5.450 = 27.25 d is close to the 27.29 d systematic. The test (<code>scripts/harmonic_systematic_test.py</code>): the two differ by 0.035 d per cycle, so over 2,524 days they drift 3.2 days apart, more than half a 5.45-day period. 32 of the 34 transits are more than 1.4 days from any systematic event, and those 32 carry the full depth. So it isn't a harmonic. The systematic itself (five dips, ~555 ppm) is probably a once-per-sector instrumental event, since a sector is about 27 days long. Nobody has identified exactly what it is. That's an open question you could chase.</p></div>
+</section>
+
+<section id="eb">
+  <h3>7. Fake signal 3: a binary star on the target</h3>
+  <p>Two stars orbiting each other and eclipsing make dips too, and <b>eclipsing binaries</b> (EBs) are the most common false positive. Signs of an EB:</p>
+  <ul>
+    <li><b>Odd/even:</b> two different stars take turns being eclipsed, so alternate dips differ in depth. A planet's don't.</li>
+    <li><b>Secondary eclipse:</b> a shallower dip half an orbit later, when the brighter star hides the fainter one.</li>
+    <li><b>Shape:</b> a "V" (grazing star) rather than a "U" with a flat-ish bottom.</li>
+    <li><b>Size:</b> a depth implying an object far bigger than any planet.</li>
+    <li><b>Density:</b> the transit shape tells you the star's density. If that doesn't match the star you think it's on, the dip is coming from somewhere else.</li>
+  </ul>
+  <div class="box toi"><b class="k">TOI-913</b><p>Passes all of these. The free-density fit gives 2.4 (+1.0/−1.0) times the Sun's density, against 2.1 ± 0.5 from the catalogue: consistent. Speckle imaging from big telescopes (Gemini, SOAR) shows no companion star closer than 0.5–1″, down to about 1/400 of the star's brightness. That rules out most "binary hiding right next to the target" scenarios.</p></div>
+</section>
+
+<section id="blend">
+  <h3>8. Fake signal 4: a binary star next door</h3>
+  <p>Remember the 21″ pixels. A faint eclipsing binary near the target can leak its dips into the target's light curve, diluted by the target's light. This is a <b>blend</b>, or <b>NEB</b> (nearby eclipsing binary). The arithmetic is simple. If a neighbour supplies a fraction <i>f</i> of the light in the aperture, it would need its own eclipse of depth (observed depth) / <i>f</i>.</p>
+  <pre>f = 10^(−0.4 × Δmag)      needed eclipse = 196 ppm / f</pre>
+  <p>If the needed eclipse is more than 100%, that neighbour can't be the source. Otherwise you need another argument:</p>
+  <ul>
+    <li><b>Duration.</b> An eclipse on a big star lasts much longer than one on a small star at the same period.</li>
+    <li><b>Centroids.</b> During a dip, the light's centre of mass should shift toward whichever star is dimming. With 21″ pixels and a 200 ppm dip, this is very weak.</li>
+    <li><b>Ground photometry.</b> A telescope with sharp images watches each neighbour separately during a predicted transit. This is what professionals (TFOP SG1) do.</li>
+  </ul>
+  <div class="box toi"><b class="k">TOI-913</b><p>The worrying neighbour is TIC 407126405, 9.5″ away and 4.4 magnitudes fainter. It would need a ~1.2% eclipse, which is easy for a binary. But it's a <i>giant</i> star (10 times the Sun's radius, 5 kpc behind), and anything orbiting a giant every 5.45 days would take about a day to cross it, not 2.4 hours. That duration argument is the <i>only</i> thing excluding it. The centroids can't separate the two stars. Fainter neighbours at 26.5″ and 58″ would need 23% and 10% eclipses, which is possible, so they stay open until someone watches them from the ground.</p></div>
+</section>
+
+<section id="catalogue">
+  <h3>9. Fake signal 5: the catalogue is wrong</h3>
+  <p>Every neighbour argument depends on the TESS Input Catalog (TIC), a list of about 1.7 billion objects merged from older surveys (Gaia, 2MASS…). Merging makes mistakes. Some entries are <b>artifacts</b> (not real), some are <b>duplicates</b>, and some are <b>extended sources</b>, which are galaxies rather than stars. The TIC flags these, but software only skips them if someone tells it to.</p>
+  <div class="box toi"><b class="k">TOI-913</b><p>Today's lesson. The "56.9″ star" that carried half our NFPP is a galaxy (2MASX J15381760−8047167), with a duplicate entry next to it. Removing it took NFPP from 0.041 to 0.023. Near WASP-166, the "neighbour" our pipeline blamed was an artifact. Neither our pipeline nor eumemic's checked the flags. Both do now.</p></div>
+</section>
+
+<section id="fpp">
+  <h3>10. FPP, NFPP and "validated"</h3>
+  <p><b>TRICERATOPS</b> takes the folded transit, the star and every neighbour, and asks how likely each explanation is: a planet on the target (TP), an EB on the target, a planet or EB on an unseen background star, an NEB on each named neighbour, and so on. Each scenario gets a probability, and together they sum to 1.</p>
+  <ul>
+    <li><b>FPP</b> (false-positive probability): the total of everything that isn't a planet on the target.</li>
+    <li><b>NFPP</b> (nearby FPP): just the part coming from named neighbours.</li>
+    <li>Giacalone et al. (2021): <b>validated planet</b> means FPP &lt; 0.015 <i>and</i> NFPP &lt; 0.001. <b>Likely planet</b> means FPP &lt; 0.5 <i>and</i> NFPP &lt; 0.001.</li>
+  </ul>
+  <p>The NFPP bar is strict on purpose. Statistics can't rule out a specific nearby binary, but one night of ground photometry can.</p>
+  <div class="box toi"><b class="k">TOI-913</b><p>FPP 0.036, NFPP 0.023, so neither category. Most of the NFPP comes from the 26.5″ star (0.018) and the 58″ star (0.004). TRICERATOPS doesn't use centroids. eumemic's centroids argue against the 26.5″ star, but that's TESS-pixel evidence, and weak. Version 1 of the preprint called it a "likely planet". That was wrong, and it's the kind of error that costs credibility with professionals.</p></div>
+</section>
+
+<section id="words">
+  <h3>11. Candidate, validated, confirmed</h3>
+  <ul>
+    <li><b>Signal / TCE:</b> a pipeline found a periodic dip.</li>
+    <li><b>Candidate</b> (a TOI if TESS's team adopts it, a <b>CTOI</b> if the community submits it on ExoFOP): it survived vetting and deserves follow-up.</li>
+    <li><b>Validated:</b> statistics (like TRICERATOPS plus ground photometry and imaging) make every false-positive scenario very unlikely.</li>
+    <li><b>Confirmed:</b> the planet's mass is measured, usually from the star's wobble (radial velocity) or from transit-timing variations. For a ~1 Earth-radius planet here, the wobble is about 0.5 m/s, beyond most spectrographs.</li>
+  </ul>
+  <div class="box toi"><b class="k">TOI-913</b><p>It's a candidate: a surviving signal with an honest list of what's not yet ruled out. It's also not "ours first". eumemic's search found it on October 8 and set it aside over the 9.5″ giant. Our contribution is an independent detection plus the vetting.</p></div>
+</section>
+
+<section id="prereg">
+  <h3>12. Why the Sector 114 test matters most</h3>
+  <p>Every test so far was run on data we had already seen. Even honest people tune their methods, without meaning to, until a signal looks good. A <b>pre-registered prediction</b> is the cure. Before the data exist, you publish exactly when the transits should happen and how you'll test them, with the code frozen. Then the new data either show the dip at those times or they don't.</p>
+  <div class="box toi"><b class="k">TOI-913</b><p>TESS observes this star again in Sector 114 (February–March 2027). The predicted transit times are on Zenodo (doi:10.5281/zenodo.23290795), and the code is frozen at commit d7c59d1. If the dip shows up on schedule, that's evidence nobody can call AI-generated, including Mistry. If it doesn't, we say so within 30 days.</p></div>
+</section>
+
+<h2>Part 2 · Review it by hand</h2>
+
+<section class="plain"><p class="muted">Do these in order. Each one says what to do, what you should see, and what would worry you. If something worries you, write it down and bring it to a Claude session. Don't let a session talk you out of it without showing you the data.</p></section>
+
+<section id="h1">
+  <h3>Hand check 1: the arithmetic (calculator, 20 minutes)</h3>
+  <ol>
+    <li><b>Planet size.</b> √(196 × 10⁻⁶) = ? Multiply by the star's radius, 0.7325, then by 109.1 (Earth radii per Sun radius). <span class="muted">You should get about 1.12 Earth radii.</span></li>
+    <li><b>The giant's dilution.</b> The giant is ΔT = 14.05 − 9.62 = 4.43 magnitudes fainter. f = 10^(−0.4 × 4.43) = ? Needed eclipse = 196 ppm ÷ f = ? <span class="muted">About 0.017 and about 1.2%. That's easy for a binary, which is why the giant needs another argument.</span></li>
+    <li><b>The galaxy's dilution.</b> Same thing with T = 15.91 (ΔT = 6.29). <span class="muted">You should get about 0.003 and a ~6% "needed eclipse" from magnitudes alone. TRICERATOPS said 31.7%, because it also weights by how much of each star's light falls in the aperture pixels. Either way, a galaxy can't eclipse.</span></li>
+    <li><b>Orbit size.</b> Kepler's third law in handy units: a (in AU) = (M × (P/365.25)²)^(1/3). For TOI-913, M = 0.82, P = 5.45. Then a/R★ = a × 215 ÷ 0.7325. <span class="muted">About 0.057 AU and a/R★ ≈ 16.6.</span></li>
+    <li><b>Duration on the target.</b> A central transit lasts about P ÷ π ÷ (a/R★) days. Multiply by 24 for hours. <span class="muted">About 2.5 h. The observed 2.37 h fits, a little shorter because the planet crosses slightly off-centre.</span></li>
+    <li><b>Duration on the giant.</b> Redo step 4 for the giant with M = 1 and R★ = 10: a/R★ ≈ 1.3. A transit then lasts (P ÷ π) × arcsin(1 ÷ 1.3) days. <span class="muted">More than a day. That's why a 2.4-hour dip can't come from the giant. Make sure you believe this step, because the exclusion rests on it.</span></li>
+    <li><b>The harmonic.</b> 5 × 5.450138 = ? Compare with 27.285213. Multiply the difference by 2,524 ÷ 27.285 cycles. <span class="muted">27.2507, a gap of 0.0345 d, which grows to about 3.2 d over the baseline.</span></li>
+    <li><b>Rule of three.</b> 0 hits in 200 tries: the 95% upper limit is about 3 ÷ 200. <span class="muted">1.5%.</span></li>
+  </ol>
+  <div class="box worry"><b class="k">Would worry you</b><p>Any step where your number is far from the preprint's. Write down which one.</p></div>
+</section>
+
+<section id="h2">
+  <h3>Hand check 2: the star on ExoFOP (browser, 15 minutes)</h3>
+  <p>Open <a href="https://exofop.ipac.caltech.edu/tess/target.php?id=407126408">ExoFOP: TIC 407126408</a>. This is where professionals keep everything about a TESS target.</p>
+  <ul>
+    <li>Find TOI-913.01 (planet b, 11.10 d) and TOI-913.02, and read their dispositions.</li>
+    <li>Find the imaging section: the Gemini/Zorro and SOAR/HRCam speckle observations the preprint uses.</li>
+    <li>Look for any CTOI, or any note about a 5.45 d signal.</li>
+  </ul>
+  <div class="box see"><b class="k">You should see</b><p>The two known TOIs, the speckle files, and no 5.45 d entry. If there's a new 5.45 d entry from someone else, that's news and changes the outreach plan.</p></div>
+</section>
+
+<section id="h3">
+  <h3>Hand check 3: the neighbours (browser + terminal, 20 minutes)</h3>
+  <p>Look at the sky: <a href="https://aladin.cds.unistra.fr/AladinLite/?target=TIC%20407126408&fov=0.04&survey=CDS%2FP%2F2MASS%2Fcolor">Aladin, 2MASS colour, 2.4′ field</a>. The target is the bright star in the middle. The 9.5″ giant is almost touching it, to the east. The galaxy is about 57″ due north. Switch the survey to DSS2 or PanSTARRS and see whether it looks fuzzy. It may be too faint to tell, which is why the catalogue flag is the real evidence.</p>
+  <p>Then query the catalogue yourself, after setting up the learning environment (hand check 4, step 1):</p>
+  <pre>cd ~/dev/TESS
+.venv-learn/bin/python -c "
+from astroquery.mast import Catalogs
+t = Catalogs.query_object('TIC 407126408', radius=65/3600, catalog='TIC').to_pandas()
+print(t.sort_values('dstArcSec')[['ID','dstArcSec','Tmag','objType','disposition','lumclass']].to_string(index=False))"</pre>
+  <div class="box see"><b class="k">You should see</b><p>TIC 407126405 at 9.54″, T = 14.05, lumclass GIANT. TIC 407126406 at 26.5″. TIC 10001766874 at 56.85″ with objType EXTENDED. TIC 407126394 at 57.4″ with disposition DUPLICATE.</p></div>
+  <div class="box worry"><b class="k">Would worry you</b><p>Any other star brighter than about T = 17 within 30″ that the preprint doesn't mention.</p></div>
+</section>
+
+<section id="h4">
+  <h3>Hand check 4: fold it yourself (terminal, 30 minutes)</h3>
+  <p>This is the most important check. It uses only lightkurve, the standard community tool, and none of our pipeline. Open <code>learn/fold_by_hand.py</code> and read all of it first. It's about 70 lines, and every step is commented. Then:</p>
+  <pre>cd ~/dev/TESS
+python3 -m venv .venv-learn
+.venv-learn/bin/pip install lightkurve matplotlib
+.venv-learn/bin/python learn/fold_by_hand.py
+open learn/fold_by_hand.png</pre>
+  <div class="box see"><b class="k">You should see</b><p>A table of 8 sectors (2019, 2023, 2025, 2026). Then <code>blind depth ~161 ppm</code> and <code>masked depth ~253 ppm</code>. In the picture, the grey cloud of single points shows nothing by eye, while the 20-minute bins dip inside the orange band in both panels. In the blind panel, the bins just outside the band sit a bit high: those are the shoulders from section 3. One bin near −0.5 h dips to about −350 ppm. That's a single noisy bin, also visible in the preprint's Figure 1. Compare your picture with <code>paper/figures/fig1_fold.png</code>.</p></div>
+  <div class="box worry"><b class="k">Would worry you</b><p>A dip clearly off-centre, a dip in only one panel, or no dip at all.</p></div>
+</section>
+
+<section id="h5">
+  <h3>Hand check 5: break it on purpose (terminal, 30 minutes)</h3>
+  <p>A real signal should be fragile in the right ways. Edit one line of <code>learn/fold_by_hand.py</code> at a time, run it, look, and change it back.</p>
+  <ol>
+    <li><b>Wrong period.</b> Change <code>P</code> to 5.40, then 5.50. <span class="muted">The dip should vanish: the transits no longer stack.</span></li>
+    <li><b>Slightly wrong period.</b> Try 5.4505. <span class="muted">The dip weakens. Over 460 orbits, a 0.0004 d error adds up to about 4 hours of drift.</span></li>
+    <li><b>Secondary eclipse.</b> Add half the period to <code>T0</code> (T0 + 2.725069). <span class="muted">Nothing should be there. A dip there would point to an EB (section 7).</span></li>
+    <li><b>Early data only.</b> After the <code>found = …</code> line, add <code>found = found[:2]</code> (2019 only), then try <code>found = found[4:]</code> (2025–26). <span class="muted">Both halves should show a dip, noisier, at about the same depth. A dip in only one half would be a red flag.</span></li>
+    <li><b>Odd and even transits.</b> Set <code>P</code> to 10.900276 (twice the period) and run it. That folds only every other transit. Then also add 5.450138 to <code>T0</code> and run it again for the other half. <span class="muted">Each run uses half the transits, so expect more noise. The two depths should agree within the noise. Clearly unequal depths would be the odd/even test failing (section 7).</span></li>
+  </ol>
+  <p class="muted">For reference, Claude ran each of these on 2026-10-12 (masked-filter depth, then "times the noise"): normal 253 ppm (12.8×) · P = 5.40: 6 ppm (0.3×) · P = 5.4505: 56 ppm (2.3×) · half a period later: −2 ppm (−0.1×) · 2019 only: 268 ppm (4.8×) · 2025–26 only: 220 ppm (7.5×) · odd transits: 256 ppm (8.1×) · even transits: 208 ppm (8.6×). Your numbers should be close. If they aren't, that's worth asking about.</p>
+</section>
+
+<section id="h6">
+  <h3>Hand check 6: one transit at a time (15 minutes)</h3>
+  <p>Open <code>paper/data/harmonic_systematic_test.json</code> and look at <code>events</code>. Each entry is one transit: its time, its depth and its uncertainty, in fractions (×10⁶ for ppm).</p>
+  <ul>
+    <li>A typical single transit has an uncertainty of about 125 ppm, so no single transit is convincing on its own. Count how many depths are positive. <span class="muted">33 of 34. Pure noise would give about 17. A real 220 ppm central depth, seen through 125 ppm of noise, would give positive values about 96% of the time, so 33 fits.</span></li>
+    <li>Look at <code>offset_from_syst_d</code>, how far each transit is from the 27.3 d systematic. Only two are within half a day.</li>
+  </ul>
+  <div class="box worry"><b class="k">A caution you should understand</b><p>This count isn't an independent proof. The period was chosen by the search as the one that makes the dips line up best, which is the look-elsewhere effect from section 5. It's a consistency check, not a probability.</p></div>
+</section>
+
+<section id="h7">
+  <h3>Hand check 7: the preprint, number by number (an evening)</h3>
+  <p>Read <code>paper/toi913_candidate.pdf</code> with this table. Tick each one when you've traced it to its source and understand what it means.</p>
+  <div class="scroll"><table>
+    <thead><tr><th></th><th>Claim</th><th>Where it comes from</th><th>Concept</th></tr></thead>
+    <tbody>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>P = 5.450138 d, depth 196 ppm, 1.12 R⊕</td><td><code>paper/data/transit_fit.json</code>, your hand check 1</td><td>§1, §4</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>SDE 23.6, SNR 8.9, 34 transits</td><td><code>paper/data/pipeline_signal.json</code></td><td>§4</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>Ranks 6th with the systematic unmasked</td><td><code>paper/data/robustness.json</code>, Table 1</td><td>§4, §6</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>Shuffled FAP &lt; 1.5%</td><td><code>paper/data/periodogram_fap.json</code></td><td>§5</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>Inverted peak SDE 14.5 vs 21.7</td><td><code>paper/data/inversion_test.json</code></td><td>§5</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>Not a harmonic of 27.3 d</td><td><code>paper/data/harmonic_systematic_test.json</code>, hand check 1 step 7</td><td>§6</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>Density 2.43 vs 2.09 ρ☉</td><td><code>paper/data/transit_fit.json</code> ("free")</td><td>§7</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>Giant excluded by duration</td><td>hand check 1 steps 4–6</td><td>§8</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>56.9″ source is a galaxy</td><td>hand check 3</td><td>§9</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>FPP 0.036, NFPP 0.023</td><td><code>paper/data/triceratops_speckle_nogalaxy.json</code></td><td>§10</td></tr>
+      <tr><td><input type="checkbox" aria-label="done"></td><td>"Planet candidate, not validated"</td><td>the criteria in §10 against the numbers</td><td>§10, §11</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">These ticks live only in this browser tab. They're a reading aid, not a record.</p>
+</section>
+
+<section id="cant">
+  <h3>What you can't check yourself, and that's normal</h3>
+  <p>Professionals don't re-derive TLS or TRICERATOPS either. They trust published, widely used tools and check that the inputs and outputs make sense. Things you're taking on trust:</p>
+  <ul>
+    <li>That TLS and TRICERATOPS do what their papers say. They're standard, and that's an acceptable trust.</li>
+    <li>That our pipeline's code does what its comments say. This is the AI part Mistry worried about. Hand check 4 is your independent check of the headline (the dip exists). Hand check 5 covers the main EB tests.</li>
+    <li>The pixel-level and centroid analyses. These are hard, and here they're weak anyway.</li>
+  </ul>
+</section>
+
+<section id="say">
+  <h3>What you can honestly say</h3>
+  <p>Once you've done the hand checks, this is true and defensible:</p>
+  <div class="box"><p>"I ran an open TESS search with heavy help from an AI coding agent. It found a 5.45-day, ~200 ppm dip on TOI-913 that another open project had found two days earlier. I've confirmed the dip myself with standard tools, and it passes the usual false-positive checks, but it isn't validated: two faint neighbours haven't been ruled out, and no professional has checked the work. I registered predicted transit times for TESS Sector 114 in advance, and that's the real test."</p></div>
+  <p class="muted">What not to say: "discovered", "Earth-sized planet", "likely planet", or anything that implies a professional has endorsed it.</p>
+</section>
+
+</div>
+</body>
+</html>
