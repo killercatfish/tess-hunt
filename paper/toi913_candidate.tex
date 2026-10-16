@@ -65,7 +65,7 @@ $a$ (AU), $T_\mathrm{eq}$ (K, $A=0$) & $0.057$, $\sim860$ & $0.091$, $\sim680$ \
 
 \section{Vetting}
 \subsection{Automated tests}
-The signal passed all hard tests: odd/even depth ($211$ vs $245$\,ppm, $0.4\sigma$); secondary eclipse at phase 0.5 and across phases 0.3--0.7 (maximum $2.4\sigma$); duration plausibility; size; per-sector depth consistency ($p=0.17$); harmonic relation to TOI-913\,b ($P_b/P = 2.037$, not an integer ratio); and an injection test at the same period and depth. The trapezoid shape test was inconclusive at this SNR. In a season-holdout test, each of the four observing seasons was hidden, the ephemeris was fitted on the rest, and depth was measured only at the predicted times. Three of four seasons showed the transit at $>2\sigma$. The fourth (Sector 93 alone) gave $1.8\sigma$. Figure~\ref{fig:diag} shows the diagnostic page. A fresh, read-only AI review of that page flagged the $9.5''$ neighbour and the depth scatter between sectors, both addressed below.
+The signal passed all hard tests: odd/even depth ($211$ vs $245$\,ppm, $0.4\sigma$); secondary eclipse at phase 0.5 and across phases 0.3--0.7 (maximum $2.4\sigma$); duration plausibility; size; per-sector depth consistency ($p=0.17$, after the test's standard step of dropping the most discrepant sector and adding a 10\% dilution floor; without them $p=0.019$, Section~\ref{sec:rob}); harmonic relation to TOI-913\,b ($P_b/P = 2.037$, not an integer ratio); and an injection test at the same period and depth. The trapezoid shape test was inconclusive at this SNR. In a season-holdout test, each of the four observing seasons was hidden, the ephemeris was fitted on the rest, and depth was measured only at the predicted times. Three of four seasons showed the transit at $>2\sigma$. The fourth (Sector 93 alone) gave $1.8\sigma$. Figure~\ref{fig:diag} shows the diagnostic page. A fresh, read-only AI review of that page flagged the $9.5''$ neighbour and the depth scatter between sectors, both addressed below.
 
 \begin{figure}[!htbp]
 \centering
@@ -75,7 +75,12 @@ The signal passed all hard tests: odd/even depth ($211$ vs $245$\,ppm, $0.4\sigm
 \end{figure}
 
 \subsection{Robustness}
+\label{sec:rob}
 We remeasured the depth over the central 60\% of the transit, with red-noise-aware errors, across variants (Table~\ref{tab:rob}). Every season and sector jackknife gives 196--244\,ppm. No transit departs by $>3\sigma$ from the mean, and removing the three deepest leaves $190\pm25$\,ppm. One of 34 transits lies within 0.5\,d of a data gap (8\% expected by chance), and none lie within 0.1\,d of a momentum dump (43 dump events, comprising 231 flagged cadences; version 1 called these ``231 momentum dumps''). The only non-confirming variant is uncorrected SAP flux. There the signal is weaker ($159\pm24$\,ppm, SNR 6.6) and a narrow search drifts to 5.427\,d.
+
+\textbf{Single-transit scatter.} The 34 single-transit depths scatter more than their errors suggest: $\chi^2/\mathrm{dof}=1.51$ ($p=0.03$). The errors come from out-of-transit windows in each sector, so they include red noise only on average. Measured the same way at 177 trial phases away from the transit, the same statistic has a median of 1.16, and 21\% of phases reach 1.51. Grouped by sector, the depths give $\chi^2=16.7$ for 7 degrees of freedom (nominal $p=0.019$; 10\% of off-transit phases are as large). The spread comes mainly from Sectors 66 and 101 ($391\pm64$ and $388\pm61$\,ppm) against Sector 12 ($132\pm79$\,ppm). The automated test above passes because it drops the most discrepant sector and adds a 10\% floor for dilution differences between sectors. By season, the depths agree ($p=0.29$). The scatter is larger than is typical for this light curve, but not significantly. A planet's transits have a constant depth, so a varying source such as a blend or a systematic would show extra scatter. At this SNR, the test cannot tell the two apart.
+
+\textbf{TOI-913\,b.} The search masks b's transits over twice their duration. No 5.45\,d transit with data is lost to that mask, and only one lies within 24\,h of a b transit (20\,h away; $160\pm133$\,ppm). Depth does not correlate with the time to the nearest b transit (Spearman $\rho=-0.01$). Widening b's mask from 1.5 to 4 times its duration changes the mean depth by at most 11\,ppm and the single-transit $\chi^2/\mathrm{dof}$ by at most 0.07. Near the 2:1 commensurability, b would also shift the candidate's transit times. For b masses of 4--15\,$M_\oplus$ and circular orbits, the expected amplitude is 1.5--5\,min \cite{lithwick}, too small to affect a depth measured over the central 1.4\,h. Neither b's mask nor its gravity explains the scatter.
 
 \begin{table}[h]
 \centering
@@ -159,6 +164,7 @@ This work was inspired by P.~Rabtsevich (\href{https://x.com/p_rabtsevich}{@p\_r
 
 \begin{thebibliography}{99}\small
 \bibitem{rabtsevich} Rabtsevich, P. 2026, preprint, Zenodo, \href{https://doi.org/10.5281/zenodo.22967456}{doi:10.5281/zenodo.22967456}
+\bibitem{lithwick} Lithwick, Y., Xie, J., \& Wu, Y. 2012, ApJ, 761, 122
 \bibitem{eumemicissue} eumemic 2026, comments on GitHub issue \emph{TIC 407126408 (TOI-913) 5.45\,d: independent detection plus vetting of the $9.5''$ neighbour}, 12--15 October 2026, \url{https://github.com/eumemic/exoplanets/issues/2}
 \bibitem{eumemic} eumemic 2026, \emph{Multi-sector TESS transit searches of nearby K and M dwarfs and of TOI hosts}, \url{https://github.com/eumemic/exoplanets}
 \bibitem{mistry} Mistry, P., et al. 2023, AJ, 166, 9 (VaTEST II)

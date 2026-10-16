@@ -282,12 +282,13 @@ open learn/fold_by_hand.png</pre>
 
 <section id="h6">
   <h3>Hand check 6: one transit at a time (15 minutes)</h3>
-  <p>Open <code>paper/data/harmonic_systematic_test.json</code> and look at <code>events</code>. Each entry is one transit: its time, its depth and its uncertainty, in fractions (×10⁶ for ppm).</p>
+  <p>Run <code>learn/check6.sh</code>. It prints <code>paper/data/harmonic_systematic_test.json</code> as a table: one row per transit, with its time, its depth and its uncertainty in ppm, and how far it sits from the 27.3 d systematic.</p>
   <ul>
     <li>A typical single transit has an uncertainty of about 125 ppm, so no single transit is convincing on its own. Count how many depths are positive. <span class="muted">33 of 34. Pure noise would give about 17. A real 220 ppm central depth, seen through 125 ppm of noise, would give positive values about 96% of the time, so 33 fits.</span></li>
     <li>Look at <code>offset_from_syst_d</code>, how far each transit is from the 27.3 d systematic. Only two are within half a day.</li>
   </ul>
   <div class="box worry"><b class="k">A caution you should understand</b><p>This count isn't an independent proof. The period was chosen by the search as the one that makes the dips line up best, which is the look-elsewhere effect from section 5. It's a consistency check, not a probability.</p></div>
+  <div class="box worry"><b class="k">What Josh's run of this check found (10/16)</b><p>Look at the spread, not just the signs: 664 and 612 next to 2 and −140. The depths scatter more than their error bars allow. These quick error bars ignore slow, correlated noise, so even blank stretches of the light curve scatter too much. The fair test uses the pipeline's error bars, which include that noise, and compares with the same measurement at 177 phases where there is no transit. There the transits score 1.51 against a typical 1.16, and 21% of the blank phases do as badly. By sector it's 10%. So the scatter is somewhat high but not significant. TOI-913 b doesn't explain it: no transit is lost to b's mask, depth doesn't depend on distance from b, and b's expected timing shifts are only a few minutes. The preprint now says all this (section 4.2), and it now says the automated per-sector test passes only after dropping its worst sector. Code: <code>scripts/single_transit_scatter.py</code>; results: <code>paper/data/single_transit_scatter.json</code>.</p></div>
 </section>
 
 <section id="h7">
