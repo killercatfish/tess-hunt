@@ -25,7 +25,7 @@ label{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted)
 <p class="muted">Each claim in the preprint next to the file it comes from. Green means the paper repeats its own file; red means it doesn't.
 Green doesn't mean the science is right. That's what the "you should be able to say" line is for. Built by <code>learn/make_check7.py</code> from
 <code>paper/toi913_candidate.tex</code> and <code>paper/data/</code>; rerun it after any edit. Ticks aren't saved.</p>
-<div class="sum"><span class="pill" style="color:var(--good)">9 match</span><span class="pill" style="color:var(--bad)">3 mismatch</span>
+<div class="sum"><span class="pill" style="color:var(--good)">11 match</span><span class="pill" style="color:var(--bad)">1 mismatch</span>
 <span class="pill">12 claims</span></div>
 <article class="MATCH" id="r1">
 <div class="head"><h2>1. Period, depth and radius</h2><span class="st">MATCH</span></div>
@@ -56,10 +56,10 @@ iteration 2</pre></div>
 <div class="cols"><p class="say"><b>You should be able to say:</b> SDE is how far the best peak stands above the rest of the periodogram (threshold 9). SNR is depth over its noise. <span class="muted">(guide §4)</span></p>
 <p class="worry"><b>Would worry you:</b> Numbers that only clear the thresholds narrowly. These clear them comfortably, but see rows 3 and 4 for why SDE alone isn&#x27;t the story.</p></div>
 <label><input type="checkbox"> I traced this and can explain it</label>
-</article><article class="MISMATCH" id="r3">
-<div class="head"><h2>3. Odd/even depths</h2><span class="st">MISMATCH</span></div>
+</article><article class="MATCH" id="r3">
+<div class="head"><h2>3. Odd/even depths</h2><span class="st">MATCH</span></div>
 <div class="cols">
-<div class="box"><div class="k">The preprint says</div><blockquote>The signal passed all hard tests: odd/even depth (211 vs 245 ppm, 0.4σ); secondary eclipse at phase 0.5 and across phases 0.3–0.7 (maximum 2.4σ); duration plausibility; size; per-sector depth consistency (p=0.17, after the test&#x27;s standard step of dropping the most discrepant sector and adding a 10% dilution floor; without them p=0.020, Section ); harmonic relation to TOI-913 b (P_b/P = 2.037, not an integer ratio); and an injection test at the same period and depth.</blockquote></div>
+<div class="box"><div class="k">The preprint says</div><blockquote>The signal passed nine of the ten hard tests: odd/even depth (211 vs 245 ppm, 0.7σ); secondary eclipse at phase 0.5 and across phases 0.3–0.7 (maximum 2.4σ); duration plausibility; size; per-sector depth consistency (p=0.17, after the test&#x27;s standard step of dropping the most discrepant sector and adding a 10% dilution floor; without them p=0.020, Section ); harmonic relation to TOI-913 b (P_b/P = 2.037, not an integer ratio); and an injection test at the same period and depth.</blockquote></div>
 <div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/pipeline_signal.json → signal.tests.odd_even</code></p><pre>pass True
 sigma 0.7347235423476302
 depth_odd_ppm 211.2566596206758
@@ -68,7 +68,7 @@ err_odd_ppm 31.526427303739744
 err_even_ppm 33.56494857276554</pre></div>
 </div>
 <div class="box"><div class="k">From one to the other</div><pre>|211 − 245| / √(31.5² + 33.6²) = 0.73σ
-(the formula in tesshunt/killtests.py odd_even). The preprint says 0.4σ.</pre></div>
+(the formula in tesshunt/killtests.py odd_even). The preprint said 0.4σ until 10/16.</pre></div>
 <div class="cols"><p class="say"><b>You should be able to say:</b> An eclipsing binary at twice the period shows alternating depths. Odd and even agree here either way (pass limit 3σ). <span class="muted">(guide §8)</span></p>
 <p class="worry"><b>Would worry you:</b> A difference over 3σ. Here the issue is only that the paper misquotes its own file.</p></div>
 <label><input type="checkbox"> I traced this and can explain it</label>
@@ -152,7 +152,7 @@ The two inverted peaks at 11.099 d are b&#x27;s detrending shoulders turned upsi
 </article><article class="MATCH" id="r8">
 <div class="head"><h2>8. Not a harmonic of the 27.3 d systematic</h2><span class="st">MATCH</span></div>
 <div class="cols">
-<div class="box"><div class="k">The preprint says</div><blockquote>A 27.3 d systematic in the light curve lies near five times the period, but the two drift apart by 0.59 of a period over the baseline, and the transits far from any 27.3 d event carry the full depth, so the signal is not a harmonic of it.</blockquote></div>
+<div class="box"><div class="k">The preprint says</div><blockquote>A 27.3 d systematic in the light curve lies near five times the period, but the two drift apart by 0.59 of a period over the baseline, and the transits far from any 27.3 d event carry the full depth, so the signal is inconsistent with a simple 5:1 harmonic of it.</blockquote></div>
 <div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/harmonic_systematic_test.json</code></p><pre>five_P 27.25069
 five_P_err 7.999999999999999e-05
 syst_period 27.285213
@@ -166,10 +166,10 @@ Far transits: 222 ± 22 ppm (n=32); all: 227 ± 21.</pre></div>
 <div class="cols"><p class="say"><b>You should be able to say:</b> If the dip were the systematic folded at a fifth of its period, the depth would sit in the transits that line up with it. It doesn&#x27;t. <span class="muted">(guide §6)</span></p>
 <p class="worry"><b>Would worry you:</b> Depth concentrated in the 2 transits near a 27.3 d event.</p></div>
 <label><input type="checkbox"> I traced this and can explain it</label>
-</article><article class="MISMATCH" id="r9">
-<div class="head"><h2>9. Stellar density from the transit</h2><span class="st">MISMATCH</span></div>
+</article><article class="MATCH" id="r9">
+<div class="head"><h2>9. Stellar density from the transit</h2><span class="st">MATCH</span></div>
 <div class="cols">
-<div class="box"><div class="k">The preprint says</div><blockquote>A transit fit with free stellar density yields ρ_★ = 2.43 (+0.96 / −1.02) ρ_☉, consistent with the catalogue value 2.09 ± 0.45 ρ_☉.</blockquote></div>
+<div class="box"><div class="k">The preprint says</div><blockquote>A transit fit with free stellar density yields ρ_★ = 2.43 (+0.97 / −1.01) ρ_☉, consistent with the catalogue value 2.09 ± 0.45 ρ_☉.</blockquote></div>
 <div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/transit_fit.json → free → P5.4501 → rho, and catalogue_rho</code></p><pre>rho [1.413636274524455, 2.4278628534269537, 3.39401697875403]
 catalogue_rho [2.086, 0.45]</pre></div>
 </div>

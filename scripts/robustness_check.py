@@ -236,6 +236,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--procs", type=int, default=6)
+    ap.add_argument("--only", default=None, help="run just this variant (e.g. 'QLP (FFI) biweight auto'), skip the diagnostics")
+    ap.add_argument("--full", action="store_true", help="with --only: also run the full 0.5-40 d TLS search")
     a = ap.parse_args()
     OUT = a.out
     os.makedirs(OUT, exist_ok=True)
@@ -250,6 +252,17 @@ def main():
         ("QLP (FFI) biweight auto", "QLP", "biweight", None, False),
         ("TESS-SPOC (FFI) biweight auto", "TESS-SPOC", "biweight", None, False),
     ]
+    if a.only:
+        spec = [s for s in specs if s[0] == a.only]
+        if not spec:
+            raise SystemExit(f"no variant named {a.only!r}; choose from {[s[0] for s in specs]}")
+        spec = spec[0][:4] + (spec[0][4] or a.full,)
+        r = run_variant(spec)
+        fn = os.path.join(OUT, "robustness_" + a.only.split()[0].lower().replace("-", "") + ".json")
+        json.dump(dict(variant=r, spec=list(spec)), open(fn, "w"), indent=1, default=str)
+        print(json.dumps({k: v for k, v in r.items() if k != "sectors"}, indent=1, default=str))
+        print("wrote", fn)
+        return
     with Pool(a.procs) as pool:
         diag = pool.apply_async(base_diagnostics)
         res = pool.map(run_variant, specs, chunksize=1)

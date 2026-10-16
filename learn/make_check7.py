@@ -104,8 +104,8 @@ row(3, "Odd/even depths", ["odd/even depth ($211$"],
     "paper/data/pipeline_signal.json → signal.tests.odd_even",
     "\n".join(f"{k} {v}" for k, v in oe.items()),
     f"|{oe['depth_odd_ppm']:.0f} − {oe['depth_even_ppm']:.0f}| / √({oe['err_odd_ppm']:.1f}² + {oe['err_even_ppm']:.1f}²) = {sig:.2f}σ\n"
-    f"(the formula in tesshunt/killtests.py odd_even). The preprint says 0.4σ.",
-    [same(211, oe["depth_odd_ppm"], 0), same(245, oe["depth_even_ppm"], 0), same(0.4, sig, 1)],
+    f"(the formula in tesshunt/killtests.py odd_even). The preprint said 0.4σ until 10/16.",
+    [same(211, oe["depth_odd_ppm"], 0), same(245, oe["depth_even_ppm"], 0), same(0.7, sig, 1)],
     "An eclipsing binary at twice the period shows alternating depths. Odd and even agree here either way (pass limit 3σ).",
     "A difference over 3σ. Here the issue is only that the paper misquotes its own file.", "§8")
 
@@ -182,7 +182,7 @@ row(9, "Stellar density from the transit", ["free stellar density"],
     "paper/data/transit_fit.json → free → P5.4501 → rho, and catalogue_rho",
     f"rho {fr}\ncatalogue_rho {tf['catalogue_rho']}",
     f"ρ★ = {r:.2f} +{rp_:.2f} / −{rm_:.2f} ρ☉ against the catalogue's {tf['catalogue_rho'][0]:.2f} ± {tf['catalogue_rho'][1]:.2f}.",
-    [same(2.43, r, 2), same(0.96, rp_, 2), same(1.02, rm_, 2), same(2.09, tf["catalogue_rho"][0], 2)],
+    [same(2.43, r, 2), same(0.97, rp_, 2), same(1.01, rm_, 2), same(2.09, tf["catalogue_rho"][0], 2)],
     "Transit shape and period imply how dense the star is. A dip on a different star (a giant, say) would imply the wrong density.",
     "A density far from the catalogue's. These overlap well, though the error is wide.", "§7")
 
