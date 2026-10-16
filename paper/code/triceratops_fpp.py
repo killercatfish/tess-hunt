@@ -6,6 +6,11 @@ contrast curves (CSV: separation_arcsec, delta_mag).
 
   python triceratops_fpp.py --tic 407126408 --sectors 12,13,65,66,93,100,101,102 \
       --period 5.450098 --fold fold.csv --cc zorro832.csv --filt Vis --runs 6 --N 1000000 --out out/
+
+--drop removes TIC entries that are not stars (TIC disposition ARTIFACT or DUPLICATE, or objType EXTENDED,
+i.e. 2MASS extended sources such as galaxies) from the false-positive scenarios. They are dropped after
+calc_depths, so their light still dilutes the aperture; TRICERATOPS's own remove_star must not run before
+calc_depths, because its per-sector pixel coordinates are indexed by row position.
 """
 import argparse, json, os, time, warnings
 import numpy as np
@@ -23,6 +28,7 @@ def main():
     ap.add_argument("--N", type=int, default=1000000)
     ap.add_argument("--exptime", type=float, default=10 / 1440, help="bin width of the folded data [d]")
     ap.add_argument("--bg", default=None, help="saved field-star population CSV (skips the slow Gaia query)")
+    ap.add_argument("--drop", default="", help="comma-separated TIC IDs to remove from the scenarios (non-stars)")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     warnings.simplefilter("ignore")
@@ -45,6 +51,13 @@ def main():
         tgt = tr.target(ID=a.tic, sectors=sectors[ok], search_radius=10, trilegal_fname=a.bg)
         aps = [aps[i] for i in ok]
     tgt.calc_depths(tdepth=depth, all_ap_pixels=aps)
+    drop = [x for x in a.drop.split(",") if x]
+    if drop:
+        missing = [x for x in drop if x not in set(tgt.stars["ID"].astype(str))]
+        if missing:
+            raise SystemExit(f"--drop IDs not in the field: {missing}")
+        print("dropping non-stars:", tgt.stars[tgt.stars["ID"].astype(str).isin(drop)][["ID", "Tmag", "sep (arcsec)", "tdepth"]].to_string(index=False))
+        tgt.remove_star(drop)
     stars = tgt.stars[["ID", "Tmag", "ra", "dec", "sep (arcsec)", "fluxratio", "tdepth"]].copy()
     near = stars[stars.tdepth > 0]
     print(f"{len(stars)} stars in field; {len(near)} could produce the depth (tdepth <= 1):")
@@ -67,7 +80,7 @@ def main():
     print(f"\nFPP  {fpp.mean():.4g} ± {fpp.std():.2g}   NFPP {nfpp.mean():.3g} ± {nfpp.std():.2g}   ({a.runs} runs, N={a.N})")
     print(mean_p.head(10).to_string())
     json.dump(dict(tic=a.tic, period=a.period, depth_ppm=1e6 * depth, sigma_ppm=1e6 * sigma, cc=a.cc,
-                   filt=a.filt, N=a.N, runs=res, FPP_mean=float(fpp.mean()), FPP_std=float(fpp.std()),
+                   filt=a.filt, N=a.N, dropped=drop, runs=res, FPP_mean=float(fpp.mean()), FPP_std=float(fpp.std()),
                    NFPP_mean=float(nfpp.mean()), NFPP_std=float(nfpp.std()),
                    stars=near.astype({"ID": str}).to_dict("records")),
               open(os.path.join(a.out, "triceratops.json"), "w"), indent=1)
