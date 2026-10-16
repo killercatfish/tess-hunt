@@ -9,9 +9,9 @@ Good point on masking b before detrending. If I rerun the inversion test, I'll d
 One more check, in case it's useful for your candidates too. The 27.3 d systematic is close to five times 5.45 d, so I tested whether 5.45 d could be its 1/5 harmonic. 5P = 27.2507 ± 0.0001 d against 27.2852 d, so the two drift apart by 3.2 d (0.59 of a 5.45 d period) over the 2,524-day baseline. Of the 34 observed transits, the 32 that fall more than 1.4 d from any 27.3 d event carry the full depth: a central depth of 222 ± 22 ppm (SNR 10.2), against 227 ± 21 ppm for all 34. A harmonic would put all of its depth in the transits that coincide with the systematic. Code: scripts/harmonic_systematic_test.py in https://github.com/killercatfish/tess-hunt.
 
 <!-- ADDED 2026-10-15 after eumemic's fourth comment (paper/eumemic_comment_exofop_ctoi_2026-10-15.md).
-     Post this reply only after the hand checks. The bracketed line is Josh's call; delete the brackets. -->
+     Post this reply only after the hand checks. Josh chose option (a) on 2026-10-15: no journal submission before Sector 114. -->
 
-On your update: thanks for the MES figure and the per-sector centroid numbers. To be plain about where our side stands: the preprint is on Zenodo and hasn't been peer reviewed, so it can't carry the CTOI as things are. [JOSH CHOOSES ONE: (a) "I'm not planning a journal submission before the Sector 114 test, so your TFOP route is the likelier path." or (b) "I'm looking into a short peer-reviewed note and will tell you if it goes ahead."] If TFOP comes through for you first, I'd be glad to file jointly, with your detection on 2026-10-08 credited as the first.
+On your update: thanks for the MES figure and the per-sector centroid numbers. To be plain about where our side stands: the preprint is on Zenodo and hasn't been peer reviewed, so it can't carry the CTOI as things are. I'm not planning a journal submission before the Sector 114 test, so your TFOP route is the likelier path. If TFOP comes through for you first, I'd be glad to file jointly, with your detection on 2026-10-08 credited as the first.
 
 <!-- Josh 2026-10-15: share the preprint. Upload version 2 to Zenodo first, then paste its new version DOI below. -->
 
