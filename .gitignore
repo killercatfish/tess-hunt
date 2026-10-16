@@ -14,3 +14,6 @@ paper/*.zip
 paper/*.log
 .DS_Store
 paper/v2/upload/
+
+# student work, never committed (it ended up here by accident; belongs with the teaching repos)
+Student-Responses/
