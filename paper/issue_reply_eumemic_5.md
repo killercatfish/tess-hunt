@@ -8,6 +8,10 @@ Good point on masking b before detrending. If I rerun the inversion test, I'll d
 
 One more check, in case it's useful for your candidates too. The 27.3 d systematic is close to five times 5.45 d, so I tested whether 5.45 d could be its 1/5 harmonic. 5P = 27.2507 ± 0.0001 d against 27.2852 d, so the two drift apart by 3.2 d (0.59 of a 5.45 d period) over the 2,524-day baseline. Of the 34 observed transits, the 32 that fall more than 1.4 d from any 27.3 d event carry the full depth: a central depth of 222 ± 22 ppm (SNR 10.2), against 227 ± 21 ppm for all 34. A harmonic would put all of its depth in the transits that coincide with the systematic. Code: scripts/harmonic_systematic_test.py in https://github.com/killercatfish/tess-hunt.
 
+<!-- ADDED 2026-10-16 after Josh's hand check 6. -->
+
+A caveat I found while checking by hand. The single-transit depths scatter more than their errors: χ²/dof 1.51 over 34 transits, using per-sector red-noise errors. I measured the same way at 177 off-transit phases, and the median there is 1.16, with 21% of phases reaching 1.51. By sector it's χ² 16.7 for 7 degrees of freedom (p 0.019; 10% of off-transit phases are as large), mostly Sectors 66 and 101 (about 390 ppm) against Sector 12 (130 ppm). So it's somewhat high but not significant. It's still what a blend would do, though, so I've put it in version 2. Version 2 also now says our automated per-sector test only passes (p 0.17) after dropping its worst sector. TOI-913 b doesn't explain the scatter. No transit is lost to b's mask, depth doesn't depend on distance from b, and changing the width of b's mask from 1.5 to 4 times its duration moves the depth by at most 11 ppm. The expected TTV near 2:1 is only a few minutes. Code: scripts/single_transit_scatter.py.
+
 <!-- ADDED 2026-10-15 after eumemic's fourth comment (paper/eumemic_comment_exofop_ctoi_2026-10-15.md).
      Post this reply only after the hand checks. Josh chose option (a) on 2026-10-15: no journal submission before Sector 114. -->
 

@@ -2,6 +2,7 @@
 Raised by Josh's hand check 6 (2026-10-16). Not part of the pipeline. Light enough to run on the Mac:
 
   .venv-learn/bin/python scripts/single_transit_scatter.py --lc_dir ~/.cache/lightkurve/mastDownload/TESS --out /tmp/scat
+  On Cortex: PYTHONPATH=. nice -n 19 ionice -c3 .venv/bin/python scripts/single_transit_scatter.py --lc_dir data/cache/407126408 --out /tmp/scat
 
 Same detrending, masks and per-transit measure as the kill tests (scripts/robustness_check.py: biweight 0.607 d,
 candidate and priors masked, central 60% of the transit, per-sector errors from out-of-transit window means).
@@ -178,6 +179,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--lc_dir", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--ref", default="paper/data/robustness.json", help="pipeline per-transit table to reproduce")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     sectors = load(a.lc_dir)
@@ -186,11 +188,14 @@ def main():
     # reproduce the pipeline's per-transit table (robustness.json) before trusting anything new
     _, meas_rc = rc.prep(sectors, "biweight", 0.607)
     pt_rc = Ctx(meas_rc, rc.SIG, rc.PRIOR, rc.CFG).per_transit()
-    ref = json.load(open("paper/data/robustness.json"))["diagnostics"]["per_transit"]
-    diff = np.max(np.abs(1e6 * pt_rc["depth"] - np.array([r[2] for r in ref])))
-    print(f"reproduction: {len(pt_rc['depth'])} transits vs {len(ref)}; max depth difference {diff:.1f} ppm")
-
-    res = dict(reproduction_max_diff_ppm=float(diff))
+    res = {}
+    if os.path.exists(a.ref):                             # paper/data is gitignored, so absent on Cortex
+        ref = json.load(open(a.ref))["diagnostics"]["per_transit"]
+        diff = np.max(np.abs(1e6 * pt_rc["depth"] - np.array([r[2] for r in ref])))
+        print(f"reproduction: {len(pt_rc['depth'])} transits vs {len(ref)}; max depth difference {diff:.1f} ppm")
+        res["reproduction_max_diff_ppm"] = float(diff)
+    else:
+        print(f"no {a.ref}: skipping the reproduction check")
     pt, res["scatter"], null = scatter_vs_null(meas_rc, SIG, rc.CFG)
     res["groups"] = groups(pt)
     res["b_proximity"] = b_proximity(pt, meas_rc)
