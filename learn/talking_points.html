@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOI-913 Talking Points</title>
+<style>
+/* Layout: one reading column. Short spoken answers in Josh's voice, grouped from the 30-second version to the hard questions. */
+:root{
+  --bg:#0d1220; --panel:#151c2e; --rule:#2a3550; --ink:#e8ebf3; --muted:#9aa5bf;
+  --accent:#ffad5c; --good:#7fd6a6; --wait:#f2c46b; --bad:#ff8a80;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; --mono:ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#f7f6f2;--panel:#ffffff;--rule:#dcd8cc;--ink:#1d2233;--muted:#535c72;
+    --accent:#b85c00;--good:#1f7a4d;--wait:#8a6400;--bad:#b3261e;color-scheme:light}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body);padding:40px 16px 96px}
+.wrap{max-width:720px;margin:0 auto;display:grid;gap:26px}
+h1{font-size:2rem;line-height:1.2;margin:0}
+h2{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:18px 0 0}
+p,ul{margin:0}
+.muted{color:var(--muted)}
+a{color:var(--ink);font-weight:600;text-decoration-color:var(--accent)}
+section{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:20px 22px;display:grid;gap:12px}
+ul{padding-left:1.2em;display:grid;gap:6px}
+details{border-top:1px solid var(--rule);padding-top:10px}
+details:first-of-type{border-top:0;padding-top:0}
+summary{cursor:pointer;font-weight:600}
+details p{margin-top:8px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.nums div{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px 12px}
+.nums b{display:block;font:600 1.15rem/1.2 var(--mono)}
+.nums span{font-size:.85rem;color:var(--muted)}
+.say{border-left:3px solid var(--good);padding-left:14px}
+.not{border-left:3px solid var(--bad);padding-left:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="muted"><a href="../index.html">← TESS home</a> · <a href="guide.html">Learning guide</a> · <a href="check7.html">Every number, side by side</a></p>
+<h1>TOI-913: what I'd say</h1>
+<p class="muted">Plain-English answers in my own voice, to read over until they're mine. Tap a question to open it. Every number here matches preprint version 2 (16 October 2026).</p>
+
+<h2>The 30-second version</h2>
+<section>
+<p class="say">"I built a home pipeline that searches NASA's TESS data for small planets and then tries hard to throw out everything it finds. One signal survived: a tiny dip every 5.45 days on a star called TOI-913, which already has one known planet. If it's real, it's a planet about the size of Earth. It's a candidate, not a discovery. An open-source project called eumemic spotted the same dip a few days before I did, and I credit them. TESS looks at this star again in February and March 2027, and I've published in advance exactly when the dips should show up."</p>
+</section>
+
+<h2>Numbers worth knowing cold</h2>
+<section>
+<div class="nums">
+<div><b>5.45 days</b><span>time between dips</span></div>
+<div><b>196 ppm</b><span>how much dimmer: about 0.02%</span></div>
+<div><b>~1.1 × Earth</b><span>size, if it's on this star</span></div>
+<div><b>2.4 hours</b><span>how long each dip lasts</span></div>
+<div><b>34 dips</b><span>across 8 sectors, 2019 to 2026</span></div>
+<div><b>65 parsecs</b><span>about 210 light-years; an orange K dwarf</span></div>
+<div><b>11.1 days</b><span>the known planet, TOI-913 b, about 2.5 × Earth</span></div>
+<div><b>NFPP 0.023</b><span>the neighbour-star risk that keeps it a candidate</span></div>
+</div>
+</section>
+
+<h2>Why I think it might be real</h2>
+<section>
+<ul>
+<li><b>It keeps showing up.</b> 33 of the 34 individual dips go the right way, across four separate years.</li>
+<li><b>Another pipeline sees it.</b> NASA's Quick-Look Pipeline works from different images, and a blind search of its data puts 5.45 days at the top.</li>
+<li><b>Noise doesn't fake it.</b> I scrambled the data 200 times and searched each copy. None came close.</li>
+<li><b>Flipped upside down, it disappears.</b> Instrument glitches tend to show up as bumps and dips alike. When I turn the data upside down, nothing at 5.45 days comes close.</li>
+<li><b>The shape fits this star.</b> From the dip's shape alone you can work out how dense the star is, and it matches the catalogue for TOI-913.</li>
+</ul>
+</section>
+
+<h2>Why it isn't a planet yet</h2>
+<section>
+<ul>
+<li><b>TESS pixels are huge.</b> Each one is 21 arcseconds across, so light from nearby stars leaks in. I can't prove from the pixels which star is dimming.</li>
+<li><b>Two neighbours could in principle do it.</b> A giant star 9.5 arcseconds away, and a faint star 26.5 arcseconds away. The odds that it's a neighbour (NFPP) are 2.3%. The bar for "validated" is 0.1%.</li>
+<li><b>The dips vary a bit more than I'd like.</b> Somewhat more than the noise explains, though about one in five blank stretches of data does as badly. A real planet blocks the same amount every time.</li>
+<li><b>It's faint.</b> Its signal-to-noise is about 9. That's enough to detect, not enough to be sure.</li>
+</ul>
+</section>
+
+<h2>The hard questions</h2>
+<section>
+<details><summary>"So did you discover a planet?"</summary>
+<p class="say">"No. I found a planet candidate, and so did eumemic, independently, a few days earlier. Calling it a planet needs either a statistical validation it doesn't meet yet, or an independent measurement. That's normal for a signal this small."</p></details>
+
+<details><summary>"How do you know it's not the giant star next door?"</summary>
+<p class="say">"Timing. That giant is about ten times the Sun's size. Anything orbiting it every 5.45 days would take a day or more to cross its face. The dip lasts 2.4 hours. The only way to get a dip that short off a star that big is a grazing pass that would barely dim it, nowhere near enough. That argument depends on the catalogue's size for the giant being right, and I say so in the paper."</p></details>
+
+<details><summary>"What about the fainter neighbour?"</summary>
+<p class="say">"That's the real open question. It would need to be an eclipsing binary losing about a fifth of its light, which is possible. eumemic's centroid analysis argues against it, but the clean test is a telescope on the ground watching that star during a predicted dip."</p></details>
+
+<details><summary>"Why didn't NASA's own pipeline catch it?"</summary>
+<p class="say">"It's right at their threshold. Scaled to the data available through Sector 96, it comes out at about 7.0 against a cutoff of 7.1. It only stands out clearly once you stack all eight sectors over seven years."</p></details>
+
+<details><summary>"An AI wrote your code. Why should anyone trust it?"</summary>
+<p class="say">"They shouldn't take it on trust, and I say that in the paper. The AI wrote most of the code. I made the decisions, and I've checked the key results by hand. I worked out the giant's geometry on a calculator, looked the neighbours up in the catalogue myself, and folded the light curve with a standard community tool that doesn't use our code at all. I also had a different AI model review the paper. Everything's public, the code and every result file, so anyone can rerun it. No professional astronomer has checked it yet, and I say that too."</p></details>
+
+<details><summary>"Did checking turn up mistakes?"</summary>
+<p class="say">"Yes, and that's the point of checking. I caught a wrong geometry number for the giant, and an odd/even statistic quoted as 0.4 when the file said 0.7. A robustness result had never been saved; a rerun reproduced it exactly. The abstract said ten tests passed when it was nine passed and one inconclusive. None of them changed the conclusion. All of them are fixed and listed in version 2."</p></details>
+
+<details><summary>"Why not publish it in a journal?"</summary>
+<p class="say">"Not before the 2027 test. The official route to getting it on NASA's candidate list, outside the follow-up program, needs a peer-reviewed paper. eumemic is applying to that program, and if they get in we've talked about filing it jointly, with their detection credited first."</p></details>
+
+<details><summary>"What would kill it?"</summary>
+<p class="say">"Sector 114, in February and March 2027. Before any of that data exists, I published the predicted times and the rules for what counts. If the dips come back at about the right depth and time, that supports it. If they're much shallower (under about 87 ppm), that counts against it. If they're much deeper, that points to a blend. If they're more than 48 minutes off, the timing has failed. I committed to publishing the result within 30 days of the data appearing, whichever way it goes."</p></details>
+
+<details><summary>"If it's real, what's interesting about it?"</summary>
+<p class="say">"It would be an Earth-sized planet inside the orbit of a bigger one, with periods almost exactly 2 to 1. Pairs near that ratio tug on each other's timing. The effect here would only be a few minutes, too small for TESS to measure."</p></details>
+
+<details><summary>"What's FPP versus NFPP?"</summary>
+<p class="say">"FPP is the chance it's any kind of false positive: 3.6%. NFPP is the part of that coming from neighbouring stars: 2.3%. The standard bar for 'validated' needs NFPP under 0.1%, so it's the neighbours that hold it back, not the signal itself."</p></details>
+</section>
+
+<h2>What I won't say</h2>
+<section>
+<ul class="not">
+<li>"I discovered a planet." It's a candidate, and eumemic detected it first.</li>
+<li>"It's 94% likely to be a planet." That 0.94 holds only inside one model's assumptions.</li>
+<li>"The giant is ruled out." It's strongly disfavoured, based on duration alone.</li>
+<li>"Professionals checked it." Nobody has yet.</li>
+</ul>
+</section>
+</div>
+</body>
+</html>
