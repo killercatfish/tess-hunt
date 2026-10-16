@@ -1,0 +1,226 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Check 7 Side by Side</title><style>
+:root{--bg:#0d1220;--panel:#151c2e;--rule:#2a3550;--ink:#e8ebf3;--muted:#9aa5bf;--accent:#ffad5c;--good:#7fd6a6;--wait:#f2c46b;--bad:#ff8a80;
+  --body:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;--mono:ui-monospace,Menlo,monospace;color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f7f6f2;--panel:#fff;--rule:#dcd8cc;--ink:#1d2233;--muted:#535c72;
+  --accent:#b85c00;--good:#1f7a4d;--wait:#8a6400;--bad:#b3261e;color-scheme:light}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);padding:36px 16px 80px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:22px}h1{font-size:1.8rem;margin:0}p{margin:0}.muted{color:var(--muted)}
+.sum{display:flex;gap:10px;flex-wrap:wrap}.pill{font:600 .8rem/1 var(--mono);padding:7px 12px;border-radius:999px;border:1px solid var(--rule)}
+article{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;display:grid;gap:14px}
+article.MISMATCH{border-color:var(--bad)}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}.head h2{font-size:1.1rem;margin:0}
+.st{font:700 .72rem/1 var(--mono);letter-spacing:.08em;padding:6px 10px;border-radius:6px;color:var(--bg)}
+.MATCH .st{background:var(--good)}.MISMATCH .st{background:var(--bad)}.BYHAND .st{background:var(--wait)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.k{font:600 .68rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.box{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;min-width:0}
+pre{margin:0;font:12.5px/1.5 var(--mono);white-space:pre-wrap;word-break:break-word}
+blockquote{margin:0 0 8px;font-size:.95rem}code{font-family:var(--mono);font-size:.85em}
+.say{border-left:3px solid var(--good);padding-left:12px}.worry{border-left:3px solid var(--bad);padding-left:12px}
+label{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted)}
+</style></head><body><div class="wrap">
+<p class="muted"><a href="guide.html" style="color:inherit">← Learning guide</a> · <a href="../index.html" style="color:inherit">TESS home</a></p>
+<h1>Hand check 7, side by side</h1>
+<p class="muted">Each claim in the preprint next to the file it comes from. Green means the paper repeats its own file; red means it doesn't.
+Green doesn't mean the science is right. That's what the "you should be able to say" line is for. Built by <code>learn/make_check7.py</code> from
+<code>paper/toi913_candidate.tex</code> and <code>paper/data/</code>; rerun it after any edit. Ticks aren't saved.</p>
+<div class="sum"><span class="pill" style="color:var(--good)">9 match</span><span class="pill" style="color:var(--bad)">3 mismatch</span>
+<span class="pill">12 claims</span></div>
+<article class="MATCH" id="r1">
+<div class="head"><h2>1. Period, depth and radius</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>We report a transit-like signal with period P = 5.450138 ± 0.000016 d and depth 196 (+24 / −21) ppm on the K dwarf TOI-913 (TIC 407126408; V=10.5, d=65.2 pc), which hosts the confirmed sub-Neptune TOI-913 b (P = 11.0994 d).</blockquote><blockquote>The signal was found by an automated multi-sector search of TESS 2-minute photometry spanning Sectors 12–102 (2019–2026; 34 transits) and corresponds to a radius of 1.12 ± 0.09 R_⊕ if it arises on the target.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/transit_fit.json → joint → P5.4501 (16th, 50th, 84th percentiles)</code></p><pre>period [5.45012366143226, 5.450138163851663, 5.450155846170644]
+depth_ppm [175.2, 196.1, 220.4]
+k (Rp/R★) [0.01324, 0.014, 0.01484]
+R★ 0.732535 R☉ (pipeline_signal.json → star.rad)</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>P = 5.450138 ± 0.000016 d
+depth = 196 +24 / −21 ppm
+Rp = k × R★ × 109.08 = 0.01400 × 0.7325 × 109.08 = 1.12 R⊕
+The ±0.09 also carries R★&#x27;s own uncertainty, which isn&#x27;t in this file (paper/code/transit_fit.py).</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Depth is (Rp/R★)². 196 ppm on a 0.73 R☉ star is a planet about Earth&#x27;s size. You did this in hand check 1. <span class="muted">(guide §1, §4)</span></p>
+<p class="worry"><b>Would worry you:</b> A radius that doesn&#x27;t follow from k and R★.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r2">
+<div class="head"><h2>2. Search detection: SDE, SNR, transits</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>After TOI-913 b (SDE 125.5, SNR 34.3), the search found a 27.3 d systematic, which the kill tests rejected, and then the 5.45 d signal (SDE 23.6, SNR 8.9, 34 transits).</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/pipeline_signal.json → signal</code></p><pre>sde 23.598380116161433
+snr 8.851175622212441
+n_transits 34
+iteration 2</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>SDE 23.6, SNR 8.9, 34 transits. Iteration 2 means TOI-913 b was found and masked first.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> SDE is how far the best peak stands above the rest of the periodogram (threshold 9). SNR is depth over its noise. <span class="muted">(guide §4)</span></p>
+<p class="worry"><b>Would worry you:</b> Numbers that only clear the thresholds narrowly. These clear them comfortably, but see rows 3 and 4 for why SDE alone isn&#x27;t the story.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MISMATCH" id="r3">
+<div class="head"><h2>3. Odd/even depths</h2><span class="st">MISMATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>The signal passed all hard tests: odd/even depth (211 vs 245 ppm, 0.4σ); secondary eclipse at phase 0.5 and across phases 0.3–0.7 (maximum 2.4σ); duration plausibility; size; per-sector depth consistency (p=0.17, after the test&#x27;s standard step of dropping the most discrepant sector and adding a 10% dilution floor; without them p=0.020, Section ); harmonic relation to TOI-913 b (P_b/P = 2.037, not an integer ratio); and an injection test at the same period and depth.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/pipeline_signal.json → signal.tests.odd_even</code></p><pre>pass True
+sigma 0.7347235423476302
+depth_odd_ppm 211.2566596206758
+depth_even_ppm 245.09003169809293
+err_odd_ppm 31.526427303739744
+err_even_ppm 33.56494857276554</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>|211 − 245| / √(31.5² + 33.6²) = 0.73σ
+(the formula in tesshunt/killtests.py odd_even). The preprint says 0.4σ.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> An eclipsing binary at twice the period shows alternating depths. Odd and even agree here either way (pass limit 3σ). <span class="muted">(guide §8)</span></p>
+<p class="worry"><b>Would worry you:</b> A difference over 3σ. Here the issue is only that the paper misquotes its own file.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MISMATCH" id="r4">
+<div class="head"><h2>4. Robustness table: QLP row</h2><span class="st">MISMATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>Table row: QLP FFI photometry (8 sectors) | 250 ± 23 | 10.6 | 5.4501 d top peak (SDE 15.2)</blockquote><blockquote>It is independently recovered as the strongest periodic signal in Quick-Look Pipeline full-frame-image photometry.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/robustness.json → variants → &quot;QLP (FFI) biweight auto&quot; (the file in the supplement zip)</code></p><pre>name QLP (FFI) biweight auto
+source QLP
+method biweight
+window_d 0.607
+depth_ppm -99.78233034078048
+err_ppm 26.193307453453716
+snr -3.8094589817684015
+depth_robust_ppm 218.4516570554865
+err_robust_ppm 27.45875509007417
+n_transits 38
+narrow_tls_period 5.493755757080268
+narrow_tls_snr 88.88745182568063
+narrow_tls_depth_ppm 31309.296944172394
+narrow_tls_dur_h 1.7665661427351784</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>File: -100 ± 26 ppm, SNR -3.8; robust 218 ppm; no full-search result.
+Paper: 250 ± 23 ppm, SNR 10.6, top peak SDE 15.2. No file in the supplement holds those numbers. The file looks like a run from before the QLP quality fix in scripts/robustness_check.py (load_ffi), which drops QLP&#x27;s junk cadences in Sectors 100–102.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> QLP is a different pipeline working from different images (30-min full frames). Seeing the signal there too means it isn&#x27;t an artefact of SPOC&#x27;s processing. That&#x27;s why the abstract leans on it. <span class="muted">(guide §4, §6)</span></p>
+<p class="worry"><b>Would worry you:</b> A claim in the abstract with no file behind it. That&#x27;s what this is until the QLP run is redone and saved.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r5">
+<div class="head"><h2>5. Robustness table: the other rows</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>Every season and sector jackknife gives 196–244 ppm.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/robustness.json → variants, diagnostics.jackknife</code></p><pre>baseline PDCSAP biweight auto: 225.4 ± 23.7 ppm, SNR 9.51, full search 27.787513526097214
+biweight 0.5 d: 230.4 ± 23.2 ppm, SNR 9.95, full search 38.81451597232664
+biweight 0.75 d: 231.7 ± 24.4 ppm, SNR 9.49, full search None
+biweight 1.0 d: 231.2 ± 25.0 ppm, SNR 9.23, full search None
+biweight 1.5 d: 235.1 ± 26.2 ppm, SNR 8.97, full search 27.787513526097214
+cosine (robust) auto: 296.9 ± 22.7 ppm, SNR 13.08, full search 5.450098236100632
+SAP biweight auto: 158.9 ± 24.0 ppm, SNR 6.61, full search 34.84858540719905
+TESS-SPOC (FFI) biweight auto: 185.3 ± 31.1 ppm, SNR 5.96, full search None</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>Baseline 225 ± 24 (9.5); cosine 297 ± 23 (13.1); SAP 159 ± 24 (6.6); TESS-SPOC 185 ± 31 (6.0); windows 230 / 232 / 231 / 235.
+Jackknife range: 244, 196, 239, 217, 237, 229, 226, 202, 239, 237, 206, 227</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Detrending choices move the depth by tens of ppm, not hundreds, and dropping any season or sector keeps it. Depths here (225) sit above the fit&#x27;s 196 because this measure uses the transit&#x27;s deeper middle. <span class="muted">(guide §3, §6)</span></p>
+<p class="worry"><b>Would worry you:</b> A variant where the signal vanishes. Only uncorrected SAP flux weakens it, and the paper says so.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r6">
+<div class="head"><h2>6. Shuffled false-alarm test</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>In 200 block-shuffled copies of the light curve, no transit search reached the observed signal strength (empirical false-alarm probability &lt;1.5% at 95% confidence), although this test does not capture systematics coherent over many days.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/periodogram_fap.json → tls</code></p><pre>observed_sde 21.82512929072867
+null.trials 200
+null.max_sde_max 18.761571062553376
+null.n_exceeding 0
+null.fap_upper_95 0.015
+masked [&#x27;TOI-913 b&#x27;, &#x27;TOI-913.02&#x27;, &#x27;27.3 d systematic&#x27;]</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>0 of 200 shuffled light curves reached SDE 21.8 (their best was 18.8). Zero in 200 gives a 95% upper limit of 3/200 = 1.5%.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Shuffling one-day blocks keeps the noise but breaks any real period, so this asks how often noise alone gives an SDE this high. <span class="muted">(guide §5)</span></p>
+<p class="worry"><b>Would worry you:</b> Shuffling can&#x27;t keep systematics that repeat over many days. That&#x27;s what row 7 is for.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r7">
+<div class="head"><h2>7. Inverted light curve</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>In the inverted light curve, which keeps such systematics, the strongest peak unrelated to TOI-913 b reaches SDE 14.5, against 21.7 for the signal.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/inversion_test.json</code></p><pre>real:
+  5.4501 d SDE 21.66
+  33.5716 d SDE 15.90
+  32.5509 d SDE 14.04
+  3.8299 d SDE 11.72
+inverted:
+  11.0996 d SDE 18.17
+  11.0994 d SDE 15.55
+  38.8166 d SDE 14.48
+  37.6708 d SDE 9.59</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>Signal SDE 21.7. Strongest inverted peak not at b&#x27;s period (11.099 d): 38.82 d, SDE 14.5.
+The two inverted peaks at 11.099 d are b&#x27;s detrending shoulders turned upside down.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Flipping the light curve turns bumps into dips. Systematics come out about as strong either way; a real transit doesn&#x27;t. <span class="muted">(guide §5)</span></p>
+<p class="worry"><b>Would worry you:</b> An inverted peak as strong as the signal.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r8">
+<div class="head"><h2>8. Not a harmonic of the 27.3 d systematic</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>A 27.3 d systematic in the light curve lies near five times the period, but the two drift apart by 0.59 of a period over the baseline, and the transits far from any 27.3 d event carry the full depth, so the signal is not a harmonic of it.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/harmonic_systematic_test.json</code></p><pre>five_P 27.25069
+five_P_err 7.999999999999999e-05
+syst_period 27.285213
+alignment_slip_d 3.1937448127253414
+alignment_slip_in_5p45_periods 0.5859933845207849
+far {&#x27;n&#x27;: 32, &#x27;depth_ppm&#x27;: 222.3346692995161, &#x27;err_ppm&#x27;: 21.857367340124398, &#x27;snr&#x27;: 10.172069940526091}
+all {&#x27;n&#x27;: 34, &#x27;depth_ppm&#x27;: 226.8622280208432, &#x27;err_ppm&#x27;: 21.27173661784424, &#x27;snr&#x27;: 10.664960369551356}</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>5P = 27.2507 vs 27.2852 d; slip 3.2 d = 0.59 periods.
+Far transits: 222 ± 22 ppm (n=32); all: 227 ± 21.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> If the dip were the systematic folded at a fifth of its period, the depth would sit in the transits that line up with it. It doesn&#x27;t. <span class="muted">(guide §6)</span></p>
+<p class="worry"><b>Would worry you:</b> Depth concentrated in the 2 transits near a 27.3 d event.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MISMATCH" id="r9">
+<div class="head"><h2>9. Stellar density from the transit</h2><span class="st">MISMATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>A transit fit with free stellar density yields ρ_★ = 2.43 (+0.96 / −1.02) ρ_☉, consistent with the catalogue value 2.09 ± 0.45 ρ_☉.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/transit_fit.json → free → P5.4501 → rho, and catalogue_rho</code></p><pre>rho [1.413636274524455, 2.4278628534269537, 3.39401697875403]
+catalogue_rho [2.086, 0.45]</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>ρ★ = 2.43 +0.97 / −1.01 ρ☉ against the catalogue&#x27;s 2.09 ± 0.45.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Transit shape and period imply how dense the star is. A dip on a different star (a giant, say) would imply the wrong density. <span class="muted">(guide §7)</span></p>
+<p class="worry"><b>Would worry you:</b> A density far from the catalogue&#x27;s. These overlap well, though the error is wide.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r10">
+<div class="head"><h2>10. The 9.5″ giant is excluded by duration</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>An orbit with P=5.45 d around a 10 R_☉, 1–3 M_☉ star has a/R_★ ≈ 1.3–1.9, so a central transit lasts ≈23–36 h.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>Computed here from Kepler&#x27;s third law (no file); R = 10 R☉ from the TIC</code></p><pre>R = 10 R☉, M = 1–3 M☉, P = 5.450138 d</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>a/R★ = 1.30 (1 M☉) to 1.88 (3 M☉)
+central transit ≈ P/π × asin(R★/a) = 36 h to 23 h, against 2.4 h observed.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Something orbiting a 10 R☉ giant every 5.45 days would take a day or more to cross it. A 2.4 h dip can&#x27;t come from there. You did this in hand check 1. <span class="muted">(guide §8)</span></p>
+<p class="worry"><b>Would worry you:</b> If the giant&#x27;s radius in the TIC were wrong by a factor of several. The paper says the exclusion rests on this alone.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r11">
+<div class="head"><h2>11. TRICERATOPS FPP and NFPP, and &#x27;planet candidate&#x27;</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>This gives FPP =0.036±0.001 and NFPP =0.023±0.001, which we adopt.</blockquote><blockquote>With NFPP =0.023, the candidate meets neither: it is a planet candidate, not a likely or validated planet.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/triceratops_speckle_nogalaxy.json</code></p><pre>FPP_mean 0.035847603345215126
+FPP_std 0.000890537279040019
+NFPP_mean 0.022569520261648053
+NFPP_std 0.0005474806648061635
+dropped [&#x27;10001766874&#x27;, &#x27;407126394&#x27;]
+runs 8 × N=1000000</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>FPP 0.036 ± 0.001, NFPP 0.023 ± 0.001.
+Validated needs FPP &lt; 0.015 and NFPP &lt; 0.001: False. Likely planet needs FPP &lt; 0.5 and NFPP &lt; 0.001: False.
+Dropped from the scenarios: the 56.9″ galaxy and its duplicate (your hand check 3).</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> FPP is the chance it&#x27;s any false positive; NFPP is the chance it&#x27;s an eclipse on a neighbouring star. NFPP is what keeps this a candidate. <span class="muted">(guide §9, §10, §11)</span></p>
+<p class="worry"><b>Would worry you:</b> Calling it &#x27;likely&#x27; or &#x27;validated&#x27; with NFPP at 0.023.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article><article class="MATCH" id="r12">
+<div class="head"><h2>12. Single-transit scatter and TOI-913 b</h2><span class="st">MATCH</span></div>
+<div class="cols">
+<div class="box"><div class="k">The preprint says</div><blockquote>Single-transit scatter. The 34 single-transit depths scatter more than their errors suggest: χ^2/dof=1.51 (p=0.03).</blockquote><blockquote>Neither b&#x27;s mask nor its gravity explains the scatter.</blockquote></div>
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/single_transit_scatter.json (the Cortex run)</code></p><pre>scatter.chi2_dof 1.507966490841891
+scatter.null_median 1.161808686971203
+scatter.null_frac_ge 0.21468926553672316
+groups.sector chi2 16.587542994218033 p 0.02025837692022775
+groups.season p 0.30027892863899164
+b_proximity spearman -0.014820473644003056
+b_mask_widths [247, 250, 258, 261]</pre></div>
+</div>
+<div class="box"><div class="k">From one to the other</div><pre>χ²/dof 1.51 vs null median 1.16; 21% of null phases as large.
+Sector χ² 16.6 (p 0.020); season p 0.30.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> Your hand check 6. A planet blocks the same light every time; extra scatter would point to a blend or a systematic. It&#x27;s somewhat high here, not significant. <span class="muted">(guide §4, §6)</span></p>
+<p class="worry"><b>Would worry you:</b> Scatter well beyond what blank stretches of the same light curve show.</p></div>
+<label><input type="checkbox"> I traced this and can explain it</label>
+</article>
+</div></body></html>
