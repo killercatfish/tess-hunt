@@ -46,7 +46,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
     <div class="status">
       <div><b>Candidate</b><span>TOI-913, 5.450 d, ~1.1 R⊕. Survived all vetting; not validated (FPP 0.036, NFPP 0.023 after removing a galaxy from the neighbour list).</span></div>
       <div><b>Priority</b><span>eumemic/exoplanets detected it first (2026-10-08). Ours is independent detection plus vetting.</span></div>
-      <div><b>Outreach</b><span class="dot" style="--c:var(--good)">Issue posted · eumemic replied (open to joint CTOI) · re-vet posted · FAP comment posted · Pavel answered · preprint + pre-registration on Zenodo · preprint version 2 published 10/16 (doi:10.5281/zenodo.23415929; latest-version link doi:10.5281/zenodo.23290578) · code v0.1.0</span><span class="dot" style="--c:var(--wait)">eumemic withdrew the 0.36″ centroid: all 8 sectors scatter, so the pixels can't separate target from the 9.5″ giant (duration argument only), but they count against the 26.5″ and 56.9″ stars · preprint v2 rebuilt 10/12 (galaxy removed, 27.3 d harmonic test), waiting for Josh to upload to Zenodo · reply 5 to eumemic drafted, not posted (now also answers their 10/15 update; held until the hand checks) · ExoFOP: CTOI uploads from outside TFOP need a peer-reviewed paper, so the account isn't needed now; eumemic's paper won't carry 5.45 d (MES 8.0 &lt; their cut of 10); they offer a joint filing if they join TFOP</span></div>
+      <div><b>Outreach</b><span class="dot" style="--c:var(--good)">Issue posted · eumemic replied (open to joint CTOI) · re-vet posted · FAP comment posted · Pavel answered · preprint + pre-registration on Zenodo · preprint version 2 published 10/16 (doi:10.5281/zenodo.23415929; latest-version link doi:10.5281/zenodo.23290578) · code v0.1.0</span><span class="dot" style="--c:var(--wait)">Reply 5 posted 10/16 · eumemic's fifth comment 10/16: they adopt the galaxy fix; their centroids reject both faint stars (p 0.0007, 4e-8) · our own centroid test 10/16 (Mac; Cortex rerun pending), with error bars calibrated by injection: the 58″ star is rejected (p &lt; 5e-6); the 27″ star only weakly disfavoured (p 0.02 at the fitted depth, 0.21 at 150 ppm, carried by sectors that don't localise), so NFPP stays about 0.018 and the "likely planet" upgrade does not hold · reply 6 drafted, Josh posts · no journal before Sector 114; CTOI via eumemic's TFOP application (pending since 10/8)</span></div>
       <div><b>Cortex</b><span>Idle. Pilot, validation runs 1–6 and the eumemic re-vet are done. Outputs live in <code>~/dev/tess-hunt</code>.</span></div>
     </div>
   </section>
@@ -94,6 +94,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><a href="paper/figures/fig2_diagnostic.png">fig2_diagnostic.png</a><span>The pipeline's one-page diagnostic for the candidate</span></li>
         <li><a href="paper/figures/fig3_pixel_giant.png">fig3_pixel_giant.png</a><span>Per-sector difference images (inconclusive)</span></li>
         <li><a href="paper/figures/fig4_periodograms.png">fig4_periodograms.png</a><span>GLS with FAP lines, spectral window, momentum dumps, TLS false-alarm test (FAP &lt; 1.5%)</span></li>
+        <li><a href="paper/data/centroids_s196.png">paper/data/centroids_s196.png</a><span>Per-sector centroid of the 5.45 d dip (★) against the target and three neighbours, 10/16. Results in <code>centroids_{b,s150,s196,s250}.json</code>; b is the TOI-913 b control</span></li>
         <li><a href="paper/data/">paper/data/</a><span>Transit fit, robustness, TRICERATOPS and pixel-test results (JSON/CSV)</span></li>
       </ul></div>
     </div>
@@ -123,6 +124,7 @@ code{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
         <li><span><a href="run.sh">run.sh</a> · <a href="status.sh">status.sh</a> · <a href="pause.sh">pause.sh</a> · <a href="resume.sh">resume.sh</a> · <a href="setup.sh">setup.sh</a>: run control on Cortex</span></li>
         <li><a href="scripts/audit_from_mac.sh">scripts/audit_from_mac.sh</a><span>Runs the Claude audits on survivors from the Mac</span></li>
         <li><a href="scripts/pixel_vet.py">scripts/pixel_vet.py</a><span>One-off: difference-image target vs neighbour test</span></li>
+        <li><a href="scripts/centroid_per_sector.py">scripts/centroid_per_sector.py</a><span>One-off: per-sector centroid of the dip, scored against each star, error bars calibrated by injection into off-transit stacks</span></li>
         <li><a href="scripts/transit_fit.py">scripts/transit_fit.py</a><span>One-off: joint transit fit with stellar-density check</span></li>
         <li><a href="scripts/robustness_check.py">scripts/robustness_check.py</a><span>One-off: detrending, product and jackknife variants</span></li>
         <li><a href="scripts/triceratops_fpp.py">scripts/triceratops_fpp.py</a><span>One-off: TRICERATOPS false-positive probability</span></li>
