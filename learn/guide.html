@@ -122,7 +122,7 @@ nav li{break-inside:avoid;margin-bottom:4px}
   <ul>
     <li><b>SDE</b> (signal detection efficiency) is how far the best peak stands above the rest of the periodogram. Our search threshold was SDE ≥ 9.</li>
     <li><b>SNR</b> (signal-to-noise ratio) is the depth divided by its uncertainty. SPOC's threshold for a detection is 7.1.</li>
-    <li><b>GLS</b> (Lomb–Scargle) is a different periodogram that looks for <i>sine waves</i>, such as a star spinning with spots. A 2-hour dip every 5 days looks nothing like a sine wave, so GLS barely sees transits, even TOI-913 b. Seeing no GLS peak tells you the star has no rotation-like signal at 5.45 d. It says nothing for or against a transit. Mistry was right that it shouldn't be offered as support, and the preprint now says so.</li>
+    <li><b>GLS</b> (Lomb–Scargle) is a different periodogram that looks for <i>sine waves</i>, such as a star spinning with spots. A 2-hour dip every 5 days looks nothing like a sine wave, so GLS barely sees transits, even TOI-913 b. Seeing no GLS peak tells you the star has no rotation-like signal at 5.45 d. It says nothing for or against a transit. A reviewer was right that it shouldn't be offered as support, and the preprint now says so.</li>
   </ul>
   <div class="box toi"><b class="k">TOI-913</b><p>TLS found the 5.45 d signal at SDE 23.6 and SNR 8.9, but only after masking TOI-913 b and a 27.3-day systematic that ranked higher. With the systematic left in, 5.45 d ranks 6th. That's why the systematic matters so much (section 6).</p></div>
 </section>
@@ -141,7 +141,7 @@ nav li{break-inside:avoid;margin-bottom:4px}
   <h3>6. Fake signal 2: the spacecraft</h3>
   <p>Systematics, dips made by the instrument, are often periodic: the orbit, the sector, the momentum dumps. A periodic systematic at period P<sub>s</sub> also creates false peaks at P<sub>s</sub>/2, P<sub>s</sub>/3, P<sub>s</sub>/5…, because folding at P<sub>s</sub>/5 still stacks every systematic event at one phase. These are <b>harmonics</b>, and the same thing happens with gaps in the data (the <b>window function</b>).</p>
   <p>How to tell: a harmonic stays locked to its parent. If 5 × 5.45 d were exactly the systematic's period, every fifth transit would sit on a systematic event, and all of the depth would come from those transits.</p>
-  <div class="box toi"><b class="k">TOI-913</b><p>Mistry spotted that 5 × 5.450 = 27.25 d is close to the 27.29 d systematic. The test (<code>scripts/harmonic_systematic_test.py</code>): the two differ by 0.035 d per cycle, so over 2,524 days they drift 3.2 days apart, more than half a 5.45-day period. 32 of the 34 transits are more than 1.4 days from any systematic event, and those 32 carry the full depth. So it isn't a harmonic. The systematic itself (five dips, ~555 ppm) is probably a once-per-sector instrumental event, since a sector is about 27 days long. Nobody has identified exactly what it is. That's an open question you could chase.</p></div>
+  <div class="box toi"><b class="k">TOI-913</b><p>A reviewer spotted that 5 × 5.450 = 27.25 d is close to the 27.29 d systematic. The test (<code>scripts/harmonic_systematic_test.py</code>): the two differ by 0.035 d per cycle, so over 2,524 days they drift 3.2 days apart, more than half a 5.45-day period. 32 of the 34 transits are more than 1.4 days from any systematic event, and those 32 carry the full depth. So it isn't a harmonic. The systematic itself (five dips, ~555 ppm) is probably a once-per-sector instrumental event, since a sector is about 27 days long. Nobody has identified exactly what it is. That's an open question you could chase.</p></div>
 </section>
 
 <section id="eb">
@@ -202,7 +202,7 @@ nav li{break-inside:avoid;margin-bottom:4px}
 <section id="prereg">
   <h3>12. Why the Sector 114 test matters most</h3>
   <p>Every test so far was run on data we had already seen. Even honest people tune their methods, without meaning to, until a signal looks good. A <b>pre-registered prediction</b> is the cure. Before the data exist, you publish exactly when the transits should happen and how you'll test them, with the code frozen. Then the new data either show the dip at those times or they don't.</p>
-  <div class="box toi"><b class="k">TOI-913</b><p>TESS observes this star again in Sector 114 (February–March 2027). The predicted transit times are on Zenodo (doi:10.5281/zenodo.23290795), and the code is frozen at commit d7c59d1. If the dip shows up on schedule, that's evidence nobody can call AI-generated, including Mistry. If it doesn't, we say so within 30 days.</p></div>
+  <div class="box toi"><b class="k">TOI-913</b><p>TESS observes this star again in Sector 114 (February–March 2027). The predicted transit times are on Zenodo (doi:10.5281/zenodo.23290795), and the code is frozen at commit d7c59d1. If the dip shows up on schedule, that's evidence nobody can call AI-generated. If it doesn't, we say so within 30 days.</p></div>
 </section>
 
 <h2>Part 2 · Review it by hand</h2>
@@ -319,7 +319,7 @@ open learn/fold_by_hand.png</pre>
   <p>Professionals don't re-derive TLS or TRICERATOPS either. They trust published, widely used tools and check that the inputs and outputs make sense. Things you're taking on trust:</p>
   <ul>
     <li>That TLS and TRICERATOPS do what their papers say. They're standard, and that's an acceptable trust.</li>
-    <li>That our pipeline's code does what its comments say. This is the AI part Mistry worried about. Hand check 4 is your independent check of the headline (the dip exists). Hand check 5 covers the main EB tests.</li>
+    <li>That our pipeline's code does what its comments say. This is the AI part a skeptical reader should worry about. Hand check 4 is your independent check of the headline (the dip exists). Hand check 5 covers the main EB tests.</li>
     <li>The pixel-level and centroid analyses. These are hard, and here they're weak anyway.</li>
   </ul>
 </section>

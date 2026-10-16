@@ -4,7 +4,7 @@ Searches public NASA TESS light curves for transit-like signals, then tries hard
 signal with automated false-positive tests. Output is a ranked short list of **candidates** for
 human review. Nothing here is a discovery.
 
-Code is written on the Mac and pushed to `github.com/killercatfish/tess-hunt` (private). It runs on Cortex at
+Code is written on the Mac and pushed to `github.com/killercatfish/tess-hunt` (public). It runs on Cortex at
 `~/dev/tess-hunt` (`git pull` there; Cortex has a read-only deploy key). Run data (`data/`,
 `results.db`, `candidates/`, `report.html`, `validation/out/`, `logs/`) stays on Cortex and is gitignored.
 
