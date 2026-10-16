@@ -25,7 +25,7 @@ label{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted)
 <p class="muted">Each claim in the preprint next to the file it comes from. Green means the paper repeats its own file; red means it doesn't.
 Green doesn't mean the science is right. That's what the "you should be able to say" line is for. Built by <code>learn/make_check7.py</code> from
 <code>paper/toi913_candidate.tex</code> and <code>paper/data/</code>; rerun it after any edit. Ticks aren't saved.</p>
-<div class="sum"><span class="pill" style="color:var(--good)">11 match</span><span class="pill" style="color:var(--bad)">1 mismatch</span>
+<div class="sum"><span class="pill" style="color:var(--good)">12 match</span><span class="pill" style="color:var(--bad)">0 mismatch</span>
 <span class="pill">12 claims</span></div>
 <article class="MATCH" id="r1">
 <div class="head"><h2>1. Period, depth and radius</h2><span class="st">MATCH</span></div>
@@ -72,29 +72,34 @@ err_even_ppm 33.56494857276554</pre></div>
 <div class="cols"><p class="say"><b>You should be able to say:</b> An eclipsing binary at twice the period shows alternating depths. Odd and even agree here either way (pass limit 3σ). <span class="muted">(guide §8)</span></p>
 <p class="worry"><b>Would worry you:</b> A difference over 3σ. Here the issue is only that the paper misquotes its own file.</p></div>
 <label><input type="checkbox"> I traced this and can explain it</label>
-</article><article class="MISMATCH" id="r4">
-<div class="head"><h2>4. Robustness table: QLP row</h2><span class="st">MISMATCH</span></div>
+</article><article class="MATCH" id="r4">
+<div class="head"><h2>4. Robustness table: QLP row</h2><span class="st">MATCH</span></div>
 <div class="cols">
 <div class="box"><div class="k">The preprint says</div><blockquote>Table row: QLP FFI photometry (8 sectors) | 250 ± 23 | 10.6 | 5.4501 d top peak (SDE 15.2)</blockquote><blockquote>It is independently recovered as the strongest periodic signal in Quick-Look Pipeline full-frame-image photometry.</blockquote></div>
-<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/robustness.json → variants → &quot;QLP (FFI) biweight auto&quot; (the file in the supplement zip)</code></p><pre>name QLP (FFI) biweight auto
+<div class="box"><div class="k">The source holds</div><p class="muted" style="font-size:.85rem;margin-bottom:6px"><code>paper/data/robustness_qlp.json → variant (Cortex rerun, 10/16)</code></p><pre>name QLP (FFI) biweight auto
 source QLP
 method biweight
 window_d 0.607
-depth_ppm -99.78233034078048
-err_ppm 26.193307453453716
-snr -3.8094589817684015
-depth_robust_ppm 218.4516570554865
-err_robust_ppm 27.45875509007417
-n_transits 38
-narrow_tls_period 5.493755757080268
-narrow_tls_snr 88.88745182568063
-narrow_tls_depth_ppm 31309.296944172394
-narrow_tls_dur_h 1.7665661427351784</pre></div>
+depth_ppm 250.14047630343944
+err_ppm 23.49755842955975
+snr 10.645381606489149
+depth_robust_ppm 250.14047630343944
+err_robust_ppm 23.49755842955975
+n_transits 34
+narrow_tls_period 5.450126240243665
+narrow_tls_snr 6.883320596234719
+narrow_tls_depth_ppm 181.8851056055726
+narrow_tls_dur_h 2.567923774128405
+full_tls_period 5.450126240243665
+full_tls_sde 15.154974440708129
+full_tls_snr 6.885197967987265
+full_rank_545 1
+full_top5 5.4501 d SDE 15.2, 31.6465 d SDE 13.6, 31.3365 d SDE 12.5, 33.7316 d SDE 11.7, 38.5625 d SDE 11.6</pre></div>
 </div>
-<div class="box"><div class="k">From one to the other</div><pre>File: -100 ± 26 ppm, SNR -3.8; robust 218 ppm; no full-search result.
-Paper: 250 ± 23 ppm, SNR 10.6, top peak SDE 15.2. No file in the supplement holds those numbers. The file looks like a run from before the QLP quality fix in scripts/robustness_check.py (load_ffi), which drops QLP&#x27;s junk cadences in Sectors 100–102.</pre></div>
-<div class="cols"><p class="say"><b>You should be able to say:</b> QLP is a different pipeline working from different images (30-min full frames). Seeing the signal there too means it isn&#x27;t an artefact of SPOC&#x27;s processing. That&#x27;s why the abstract leans on it. <span class="muted">(guide §4, §6)</span></p>
-<p class="worry"><b>Would worry you:</b> A claim in the abstract with no file behind it. That&#x27;s what this is until the QLP run is redone and saved.</p></div>
+<div class="box"><div class="k">From one to the other</div><pre>250 ± 23 ppm, SNR 10.6; full 0.5–40 d search: top peak 5.4501 d, SDE 15.2 (next 31.6 d, SDE 13.6).
+History: version 1&#x27;s supplement only had robustness.json, whose QLP entry (-100 ppm, no full search) came from before the fix that drops cadences QLP marks bad. The full-search run behind the table was never saved; this rerun reproduces it.</pre></div>
+<div class="cols"><p class="say"><b>You should be able to say:</b> QLP is a different pipeline working from different images (full-frame images). Seeing the signal there too, as the top peak of a blind search, means it isn&#x27;t an artefact of SPOC&#x27;s processing. That&#x27;s why the abstract leans on it. <span class="muted">(guide §4, §6)</span></p>
+<p class="worry"><b>Would worry you:</b> A claim in the abstract with no file behind it. That was the case until 10/16.</p></div>
 <label><input type="checkbox"> I traced this and can explain it</label>
 </article><article class="MATCH" id="r5">
 <div class="head"><h2>5. Robustness table: the other rows</h2><span class="st">MATCH</span></div>

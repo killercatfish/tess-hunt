@@ -111,17 +111,21 @@ row(3, "Odd/even depths", ["odd/even depth ($211$"],
 
 # 4 -------------------------------------------------------------------------------------------------
 rob = {v["name"]: v for v in J("robustness.json")["variants"]}
-q = rob["QLP (FFI) biweight auto"]
+old_q = rob["QLP (FFI) biweight auto"]
+q = J("robustness_qlp.json")["variant"]
 b0 = rob["baseline PDCSAP biweight auto"]
 row(4, "Robustness table: QLP row", ["QLP FFI photometry (8 sectors)", "independently recovered as the strongest periodic signal"],
-    "paper/data/robustness.json → variants → \"QLP (FFI) biweight auto\" (the file in the supplement zip)",
-    "\n".join(f"{k} {v}" for k, v in q.items() if k != "sectors"),
-    f"File: {q['depth_ppm']:.0f} ± {q['err_ppm']:.0f} ppm, SNR {q['snr']:.1f}; robust {q['depth_robust_ppm']:.0f} ppm; no full-search result.\n"
-    f"Paper: 250 ± 23 ppm, SNR 10.6, top peak SDE 15.2. No file in the supplement holds those numbers. The file looks like a run "
-    f"from before the QLP quality fix in scripts/robustness_check.py (load_ffi), which drops QLP's junk cadences in Sectors 100–102.",
-    [same(250, q["depth_ppm"], 0)],
-    "QLP is a different pipeline working from different images (30-min full frames). Seeing the signal there too means it isn't an artefact of SPOC's processing. That's why the abstract leans on it.",
-    "A claim in the abstract with no file behind it. That's what this is until the QLP run is redone and saved.", "§4, §6")
+    "paper/data/robustness_qlp.json → variant (Cortex rerun, 10/16)",
+    "\n".join(f"{k} {v}" for k, v in q.items() if k not in ("sectors", "full_top5")) +
+    "\nfull_top5 " + ", ".join(f"{p:.4f} d SDE {sd:.1f}" for p, sd in q["full_top5"]),
+    f"{q['depth_ppm']:.0f} ± {q['err_ppm']:.0f} ppm, SNR {q['snr']:.1f}; full 0.5–40 d search: top peak {q['full_tls_period']:.4f} d, SDE {q['full_tls_sde']:.1f} "
+    f"(next {q['full_top5'][1][0]:.1f} d, SDE {q['full_top5'][1][1]:.1f}).\n"
+    f"History: version 1's supplement only had robustness.json, whose QLP entry ({old_q['depth_ppm']:.0f} ppm, no full search) came from before the fix "
+    f"that drops cadences QLP marks bad. The full-search run behind the table was never saved; this rerun reproduces it.",
+    [same(250, q["depth_ppm"], 0), same(23, q["err_ppm"], 0), same(10.6, q["snr"], 1), q["full_rank_545"] == 1,
+     same(5.4501, q["full_tls_period"], 4), same(15.2, q["full_tls_sde"], 1)],
+    "QLP is a different pipeline working from different images (full-frame images). Seeing the signal there too, as the top peak of a blind search, means it isn't an artefact of SPOC's processing. That's why the abstract leans on it.",
+    "A claim in the abstract with no file behind it. That was the case until 10/16.", "§4, §6")
 
 # 5 -------------------------------------------------------------------------------------------------
 row(5, "Robustness table: the other rows", ["Every season and sector jackknife gives"],
