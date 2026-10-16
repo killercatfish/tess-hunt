@@ -1,4 +1,4 @@
-"""One-off periodogram checks for the 5.45 d signal on TIC 407126408 (asked for by P. Mistry, 2026-10-12).
+"""One-off periodogram checks for the 5.45 d signal on TIC 407126408.
 Not part of the pipeline. Run on Cortex from the repo root with PYTHONPATH set:
 
   nice -n 19 ionice -c3 .venv/bin/python scripts/periodogram_fap.py --out /tmp/pgram --procs 10 --trials 200

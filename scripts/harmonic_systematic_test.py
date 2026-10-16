@@ -1,4 +1,4 @@
-"""Is the 5.45 d signal on TIC 407126408 a 1/5 harmonic of the 27.3 d systematic? (Question from P. Mistry, 2026-10-12.)
+"""Is the 5.45 d signal on TIC 407126408 a 1/5 harmonic of the 27.3 d systematic?
 Not part of the pipeline. Run on Cortex from the repo root with PYTHONPATH set:
 
   nice -n 19 ionice -c3 .venv/bin/python scripts/harmonic_systematic_test.py --out /tmp/harm
