@@ -2,7 +2,7 @@
  "title": "Zenodo upload: TOI-913 preprint, version 2",
  "intro": "Open the version 1 record (doi 10.5281/zenodo.23290579), click 'New version'. Zenodo copies the old metadata, so only the boxes below change. Remove the two old files and upload the two new ones.",
  "files": [
-  "paper/toi913_candidate.pdf  (version 2, 11 pages)",
+  "paper/toi913_candidate.pdf  (version 2, 12 pages)",
   "paper/toi913_supplement.zip  (version 2: adds periodogram_fap.py, periodogram_fig.py, inversion_test.py, harmonic_systematic_test.py, single_transit_scatter.py, the updated triceratops_fpp.py and robustness_check.py, nine result files (including robustness_qlp.json, the QLP result behind Table 1) and fig4)"
  ],
  "fields": [
@@ -12,12 +12,12 @@
   },
   {
    "label": "Publication date",
-   "value": "2026-10-12",
+   "value": "2026-10-16",
    "note": "Change this to the day you actually upload."
   },
   {
    "label": "Description",
-   "value": "Preprint, version 2. A 5.450-day, 196 ppm transit-like signal (1.12 Earth radii if on the target) on TOI-913 (TIC 407126408), from a multi-sector search of TESS 2-minute photometry (Sectors 12-102), with code, result files and figures. Presented as a planet candidate: TRICERATOPS gives FPP 0.036 and NFPP 0.023, which is neither validated nor 'likely planet'. Version 2 adds periodograms (GLS with false-alarm levels, spectral window, momentum dumps) an empirical false-alarm test on 200 block-shuffled light curves (FAP < 1.5%), an inverted-light-curve test (strongest systematic peak SDE 14.5 against 21.7 for the signal), a test showing the signal is not a harmonic of a 27.3-day systematic, and a single-transit scatter test (the transit depths scatter somewhat more than typical for this light curve, not significantly; TOI-913 b's mask and gravity do not explain it); removes a galaxy at 56.9 arcsec (a 2MASS extended source listed in the TIC) from the TRICERATOPS scenarios; corrects the TRICERATOPS classification and the momentum-dump count; states that the 9.5-arcsec background giant is excluded by transit duration alone; and adds an independent all-sector centroid analysis that disfavours one of the two remaining faint neighbours. The author is not a professional astronomer, the analysis was done with substantial help from an AI coding agent, and no professional has checked it. The signal was first detected by eumemic/exoplanets (2026 October 8), which does not count it as a candidate (MES 8.0, below its threshold of 10). Predicted TESS Sector 114 transits are pre-registered at doi:10.5281/zenodo.23290795."
+   "value": "Preprint, version 2. A 5.450-day, 196 ppm transit-like signal (1.12 Earth radii if on the target) on TOI-913 (TIC 407126408), from a multi-sector search of TESS 2-minute photometry (Sectors 12-102), with code, result files and figures. Presented as a planet candidate: TRICERATOPS gives FPP 0.036 and NFPP 0.023, which is neither validated nor 'likely planet'. Version 2 adds periodograms (GLS with false-alarm levels, spectral window, momentum dumps) an empirical false-alarm test on 200 block-shuffled light curves (FAP < 1.5%), an inverted-light-curve test (strongest systematic peak SDE 14.5 against 21.7 for the signal), a test showing the signal is not a harmonic of a 27.3-day systematic, and a single-transit scatter test (the transit depths scatter somewhat more than typical for this light curve, not significantly; TOI-913 b's mask and gravity do not explain it); removes a galaxy at 56.9 arcsec (a 2MASS extended source listed in the TIC) from the TRICERATOPS scenarios; corrects the TRICERATOPS classification and the momentum-dump count; states that the 9.5-arcsec background giant is excluded by transit duration alone; and adds an independent all-sector centroid analysis that disfavours one of the two remaining faint neighbours. It also corrects the odd/even significance and the count of passed tests (nine of ten; the shape test is inconclusive), and adds the saved QLP result behind the robustness table. The author is not a professional astronomer, the analysis was done with substantial help from an AI coding agent, and no professional has checked it. The signal was first detected by eumemic/exoplanets (2026 October 8), which does not count it as a candidate (MES 8.0, below its threshold of 10). Predicted TESS Sector 114 transits are pre-registered at doi:10.5281/zenodo.23290795."
   },
   {
    "label": "Related works (add these two; keep the existing ones)",
