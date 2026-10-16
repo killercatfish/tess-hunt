@@ -13,3 +13,4 @@ PAUSE
 paper/*.zip
 paper/*.log
 .DS_Store
+paper/v2/upload/

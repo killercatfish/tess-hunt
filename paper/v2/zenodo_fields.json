@@ -1,9 +1,9 @@
 {
  "title": "Zenodo upload: TOI-913 preprint, version 2",
- "intro": "Open the version 1 record (doi 10.5281/zenodo.23290579), click 'New version'. Zenodo copies the old metadata, so only the boxes below change. Remove the two old files and upload the two new ones.",
+ "intro": "Open the version 1 record (doi 10.5281/zenodo.23290579), click 'New version'. The new version starts with no files; upload the two below. Zenodo copies the old metadata, so only the boxes below change.",
  "files": [
-  "paper/toi913_candidate.pdf  (version 2, 12 pages)",
-  "paper/toi913_supplement.zip  (version 2: adds periodogram_fap.py, periodogram_fig.py, inversion_test.py, harmonic_systematic_test.py, single_transit_scatter.py, the updated triceratops_fpp.py and robustness_check.py, nine result files (including robustness_qlp.json, the QLP result behind Table 1) and fig4)"
+  "paper/v2/upload/toi913_candidate_v2.pdf  (version 2, 12 pages)",
+  "paper/v2/upload/toi913_supplement_v2.zip  (version 2: adds periodogram_fap.py, periodogram_fig.py, inversion_test.py, harmonic_systematic_test.py, single_transit_scatter.py, the updated triceratops_fpp.py and robustness_check.py, nine result files (including robustness_qlp.json, the QLP result behind Table 1) and fig4)"
  ],
  "fields": [
   {
