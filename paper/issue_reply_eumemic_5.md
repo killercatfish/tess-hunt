@@ -12,3 +12,7 @@ One more check, in case it's useful for your candidates too. The 27.3 d systemat
      Post this reply only after the hand checks. The bracketed line is Josh's call; delete the brackets. -->
 
 On your update: thanks for the MES figure and the per-sector centroid numbers. To be plain about where our side stands: the preprint is on Zenodo and hasn't been peer reviewed, so it can't carry the CTOI as things are. [JOSH CHOOSES ONE: (a) "I'm not planning a journal submission before the Sector 114 test, so your TFOP route is the likelier path." or (b) "I'm looking into a short peer-reviewed note and will tell you if it goes ahead."] If TFOP comes through for you first, I'd be glad to file jointly, with your detection on 2026-10-08 credited as the first.
+
+<!-- Josh 2026-10-15: share the preprint. Upload version 2 to Zenodo first, then paste its new version DOI below. -->
+
+The updated preprint (version 2) is here: https://doi.org/[VERSION 2 DOI]. It credits your detection on 8 October as the first, and it now says your pipeline doesn't count the signal as a candidate (MES 8.0, below your cut of 10), along with your false-alarm rate below MES 10 and your per-sector centroid result. If anything there misstates your work, tell me and I'll correct it. Version 1 was https://doi.org/10.5281/zenodo.23290579, and the Sector 114 pre-registration is https://doi.org/10.5281/zenodo.23290795.
