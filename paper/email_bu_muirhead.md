@@ -28,6 +28,10 @@ publish that result whatever it shows. My question is simpler: looking at the su
 The open scenario is a T = 17 star 27″ away, which would need a 23% eclipse. Our per-sector centroids only weakly
 disfavour it, and the target sits at Dec −81°, so ruling it out takes a southern telescope.
 
+If the signal holds up in Sector 114 (results due by about April 2027), I plan to fund rented time on a southern
+telescope (iTelescope, Siding Spring, about $400 an attempt) for one transit window next spring. If that would make a
+useful student project, I'd welcome a student's help planning the observation and reducing the data.
+
 If there's someone better placed to look at this, I'd be grateful for a name. Thank you for reading.
 
 Josh Gold
