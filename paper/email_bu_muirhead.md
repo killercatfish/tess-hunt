@@ -1,6 +1,6 @@
 # Email to Phil Muirhead (BU Astronomy), draft 2026-10-18
 
-Status: READY, Josh sends from jgold84 (personal Gmail) once killercatfish.com/tess/ is live. Attach `paper/summary/toi913_summary.pdf`.
+Status: SENT by Josh 10/18 from jgold84. The PDF was not attached; a follow-up linked https://killercatfish.com/tess/toi913_summary.pdf.
 Fallback if no answer in two weeks: JJ Hermes, same department (profile: bu.edu/astronomy/profile/jj-hermes).
 
 To: philipm@bu.edu (listed on bu.edu/astronomy/profile/phil-muirhead)
