@@ -19,6 +19,7 @@ Code is written on the Mac and pushed to `github.com/killercatfish/tess-hunt` (p
     scripts/serve.sh            # http://192.168.1.161:8765/report.html from any LAN device
     .venv/bin/python -m tesshunt audit      # skeptic notes for survivors -> report
     .venv/bin/python -m tesshunt requeue    # retry stars that errored (e.g. MAST outage)
+    .venv/bin/python -m tesshunt negatives  # negatives.csv/.md: every non-surviving signal and why (run does this too)
 
 Everything runs under `nice -n 19` / `ionice -c3`, with 1 thread per worker. Ctrl-C or a crash loses at
 most the stars in progress: `running` rows go back to `queued` on the next start. Workers also

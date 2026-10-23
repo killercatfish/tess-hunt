@@ -84,3 +84,8 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   postprocess adds, and the header and rows of `report.html` and `VALIDATION.md`; `status` lists stars per
   stamp. The full settings behind each hash are kept in a new `configs` table. Databases made earlier gain
   the column on first open; their stars show as "unstamped". Scripts under `scripts/` are not stamped yet.
+- NEGATIVES (no threshold or method change; Claude proposed 10/12 as honesty upgrade n2): `run`, `validate-run`
+  and the new `negatives` command write `negatives.csv` and `negatives.md` next to the report: every signal that
+  did not survive, with the tests it failed and the number that failed each (or, below threshold, the SDE, SNR
+  or transit count that kept it out), plus counts per test. With the report's survivors they account for
+  every signal found. Nothing is published until Josh decides where (repo or Zenodo).

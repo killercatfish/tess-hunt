@@ -19,6 +19,7 @@ def main(argv=None):
     s.add_argument("--workers", type=int)
     sub.add_parser("postprocess")
     sub.add_parser("report")
+    sub.add_parser("negatives", help="write negatives.csv/.md: every non-surviving signal and why")
     s = sub.add_parser("audit")
     s.add_argument("--redo", action="store_true")
     s.add_argument("--import-notes", action="store_true", help="load sig*.audit.txt files written on the Mac")
@@ -48,13 +49,17 @@ def main(argv=None):
         print(f"queued {len(rows)} pilot targets (pool cached in {cfg['paths']['catalog_dir']})")
     elif a.cmd == "run":
         pipeline.run(cfg, a.labels, a.workers)
-        from . import report
+        from . import report, negatives
         print(report.build(cfg))
+        print(negatives.write(cfg))
     elif a.cmd == "postprocess":
         pipeline.postprocess(cfg)
     elif a.cmd == "report":
         from . import report
         print(report.build(cfg))
+    elif a.cmd == "negatives":
+        from . import negatives
+        print(negatives.write(cfg))
     elif a.cmd == "audit":
         from . import audit, report
         print("imported" if a.import_notes else "audited",
@@ -89,6 +94,8 @@ def main(argv=None):
             pipeline.run(c)
             from . import report
             report.build(c, title="tess-hunt VALIDATION survivors")
+            from . import negatives
+            negatives.write(c, title="tess-hunt VALIDATION negatives")
         elif a.cmd == "validate-report":
             md = validate.evaluate(cfg)
             path = os.path.join(validate.VDIR, "out", "VALIDATION.md")
