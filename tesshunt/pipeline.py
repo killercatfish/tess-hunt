@@ -9,7 +9,7 @@ import traceback
 
 import numpy as np
 
-from . import db, config as cfgmod
+from . import db, config as cfgmod, provenance
 
 log = logging.getLogger("tesshunt")
 PAUSE_FILE = os.path.join(cfgmod.ROOT, "PAUSE")
@@ -64,7 +64,7 @@ def process_star(cfg, con, tic, catalogs):
               n_sectors=len(secs), sectors=",".join(map(str, secs)),
               baseline_d=float(lc["time"].max() - lc["time"].min()), n_points=int(len(lc["time"])),
               authors=json.dumps(sorted(set(lc["authors"].values()))),
-              files_bytes=dir_bytes(lightcurves.star_cache(cfg, tic)))
+              files_bytes=dir_bytes(lightcurves.star_cache(cfg, tic)), provenance=_stamp_json(cfg))
     log.info("TIC %s done in %.0fs: %s", tic, time.time() - t_start,
              [(round(s["period"], 4), s["verdict"]) for s in sigs])
 
@@ -76,7 +76,13 @@ def write_candidate(cfg, tic, sig, lc, prior, star):
     png = os.path.join(d, f"sig{sig['iteration']}.png")
     plots.diagnostic(png, tic, sig, lc, prior, star, cfg)
     with open(os.path.join(d, f"sig{sig['iteration']}.json"), "w") as fh:
-        json.dump({"star": star, "signal": sig}, fh, indent=1, default=db._json_default)
+        json.dump({"star": star, "signal": sig, "provenance": cfg.get("_provenance")}, fh, indent=1,
+                  default=db._json_default)
+
+
+def _stamp_json(cfg):
+    st = cfg.get("_provenance")
+    return json.dumps(st) if st else None
 
 
 def dir_bytes(d):
@@ -125,10 +131,10 @@ def worker(cfg, labels):
         try:
             process_star(cfg, con, tic, catalogs)
         except lightcurves.NoData as ex:
-            db.finish(con, tic, "nodata", error=str(ex))
+            db.finish(con, tic, "nodata", error=str(ex), provenance=_stamp_json(cfg))
         except Exception as ex:
             log.error("TIC %s failed: %s", tic, traceback.format_exc())
-            db.finish(con, tic, "error", error=f"{type(ex).__name__}: {ex}"[:500])
+            db.finish(con, tic, "error", error=f"{type(ex).__name__}: {ex}"[:500], provenance=_stamp_json(cfg))
         try:
             enforce_cache(cfg, con)
         except Exception:
@@ -140,6 +146,9 @@ def run(cfg, labels=None, workers=None):
     setup_logging()
     from . import crossmatch
     con = db.connect(cfg["paths"]["db"])
+    cfg["_provenance"] = st = provenance.stamp(cfg)  # once, before fork: names the code the workers loaded
+    db.save_config(con, cfg, st)
+    log.info("run stamp: %s", provenance.label(st))
     n = db.reset_stale(con)
     if n:
         log.info("requeued %d interrupted star(s)", n)
@@ -164,6 +173,8 @@ def postprocess(cfg):
     """Run-level systematics test: a period shared by too many unrelated stars is instrumental."""
     from . import killtests
     con = db.connect(cfg["paths"]["db"])
+    st = cfg.get("_provenance") or provenance.stamp(cfg)
+    db.save_config(con, cfg, st)
     k = cfg["kill_tests"]
     rows = con.execute("SELECT tic, iteration, period, tests FROM signals WHERE passes_threshold=1").fetchall()
     periods = np.array([r[2] for r in rows])
@@ -176,7 +187,7 @@ def postprocess(cfg):
                     if abs(P / (x * m) - 1) < k["systematics_period_tol"]]
             tests = json.loads(tj)
             tests["systematics"] = {"pass": n_stars <= k["systematics_max_targets"], "n_targets_same_period": n_stars,
-                                    "near_instrumental_period": inst}
+                                    "near_instrumental_period": inst, "provenance": st}
             sig = {"passes_threshold": True, "tests": tests, "snr": con.execute(
                 "SELECT snr FROM signals WHERE tic=? AND iteration=?", (tic, it)).fetchone()[0]}
             v = killtests.verdict(sig, cfg)

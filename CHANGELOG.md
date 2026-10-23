@@ -75,3 +75,12 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   Other re-vetted stars with non-star entries within 60": TIC 24621747 (duplicate, 11.3"), 147163875
   (galaxy + duplicate, 45"), 422677298 (artifact, 4.1", T 10.9). Each also has a real neighbour that keeps
   its verdict; the pilot's contamination results have not been rerun with the filter yet.
+
+## 2026-10-23
+- PROVENANCE (no threshold or method change; Claude proposed 10/12 as honesty upgrade n3): every output now
+  says which code and settings made it. A run takes one stamp before the workers start (git commit, whether
+  tracked files had uncommitted edits and which, a 12-character hash of the loaded config minus `paths`) and
+  writes it to each star's `targets.provenance`, each `candidates/<tic>/sig*.json`, the systematics entry
+  postprocess adds, and the header and rows of `report.html` and `VALIDATION.md`; `status` lists stars per
+  stamp. The full settings behind each hash are kept in a new `configs` table. Databases made earlier gain
+  the column on first open; their stars show as "unstamped". Scripts under `scripts/` are not stamped yet.

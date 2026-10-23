@@ -34,6 +34,8 @@ All knobs live in **`config.yaml`**. **Any threshold change gets a line in `CHAN
   and run `./run.sh --labels mylist`.
 - **Search:** `search.period_min_d / period_max_d` (capped at 40 d, see CHANGELOG), `bin_minutes`, `max_iterations`.
 - **Pass threshold:** `thresholds.sde_min / snr_min / min_transits`.
+- **Provenance:** each run stamps its outputs with the git commit and a hash of the settings
+  (`tesshunt/provenance.py`); run from a clean checkout so the stamp names a real commit.
 - **Kill tests:** `kill_tests.*`. `hard_fail` lists tests whose failure rejects a signal. `soft_flag`
   tests (known object, bright neighbour) only flag.
 

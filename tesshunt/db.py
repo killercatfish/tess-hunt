@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS targets (
     authors TEXT,
     error TEXT,
     started REAL, finished REAL, runtime_s REAL,
-    files_bytes INTEGER DEFAULT 0
+    files_bytes INTEGER DEFAULT 0,
+    provenance TEXT            -- JSON stamp: code commit + config hash of the run that processed it
 );
 CREATE TABLE IF NOT EXISTS signals (
     tic INTEGER NOT NULL,
@@ -28,6 +29,11 @@ CREATE TABLE IF NOT EXISTS signals (
     audit TEXT,
     PRIMARY KEY (tic, iteration)
 );
+CREATE TABLE IF NOT EXISTS configs (
+    config_sha TEXT PRIMARY KEY,   -- provenance.stamp()["config_sha"]
+    settings TEXT,                 -- the full settings (config minus paths) as JSON
+    first_used REAL
+);
 """
 
 
@@ -35,7 +41,25 @@ def connect(path):
     con = sqlite3.connect(path, timeout=60)
     con.execute("PRAGMA journal_mode=WAL")
     con.executescript(SCHEMA)
+    cols = {r[1] for r in con.execute("PRAGMA table_info(targets)")}
+    if "provenance" not in cols:  # databases made before 2026-10-23
+        con.execute("ALTER TABLE targets ADD COLUMN provenance TEXT")
+        con.commit()
     return con
+
+
+def save_config(con, cfg, st):
+    from . import provenance
+    with con:
+        con.execute("INSERT OR IGNORE INTO configs VALUES (?, ?, ?)",
+                    (st["config_sha"], provenance.settings_text(cfg), time.time()))
+
+
+def provenance_counts(con, where="", args=()):
+    """[(stamp dict or None, n_targets)] over finished targets, most common first."""
+    rows = con.execute(f"SELECT provenance, COUNT(*) FROM targets t WHERE status!='queued' {where} "
+                       "GROUP BY provenance ORDER BY 2 DESC", args).fetchall()
+    return [(json.loads(p) if p else None, n) for p, n in rows]
 
 
 def add_targets(con, rows, label):

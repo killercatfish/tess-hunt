@@ -71,6 +71,10 @@ def main(argv=None):
         v = con.execute("SELECT verdict, COUNT(*) FROM signals GROUP BY 1").fetchall()
         print("signals:", dict(v))
         print("paused:", os.path.exists(pipeline.PAUSE_FILE))
+        from . import provenance
+        print("code now:", provenance.label(provenance.stamp(cfg)))
+        for st, n in db.provenance_counts(con):
+            print(f"  {n} star(s) processed by {provenance.label(st)}")
     elif a.cmd == "requeue":
         con = db.connect(cfg["paths"]["db"])
         with con:

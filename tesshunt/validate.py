@@ -70,7 +70,9 @@ def evaluate(cfg):
     tg = pd.read_sql("SELECT * FROM targets", con).set_index("tic")
     pl = pd.read_csv(PL_CSV)
     eb = pd.read_csv(EB_CSV)
-    lines = []
+    from . import provenance
+    lines = ["## Provenance", "", f"- This summary built by {provenance.label(provenance.stamp(c))}",
+             *[f"- {n} star(s) processed by {provenance.label(st)}" for st, n in db.provenance_counts(con)], ""]
 
     # ---- planets: per planet, was it found at the right period, and what did the kill tests say?
     prow = []

@@ -4,7 +4,7 @@ import json
 import os
 import time
 
-from . import db
+from . import db, provenance
 
 CSS = """
 :root{--bg:#fff;--fg:#1d1d1f;--mut:#666;--line:#ddd;--pass:#1a7f37;--fail:#c62828;--flag:#9a6700;--row:#f6f6f6}
@@ -39,13 +39,13 @@ def build(cfg, title="tess-hunt candidates", labels=None):
         where += f" AND t.label IN ({','.join('?' * len(labels))})"
         args = list(labels)
     rows = con.execute(f"""SELECT s.tic, s.iteration, s.period, s.depth_ppm, s.duration_h, s.rp_rearth, s.sde, s.snr,
-        s.n_transits, s.score, s.tests, s.audit, t.teff, t.tmag, t.n_sectors, t.baseline_d
+        s.n_transits, s.score, s.tests, s.audit, t.teff, t.tmag, t.n_sectors, t.baseline_d, t.provenance
         FROM signals s JOIN targets t USING(tic) {where} ORDER BY s.score DESC""", args).fetchall()
     nrej = con.execute("SELECT COUNT(*) FROM signals WHERE verdict='rejected'").fetchone()[0]
     out_dir = os.path.dirname(cfg["paths"]["report"])
     trs = []
     for i, r in enumerate(rows, 1):
-        (tic, it, P, dep, dur, rp, sde, snr, ntr, score, tj, audit, teff, tmag, nsec, base) = r
+        (tic, it, P, dep, dur, rp, sde, snr, ntr, score, tj, audit, teff, tmag, nsec, base, pj) = r
         tests = json.loads(tj)
         flags = []
         for name, res in tests.items():
@@ -60,17 +60,20 @@ def build(cfg, title="tess-hunt candidates", labels=None):
         known = tests.get("known", {})
         kn = ", ".join(m["name"] for v in known.get("matches", {}).values() for m in v)[:60]
         trs.append(f"""<tr><td>{i}</td><td data-v="{tic}"><a href="{rel}/sig{it}.png">TIC {tic}</a><br>
-<span class="mut">sig#{it} · <a href="{rel}/sig{it}.json">json</a></span></td>
+<span class="mut">sig#{it} · <a href="{rel}/sig{it}.json">json</a><br>{html.escape(provenance.label(json.loads(pj) if pj else None))}</span></td>
 <td>{_fmt(score, '{:.1f}')}</td><td>{_fmt(P, '{:.5f}')}</td><td>{_fmt(dep, '{:.0f}')}</td><td>{_fmt(dur)}</td>
 <td>{_fmt(rp)}</td><td>{_fmt(sde, '{:.1f}')}</td><td>{_fmt(snr, '{:.1f}')}</td><td>{ntr}</td><td>{hos}</td>
 <td>{_fmt(teff, '{:.0f}')}</td><td>{_fmt(tmag)}</td><td>{nsec}</td><td>{_fmt(base, '{:.0f}')}</td>
 <td>{' '.join(flags)}{('<br><span class="w">known: ' + html.escape(kn) + '</span>') if kn else ''}</td>
 <td class="audit">{html.escape(audit or '')}</td></tr>""")
+    made = html.escape(provenance.label(cfg.get("_provenance") or provenance.stamp(cfg)))
+    runs = "<br>".join(f"{n} star(s): {html.escape(provenance.label(st))}" for st, n in db.provenance_counts(con))
     cnt = " · ".join(f"{l or '-'} {s}: {n}" for l, s, n in counts)
     doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title><style>{CSS}</style></head><body>
 <h1>{html.escape(title)}</h1>
-<div class="mut">Generated {time.strftime('%Y-%m-%d %H:%M')} · {len(rows)} survivor signal(s) · {nrej} rejected by kill tests<br>{cnt}</div>
+<div class="mut">Generated {time.strftime('%Y-%m-%d %H:%M')} · {len(rows)} survivor signal(s) · {nrej} rejected by kill tests<br>{cnt}<br>
+Report built by {made}.<br>Stars processed by:<br>{runs}</div>
 <p class="mut">These are <b>candidates</b>, not discoveries. A survivor only means no automatic test killed it.
 Score = SNR × (1 + holdout hit fraction) ÷ (1 + soft flags); it ranks, it is not a probability. Click headers to sort.</p>
 <div class="wrap"><table><thead><tr><th>#</th><th>target</th><th>score</th><th>P (d)</th><th>depth ppm</th><th>dur h</th><th>Rp R⊕</th>
