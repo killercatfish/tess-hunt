@@ -158,6 +158,8 @@ def size(sig, cfg):
 def harmonic(sig, prior, cfg):
     tol = cfg["kill_tests"]["period_match_tol"]
     for p in prior:
+        if not p.get("passes_threshold"):  # weak or few-transit signals the search moved past (n5) can't make a harmonic
+            continue
         for ratio in (1, 2, 0.5, 3, 1 / 3):
             if abs(sig["period"] / (p["period"] * ratio) - 1) < tol:
                 return {"pass": False, "matches_iteration": p["iteration"], "ratio": ratio}

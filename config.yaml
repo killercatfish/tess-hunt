@@ -41,7 +41,8 @@ search:
   bin_minutes: 10                # search on binned data; kill tests use full cadence
   oversampling: 3
   duration_grid_step: 1.1
-  max_iterations: 4              # initial search + up to 3 masked re-searches
+  max_iterations: 8              # initial search + up to 7 masked re-searches (was 4; CHANGELOG 2026-10-23, n5)
+  stop_after_weak: 2             # stop after this many below-threshold signals in a row (was 1); deep events with too few transits don't count
   mask_width_mult: 2.0           # mask 2x duration around found transits before re-search
   bls_max_periods: 100000        # BLS cross-check grid size (informational only; SDE always from full TLS)
   plot_rejected: false           # also draw diagnostics for threshold-passing signals that got killed

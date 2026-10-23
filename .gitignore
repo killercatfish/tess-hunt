@@ -19,3 +19,9 @@ paper/v2/upload/
 
 # student work, never committed (it ended up here by accident; belongs with the teaching repos)
 Student-Responses/
+# n5 check (2026-10-23): copies of the old results, and the re-vet re-run
+candidates_pre_n5/
+validation/out_pre_n5/
+revet/n5/
+*.db-shm
+*.db-wal

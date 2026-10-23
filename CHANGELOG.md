@@ -89,3 +89,14 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   did not survive, with the tests it failed and the number that failed each (or, below threshold, the SDE, SNR
   or transit count that kept it out), plus counts per test. With the report's survivors they account for
   every signal found. Nothing is published until Josh decides where (repo or Zenodo).
+- METHOD (board item n5; Claude proposed 10/18, Josh approved going ahead 10/23 as an overnight run; the values
+  8 and 2 are Claude's choice, to be judged on that run): the iterative search no longer stops at the first
+  signal below threshold. A signal that would pass except for having fewer than `min_transits` transits (a
+  single or double deep event) is masked and the search goes on; otherwise it stops after `stop_after_weak: 2`
+  below-threshold signals in a row (was effectively 1), and `max_iterations` goes 4 -> 8. Reason: on eumemic's
+  re-vet list our blind search missed 8 of 17 signals (7 counting an alias): 4 behind a strong event with only
+  1-2 transits (e.g. TIC 48439430: a 58,000 ppm single event at SNR 160 hid a 0.55 d signal), 1 behind a weak
+  leftover of the same deep events, 3 because 4 iterations were used up on deep binary-like events. The
+  `harmonic` test now compares only against earlier signals that passed threshold, as before this change
+  (until now every earlier signal had). Thresholds are unchanged. Checked by `scripts/n5_check.sh` (validation
+  set, the re-vet stars, the pilot) against copies of the old results; `scripts/n5_compare.py` prints both.

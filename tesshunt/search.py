@@ -77,12 +77,22 @@ def transit_mask(t, period, duration_d, t0, mult):
     return tm(t, period, mult * duration_d, t0)
 
 
+def few_transits_only(sig, cfg):
+    """Strong enough to pass except for having too few transits: a single or double deep event."""
+    th = cfg["thresholds"]
+    return bool(sig["sde"] >= th["sde_min"] and sig["snr"] >= th["snr_min"] and sig["n_transits"] < th["min_transits"])
+
+
 def iterative(lc, star, ab, cfg):
-    """Search, mask, re-search. Stops at the first signal below threshold (which is still recorded)."""
+    """Search, mask, re-search; every signal is recorded. A deep event with too few transits is masked
+    and the search goes on; otherwise it stops after `stop_after_weak` below-threshold signals in a row.
+    Until 2026-10-23 it stopped at the first one, which hid real signals behind single deep events
+    (board item n5, CHANGELOG 2026-10-23)."""
     s = cfg["search"]
     t, f, e = lc["time"], lc["flux"].copy(), lc["err"]
     keep = np.ones(len(t), bool)
     out = []
+    weak = 0
     for it in range(s["max_iterations"]):
         tb, fb, eb = bin_lc(t[keep], f[keep], e[keep], s["bin_minutes"])
         r = tls(tb, fb, eb, star, ab, cfg)
@@ -97,7 +107,11 @@ def iterative(lc, star, ab, cfg):
             except Exception:
                 sig["bls_period"] = None
         out.append(sig)
-        if not sig["passes_threshold"]:
-            break
+        if sig["passes_threshold"] or few_transits_only(sig, cfg):
+            weak = 0
+        else:
+            weak += 1
+            if weak >= s.get("stop_after_weak", 1):
+                break
         keep &= ~transit_mask(t, sig["period"], sig["duration_h"] / 24, sig["t0"], s["mask_width_mult"])
     return out
