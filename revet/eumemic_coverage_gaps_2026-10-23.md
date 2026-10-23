@@ -57,8 +57,10 @@ repeat their work.
 
 - **First: fix n5, then re-search the 11,219 stars where their search stopped early.** It's our own known
   weakness, the fix is validated on known planets before use, and the star list comes straight from their
-  tables. Rough Cortex cost, *an estimate, not measured on these stars*: our full TLS grid took 530 s on
-  TOI-700 (37 sectors), and typical stars are about 10× cheaper, so on the order of a day with 6 workers.
+  tables. Cortex cost (corrected 10/23; the first version said about a day): the pilot measured 254 s per
+  star on average, downloads included, so 11,219 stars take about 5.5 days on 6 workers before the n5 change,
+  and roughly 7–11 days after it, since the search now goes on longer (not yet measured). 10 workers, or the
+  K/M and brighter faint-M stars first (about 2,960 stars, 2–3 days), would shorten it.
 - **Maybe later: 30–100 d on the 107,311 faint M dwarfs**, if the first job finds anything. Our period cap
   (40 d, CHANGELOG 2026-10-09) would have to rise, which is a threshold change Josh approves.
 - **Not now:** hot, large and evolved stars (gap 4), periods under 0.5 d (gap 5), and our own photometry
