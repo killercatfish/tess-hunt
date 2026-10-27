@@ -26,6 +26,10 @@ def main(argv=None):
     s = sub.add_parser("audit-compare", help="run several cortex models over a snapshot dir of survivors")
     s.add_argument("dir")
     s.add_argument("--models", nargs="+", default=["qwen3vl", "qwen38"])
+    s = sub.add_parser("survivor-checks", help="shuffled FAP + inverted light curve for every survivor (n1)")
+    s.add_argument("--tics", nargs="*", type=int)
+    s.add_argument("--workers", type=int)
+    s.add_argument("--redo", action="store_true")
     sub.add_parser("status")
     s = sub.add_parser("requeue", help="put error stars back in the queue")
     s.add_argument("--status", default="error")
@@ -69,6 +73,11 @@ def main(argv=None):
         from . import audit
         for row in audit.compare(cfg, a.models, a.dir):
             print(*row)
+    elif a.cmd == "survivor-checks":
+        from . import survivor_checks, report
+        pipeline.setup_logging()
+        print("checked", survivor_checks.run(cfg, a.workers, a.redo, a.tics), "survivor(s)")
+        print(report.build(cfg))
     elif a.cmd == "status":
         con = db.connect(cfg["paths"]["db"])
         for row in con.execute("SELECT label, status, COUNT(*) FROM targets GROUP BY 1,2 ORDER BY 1,2"):

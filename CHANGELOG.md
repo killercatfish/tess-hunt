@@ -109,3 +109,23 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   A hard kill was ruled out because eumemic's 10.17 d signal on TIC 247166992 has 4 rejected before it too.
   Replayed on the n5 results (`revet/n5_check_2026-10-26.md`): exactly those 3 flagged; every other survivor,
   known planets included, had 2 or fewer.
+
+## 2026-10-27
+- METHOD (board item n1; Josh approved 10/26; the values are Claude's): two per-survivor checks, run after a
+  search with `python -m tesshunt survivor-checks` (`tesshunt/survivor_checks.py`), both soft flags (ranked
+  lower, never rejected). They are items 1 and 7 of the pre-share checklist, done by hand for TOI-913 in October.
+  `fap`: TLS on `survivor_checks.fap_trials: 100` copies of the light curve with 1-day blocks
+  (`fap_block_d: 1.0`) shuffled within each sector, the star's earlier signals masked as the search had them;
+  flagged when more than `fap_max: 0.01` of copies reach the signal's SDE anywhere in 0.5-40 d. `inversion`:
+  the flux reflected about its median before prep, TLS iterated `inversion_iters: 4` times with the same masks;
+  flagged when the strongest inverted peak reaches the signal's SDE.
+  Checked on Cortex 10/27 against October's TOI-913 numbers (8 trials only, as a code check): with TOI-913 b,
+  TOI-913.02 and the 27.3 d systematic masked, shuffled maximum SDE up to 18.2 (October, 200 trials: maximum
+  18.8) against the signal's 23.6, so no copy reaches it; strongest inverted peak 16.3 at b's period (b's
+  detrending shoulders; October 18.2) and 12.4 elsewhere (October 14.5). Same pass on both. The shuffled
+  median is higher than October's (16.8 against 13.1), probably because October used one constant error per
+  point and the pipeline uses each point's own error; not checked further. Known limit: deep events the search
+  never found stay in the shuffled copies. With only b and the systematic masked (TOI-913.02 left in, as in
+  the pre-n5 pilot results), one copy in 8 reached 24.1 and the signal would be flagged. Searches since n5
+  mask such events as their own iterations, so they are masked here too. Cost: about 13 minutes per survivor
+  for 8 trials on 2 workers beside a running search; roughly 20-40 minutes per survivor at 100 trials.

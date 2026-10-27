@@ -77,8 +77,14 @@ kill_tests:
   holdout_min_hit_frac: 0.5
   injection_period_tol: 0.01
   hard_fail: [harmonic, odd_even, secondary, duration, size, shape, systematics, sector_consistency, holdout, injection]
-  soft_flag: [known, contamination, late]
+  soft_flag: [known, contamination, late, fap, inversion]
   late_max_rejected_before: 3    # flag a signal found after this many rejected ones on its star (CHANGELOG 2026-10-26)
+
+survivor_checks:                 # after a search, survivors only (board item n1; CHANGELOG 2026-10-26)
+  fap_trials: 100                # block-shuffled copies per survivor
+  fap_block_d: 1.0               # shuffle 1-day blocks within each sector
+  fap_max: 0.01                  # flag when more than this fraction of copies reach the signal's SDE
+  inversion_iters: 4             # TLS passes on the inverted light curve, masking each peak
 
 audit:
   enabled: true
