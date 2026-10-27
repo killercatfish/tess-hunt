@@ -1,0 +1,36 @@
+## Validation set: known planets (found at the right period, and verdict)
+- HD 15906 b 10.9247 d: missed -> survivor (sig#2, P 10.9249)
+Planets found above threshold: 23 -> 24; surviving every hard test: 23 -> 24
+
+## Validation set: known binaries (any signal at the binary's period, x2 or x1/2, that survives)
+Binaries with a surviving signal at their period (should stay 0 or fall): 1 -> 1
+CPU hours: 5.3 -> 7.9
+
+## eumemic's 17 re-vet signals, blind (old search on 10/12, counted the same way: 9 of 17)
+- TIC 231725883 4.6593 d (their MES 10.8): survivor (sig#2, P 4.6593)
+- TIC 231725883 18.9653 d (their MES 10.7): rejected (sig#4, P 18.9655)
+- TIC 88407114 1.4975 d (their MES 9.7): survivor (sig#0, P 1.4975)
+- TIC 24621747 5.2086 d (their MES 11.2): survivor (sig#1, P 5.2087)
+- TIC 304655480 6.7474 d (their MES 11.6): rejected (sig#3, P 6.7474)
+- TIC 422677298 12.3643 d (their MES 8.4): missed
+- TIC 420529106 21.9584 d (their MES 13.5): survivor (sig#1, P 21.9588)
+- TIC 147163875 5.5798 d (their MES 8.7): rejected (sig#2, P 5.5799)
+- TIC 48439430 0.5516 d (their MES 13.3): rejected (sig#7, P 0.5516)
+- TIC 306990399 4.7051 d (their MES 12.8): survivor (sig#2, P 4.7052)
+- TIC 408310006 27.0170 d (their MES 15.8): survivor (sig#1, P 27.0168)
+- TIC 163029327 0.9469 d (their MES 10.2): below_threshold (sig#1, P 0.9469)
+- TIC 146282666 9.9950 d (their MES 14.8): survivor (sig#1, P 9.9949)
+- TIC 422217860 4.9921 d (their MES 10.2): below_threshold (sig#2, P 4.9921)
+- TIC 247166992 10.1662 d (their MES 10.8): survivor (sig#5, P 10.1662)
+- TIC 76228620 24.5249 d (their MES 15.7): rejected (sig#1, P 24.5244)
+- TIC 165337974 8.9564 d (their MES 12.2): survivor (sig#1, P 8.9565)
+Found at their period: 16 of 17 (above our threshold: 14)
+CPU hours: 2.7
+
+## Pilot (197 stars)
+Survivors: 5 -> 5
+- LOST TIC 243514635 27.9511 d
+- NEW  TIC 278593441 36.8317 d
+Signals by verdict: {'below_threshold': 178, 'rejected': 131, 'survivor': 5} -> {'below_threshold': 541, 'rejected': 266, 'survivor': 5}
+CPU hours: 13.9 -> 30.9
+
