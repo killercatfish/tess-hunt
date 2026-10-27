@@ -59,13 +59,20 @@ from MAST). Two-thirds are shallow (primary depth < 5%, the kind that can pass f
 Rebuild: `python3 -I scripts/calibration_build.py PLANETS_CSV TOI_CSV EBS_CSV`. Catalogs change over time, so
 a rebuild later won't give the same set. These CSVs are the frozen record.
 
-## How it will be scored (`scripts/calibration_report.py`, to write once results exist)
+## How it is scored (`scripts/calibration_report.py`)
+
+Tested 10/27 on copies of Cortex's pilot and validation databases: the 10 hosts shared with the validation set
+and the 10 validation binaries come out as the validation report has them. Copy each machine's
+`results.db` into `calibration/out/<machine>/`, then run `.venv/bin/python scripts/calibration_report.py`; it
+writes `calibration/out/CALIBRATION.md` and `calibration/out/calibration_rows.csv`.
 
 - **Planets:** for each planet, is a threshold-passing signal found within 1% of its period? If so, which
   hard tests fail it? Per test: the fraction of found planets it kills (false-rejection rate), with a 95%
   interval. Also broken down by period (below and above 15 d), radius and brightness.
 - **False positives and binaries:** for each, a signal at the catalogue period (or twice, or half)? If so, is
-  it rejected, and by which test? Per test and per false-positive type: the catch rate.
+  it rejected, and by which test? The tests credited are those that rejected the first signal found at that
+  period, so `harmonic` isn't credited for the 2x and 1/2x echoes it rejects by design. Per test and per
+  false-positive type: the catch rate.
 - **The `systematics` test** compares periods across every star in a run, so a bigger run has more chance
   matches. It is recomputed over both machines' signals together and reported on its own, including how often
   it hits real planets by coincidence.
