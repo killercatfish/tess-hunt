@@ -25,3 +25,5 @@ validation/out_pre_n5/
 revet/n5/
 *.db-shm
 *.db-wal
+# first eumemic re-search (2026-10-26): run outputs, on Cortex only
+search/eumemic_single/
