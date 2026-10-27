@@ -18,7 +18,15 @@ measured rate. It runs on freshly downloaded data.
 | `ebs.csv` | 120 binaries | 120 | Catch rate on detached eclipsing binaries around cool dwarfs |
 | `long_period.csv` | 59 planets at 40–100 d | 58 | Frozen for the long-period search mode; **not run yet** (the search stops at 40 d) |
 
-698 stars run in total, split between Cortex and kcfgamer (`scripts/calibration_run.sh`).
+698 stars run in total, split between Cortex (every fifth star) and kcfgamer (the rest), by
+`scripts/calibration_run.sh`. Every star is queued by its TIC number alone, so its radius, mass and Teff come
+from the TIC exactly as in a search. The archive's published values are better and would flatter the size
+and duration tests.
+
+**Known bias.** Confirmed planets are mostly strong, clean signals; that's how they got confirmed. A new
+planet would sit near our threshold. The report therefore splits the rejection rate by search SNR, and the
+rate below SNR 10 is the one that applies to a new find. If that bin is small, the next step is injected
+planets at low SNR (the injection grid), not more confirmed planets.
 
 **Planets.** Confirmed transiting planets from the NASA Exoplanet Archive (`pscomppars`), excluding any
 flagged as controversial. Host Teff < 5200 K and TESS magnitude < 14, P 0.5–40 d, Rp < 6 R⊕. That pool
@@ -68,7 +76,7 @@ writes `calibration/out/CALIBRATION.md` and `calibration/out/calibration_rows.cs
 
 - **Planets:** for each planet, is a threshold-passing signal found within 1% of its period? If so, which
   hard tests fail it? Per test: the fraction of found planets it kills (false-rejection rate), with a 95%
-  interval. Also broken down by period (below and above 15 d), radius and brightness.
+  interval. Also broken down by period (below and above 15 d), radius, brightness and search SNR.
 - **False positives and binaries:** for each, a signal at the catalogue period (or twice, or half)? If so, is
   it rejected, and by which test? The tests credited are those that rejected the first signal found at that
   period, so `harmonic` isn't credited for the 2x and 1/2x echoes it rejects by design. Per test and per

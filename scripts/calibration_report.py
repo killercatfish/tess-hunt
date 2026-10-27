@@ -193,13 +193,17 @@ def main(dbs):
           "| Hard test | Kills (of found planets) | Only reason for the rejection |", "|---|---|---|"]
     for n, k, alone in per_test(found, "killed_by", hard, found.killed):
         L.append(f"| {n} | {rate(k, len(found))} | {alone} |")
-    L += ["", "Broken down (found planets rejected / found):", ""]
+    L += ["", "Confirmed planets are biased toward clean, strong signals (that's how they got confirmed), while a new "
+          "planet would sit near our threshold. So the rows by search SNR matter most: the rate below SNR 10 is the "
+          "one that applies to a new find.", "", "Broken down (found planets rejected / found):", ""]
     groups = {
         "period below 15 d": found.period < 15, "period 15–40 d": found.period >= 15,
         "radius below 1.5 R⊕": found.rp < 1.5, "radius 1.5–2.5 R⊕": (found.rp >= 1.5) & (found.rp < 2.5),
         "radius 2.5–4 R⊕": (found.rp >= 2.5) & (found.rp < 4), "radius 4 R⊕ and up": found.rp >= 4,
         "TESS mag below 10": found.tmag < 10, "TESS mag 10–12": (found.tmag >= 10) & (found.tmag < 12),
-        "TESS mag 12–14": found.tmag >= 12}
+        "TESS mag 12–14": found.tmag >= 12,
+        "search SNR below 10": found.snr < 10, "search SNR 10–20": (found.snr >= 10) & (found.snr < 20),
+        "search SNR 20 and up": found.snr >= 20}
     for g, m in groups.items():
         sub = found[m]
         top = Counter(x for xs in sub.killed_by for x in xs.split(",") if x).most_common(3)

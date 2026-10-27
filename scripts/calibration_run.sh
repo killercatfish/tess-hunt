@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Run the kill-test calibration set (calibration/README.md) on one machine's share of the stars.
-# The 698 stars are split by position in a fixed order: every third star to Cortex, the other two to kcfgamer
-# (about its share of the speed). Each machine writes its own database in calibration/out/<machine>/;
-# scripts/calibration_report.py merges them. CACHE_DIR points the run at a fresh cache: MAST replaces files in place
+# The 698 stars are split by position in a fixed order: every fifth star to Cortex, the rest to kcfgamer
+# (kcfgamer runs about 1.8x Cortex and starts some 9 h earlier on 10/27, so both should end near the same
+# time). Each machine writes its own database in calibration/out/<machine>/; scripts/calibration_report.py
+# merges them. CACHE_DIR points the run at a fresh cache: MAST replaces files in place
 # (CHANGELOG 2026-10-27), and Cortex's cache holds some from before the sector 23-25 reprocessing.
 #   tmux new -d -s calib 'MACHINE=cortex WORKERS=6 CACHE_DIR=data/cache_2026-10-27 scripts/calibration_run.sh 2>&1 | tee logs/calibration.log'
 #   tmux new -d -s calib 'MACHINE=kcfgamer WORKERS=14 scripts/calibration_run.sh 2>&1 | tee logs/calibration.log'
@@ -27,23 +28,17 @@ if os.environ.get("CACHE_DIR"):          # a fresh cache, so no file predates MA
     cfg["paths"]["cache_dir"] = os.path.abspath(os.environ["CACHE_DIR"])
     os.makedirs(cfg["paths"]["cache_dir"], exist_ok=True)
 cfg["search"]["plot_rejected"] = True   # as validation does: we want to see why a known planet was killed
-num = lambda v: float(v) if v not in ("", None) else None
+# Queued by TIC number alone, so every star gets its radius, mass and Teff from the TIC exactly as a search
+# would. The archive's published values are better and would make the size and duration tests look kinder.
 rows = {}
-for r in csv.DictReader(open("calibration/planets.csv")):
-    rows.setdefault(int(r["tic"]), ({"tic": int(r["tic"]), "teff": num(r["st_teff"]), "rad": num(r["st_rad"]),
-                                     "mass": num(r["st_mass"]), "tmag": num(r["sy_tmag"]), "dist": num(r["sy_dist"])}, "cal_planet"))
-for r in csv.DictReader(open("calibration/false_positives.csv")):
-    rows.setdefault(int(r["tic"]), ({"tic": int(r["tic"]), "teff": num(r["Stellar Eff Temp (K)"]),
-                                     "rad": num(r["Stellar Radius (R_Sun)"]), "tmag": num(r["TESS Mag"]),
-                                     "dist": num(r["Stellar Distance (pc)"])}, "cal_fp"))
-for r in csv.DictReader(open("calibration/ebs.csv")):
-    rows.setdefault(int(r["tic"]), ({"tic": int(r["tic"]), "teff": num(r["teff"]), "rad": num(r["rad"]),
-                                     "tmag": num(r["Tmag"])}, "cal_eb"))
+for f, label in (("planets.csv", "cal_planet"), ("false_positives.csv", "cal_fp"), ("ebs.csv", "cal_eb")):
+    for r in csv.DictReader(open(os.path.join("calibration", f))):
+        rows.setdefault(int(float(r["tic"])), label)
 order = sorted(rows)
-mine = [t for i, t in enumerate(order) if (i % 3 == 0) == (machine == "cortex")]
+mine = [t for i, t in enumerate(order) if (i % 5 == 0) == (machine == "cortex")]
 con = db.connect(cfg["paths"]["db"])
 for label in ("cal_planet", "cal_fp", "cal_eb"):
-    db.add_targets(con, [rows[t][0] for t in mine if rows[t][1] == label], label)
+    db.add_targets(con, [{"tic": t} for t in mine if rows[t] == label], label)
 print(f"{machine}: {len(mine)} of {len(order)} stars")
 pipeline.run(cfg, workers=int(os.environ["WORKERS"]))
 report.build(cfg, title=f"tess-hunt calibration survivors ({machine} share)")
