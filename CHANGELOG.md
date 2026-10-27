@@ -111,6 +111,10 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   known planets included, had 2 or fewer.
 
 ## 2026-10-27
+- RUN (Claude proposed, Josh approved): kcfgamer runs the whole calibration set (`MACHINE=all` in
+  `scripts/calibration_run.sh`); Cortex no longer takes a fifth. Cortex's 559-star run is going slower than
+  forecast (223 done at 1:40pm ET, 61 of them since 6am), and calibration shouldn't wait behind it. Cortex keeps
+  the 559 run and its survivor checks.
 - METHOD (board item n1; Josh approved 10/26; the values are Claude's): two per-survivor checks, run after a
   search with `python -m tesshunt survivor-checks` (`tesshunt/survivor_checks.py`), both soft flags (ranked
   lower, never rejected). They are items 1 and 7 of the pre-share checklist, done by hand for TOI-913 in October.

@@ -3,16 +3,18 @@
 # The 698 stars are split by position in a fixed order: every fifth star to Cortex, the rest to kcfgamer
 # (kcfgamer runs about 1.8x Cortex and starts some 9 h earlier on 10/27, so both should end near the same
 # time). Each machine writes its own database in calibration/out/<machine>/; scripts/calibration_report.py
-# merges them. CACHE_DIR points the run at a fresh cache: MAST replaces files in place
+# merges them. MACHINE=all runs every star on one machine (10/27: Cortex's 559 run ran long, so kcfgamer took the
+# whole set, Claude proposed, Josh approved). CACHE_DIR points the run at a fresh cache: MAST replaces files in place
 # (CHANGELOG 2026-10-27), and Cortex's cache holds some from before the sector 23-25 reprocessing.
 #   tmux new -d -s calib 'MACHINE=cortex WORKERS=6 CACHE_DIR=data/cache_2026-10-27 scripts/calibration_run.sh 2>&1 | tee logs/calibration.log'
 #   tmux new -d -s calib 'MACHINE=kcfgamer WORKERS=14 scripts/calibration_run.sh 2>&1 | tee logs/calibration.log'
+#   tmux new -d -s calib 'MACHINE=all WORKERS=14 scripts/calibration_run.sh 2>&1 | tee logs/calibration.log'
 set -euo pipefail
 source "$(dirname "$0")/_env.sh"
 if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
   echo "checkout has uncommitted edits, so the stamps would not name a real commit; stopping"; exit 1
 fi
-: "${MACHINE:?set MACHINE=cortex or MACHINE=kcfgamer}"
+: "${MACHINE:?set MACHINE=cortex, kcfgamer or all}"
 export WORKERS="${WORKERS:-6}"
 mkdir -p logs
 echo "== $(date) calibration run, $MACHINE share, at $(git rev-parse --short HEAD), $WORKERS workers"
@@ -35,7 +37,7 @@ for f, label in (("planets.csv", "cal_planet"), ("false_positives.csv", "cal_fp"
     for r in csv.DictReader(open(os.path.join("calibration", f))):
         rows.setdefault(int(float(r["tic"])), label)
 order = sorted(rows)
-mine = [t for i, t in enumerate(order) if (i % 5 == 0) == (machine == "cortex")]
+mine = order if machine == "all" else [t for i, t in enumerate(order) if (i % 5 == 0) == (machine == "cortex")]
 con = db.connect(cfg["paths"]["db"])
 for label in ("cal_planet", "cal_fp", "cal_eb"):
     db.add_targets(con, [{"tic": t} for t in mine if rows[t] == label], label)
