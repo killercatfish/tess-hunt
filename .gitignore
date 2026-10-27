@@ -27,3 +27,6 @@ revet/n5/
 *.db-wal
 # first eumemic re-search (2026-10-26): run outputs, on Cortex only
 search/eumemic_single/
+
+# kill-test calibration (2026-10-27): run outputs per machine
+calibration/out/

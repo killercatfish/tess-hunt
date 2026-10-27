@@ -84,7 +84,7 @@ def prepare(cfg, sectors, window_d):
     from wotan import flatten
     p = cfg["prep"]
     cols = {k: [] for k in ("time", "raw", "flux", "err", "sector")}
-    authors = {}
+    authors, versions = {}, {}
     for sector, author, lc in sectors:
         lc = lc.remove_nans()
         if len(lc) < 100:
@@ -101,12 +101,16 @@ def prepare(cfg, sectors, window_d):
         cols["time"].append(t[ok]); cols["raw"].append(f[ok]); cols["flux"].append(flat[ok])
         cols["err"].append(e[ok] / trend[ok]); cols["sector"].append(np.full(ok.sum(), sector))
         authors[sector] = author
+        # which processing of the file this is: MAST replaces files in place (CHANGELOG 2026-10-27)
+        versions[sector] = {"author": author, "procver": lc.meta.get("PROCVER"), "data_rel": lc.meta.get("DATA_REL"),
+                            "file_date": lc.meta.get("DATE")}
     if not cols["time"]:
         raise NoData("all sectors empty after cleaning")
     d = {k: np.concatenate(v) for k, v in cols.items()}
     o = np.argsort(d["time"])
     d = {k: v[o] for k, v in d.items()}
     d["authors"] = authors
+    d["versions"] = versions
     d["window_d"] = window_d
     return d
 

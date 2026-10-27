@@ -129,3 +129,14 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   the pre-n5 pilot results), one copy in 8 reached 24.1 and the signal would be flagged. Searches since n5
   mask such events as their own iterations, so they are masked here too. Cost: about 13 minutes per survivor
   for 8 trials on 2 workers beside a running search; roughly 20-40 minutes per survivor at 100 trials.
+- PROVENANCE (no threshold change; Claude, after the fresh-data rerun 10/27): every star now records which
+  processing of each sector's file it used, in the new `targets.data_versions` column (author, processing
+  version, data release and file date per sector). Reason: MAST replaced the sector 23-25 SPOC files with a 2023
+  reprocessing under the same names after Cortex cached them on 10/10. The pipeline reuses its cache, so 22
+  stars kept the old files. On current data, pilot survivor TIC 219495254 (15.35 d) is gone and known planets
+  TOI-2018 b (odd/even, 3.8 sigma) and TOI-1450 A b (holdout) are rejected. TOI-913 is unaffected. The cache
+  still doesn't notice replaced files; until it does, runs that need current data use a fresh cache
+  (`CACHE_DIR` in `scripts/calibration_run.sh`).
+- CALIBRATION SET (Josh decided 10/27 to calibrate the kill tests before any new search; the set is Claude's):
+  `calibration/` holds 515 confirmed planets on 350 stars, 230 TFOP false positives and false alarms, and 120
+  detached binaries on cool dwarfs, plus 59 planets at 40-100 d frozen for later. See `calibration/README.md`.

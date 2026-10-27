@@ -45,6 +45,9 @@ def connect(path):
     if "provenance" not in cols:  # databases made before 2026-10-23
         con.execute("ALTER TABLE targets ADD COLUMN provenance TEXT")
         con.commit()
+    if "data_versions" not in cols:  # databases made before 2026-10-27
+        con.execute("ALTER TABLE targets ADD COLUMN data_versions TEXT")
+        con.commit()
     return con
 
 

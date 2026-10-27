@@ -64,6 +64,7 @@ def process_star(cfg, con, tic, catalogs):
               n_sectors=len(secs), sectors=",".join(map(str, secs)),
               baseline_d=float(lc["time"].max() - lc["time"].min()), n_points=int(len(lc["time"])),
               authors=json.dumps(sorted(set(lc["authors"].values()))),
+              data_versions=json.dumps({str(k): v for k, v in sorted(lc["versions"].items())}, default=str),
               files_bytes=dir_bytes(lightcurves.star_cache(cfg, tic)), provenance=_stamp_json(cfg))
     log.info("TIC %s done in %.0fs: %s", tic, time.time() - t_start,
              [(round(s["period"], 4), s["verdict"]) for s in sigs])
