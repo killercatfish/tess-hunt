@@ -77,7 +77,8 @@ kill_tests:
   holdout_min_hit_frac: 0.5
   injection_period_tol: 0.01
   hard_fail: [harmonic, odd_even, secondary, duration, size, shape, systematics, sector_consistency, holdout, injection]
-  soft_flag: [known, contamination]
+  soft_flag: [known, contamination, late]
+  late_max_rejected_before: 3    # flag a signal found after this many rejected ones on its star (CHANGELOG 2026-10-26)
 
 audit:
   enabled: true

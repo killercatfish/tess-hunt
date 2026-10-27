@@ -166,6 +166,13 @@ def harmonic(sig, prior, cfg):
     return {"pass": True}
 
 
+def late(sig, prior, cfg):
+    """Soft flag: found after several rejected signals on the same star, so possibly a leftover of masking them.
+    The n5 check (2026-10-26) found two such fakes, but also one of eumemic's signals, so it ranks, never kills."""
+    n = sum(1 for p in prior if p.get("verdict") == "rejected")
+    return {"pass": n < cfg["kill_tests"]["late_max_rejected_before"], "rejected_before": n}
+
+
 def _trap(x, depth, t14, flat):
     t23 = flat * t14
     ax = np.abs(x)
@@ -329,6 +336,7 @@ def run_all(lc, sig, prior, star, ab, catalogs, cfg):
             tests[name] = {"pass": None, "error": f"{type(ex).__name__}: {ex}"}
     safe("known", crossmatch.check, star["tic"], sig["period"], catalogs, cfg)
     safe("harmonic", harmonic, sig, prior, cfg)
+    safe("late", late, sig, prior, cfg)
     safe("odd_even", odd_even, ctx)
     safe("secondary", secondary, ctx)
     safe("duration", duration, sig, star, cfg)

@@ -100,3 +100,12 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   `harmonic` test now compares only against earlier signals that passed threshold, as before this change
   (until now every earlier signal had). Thresholds are unchanged. Checked by `scripts/n5_check.sh` (validation
   set, the re-vet stars, the pilot) against copies of the old results; `scripts/n5_compare.py` prints both.
+
+## 2026-10-26
+- METHOD (Claude proposed after the n5 check, Josh approved 10/26; the value 3 is Claude's): new soft flag `late`.
+  A survivor found after `late_max_rejected_before: 3` or more rejected signals on the same star is flagged and
+  ranked lower, never rejected. Reason: searching longer (n5) let weak leftovers of masking through, the 2.58 d
+  survivor behind binary TIC 1220444 (4 rejected before it) and pilot TIC 278593441 at 36.83 d (7 before it).
+  A hard kill was ruled out because eumemic's 10.17 d signal on TIC 247166992 has 4 rejected before it too.
+  Replayed on the n5 results (`revet/n5_check_2026-10-26.md`): exactly those 3 flagged; every other survivor,
+  known planets included, had 2 or fewer.
