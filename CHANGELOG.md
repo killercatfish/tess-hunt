@@ -111,6 +111,11 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   known planets included, had 2 or fewer.
 
 ## 2026-10-27
+- RUN (Josh, 11pm: "if kcfgamer finishes with hours to go for Cortex, move some"): `scripts/calibration_rebalance.sh`
+  runs from the Mac overnight. When kcfgamer's share ends, and Cortex has more than an hour of queued stars left, it
+  takes the tail of Cortex's queue (deleting each star only while still queued, so none runs twice), sized so both
+  machines end together, and runs it on kcfgamer into `calibration/out/kcfgamer2/`. The list is kept on Cortex at
+  `calibration/out/cortex/moved_to_kcfgamer.txt`. `calibration_run.sh` gains `TICS_FILE` for this.
 - RUN (Josh: "just do the calibration", 8:30pm): the 559-star re-search on Cortex is paused at about 300
   stars (its queue is kept and can resume later), and the calibration set is split again, a third to Cortex
   (`CORTEX_EVERY=3`, Claude's split, by speed now that both start together) and the rest to kcfgamer. This
