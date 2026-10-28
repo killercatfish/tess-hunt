@@ -111,6 +111,10 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   known planets included, had 2 or fewer.
 
 ## 2026-10-27
+- RUN (Josh: "just do the calibration", 8:30pm): the 559-star re-search on Cortex is paused at about 300
+  stars (its queue is kept and can resume later), and the calibration set is split again, a third to Cortex
+  (`CORTEX_EVERY=3`, Claude's split, by speed now that both start together) and the rest to kcfgamer. This
+  replaces the 1:50pm all-on-kcfgamer plan.
 - RUN (Claude proposed, Josh approved): kcfgamer runs the whole calibration set (`MACHINE=all` in
   `scripts/calibration_run.sh`); Cortex no longer takes a fifth. Cortex's 559-star run is going slower than
   forecast (223 done at 1:40pm ET, 61 of them since 6am), and calibration shouldn't wait behind it. Cortex keeps
