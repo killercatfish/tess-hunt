@@ -153,3 +153,11 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
 - CALIBRATION SET (Josh decided 10/27 to calibrate the kill tests before any new search; the set is Claude's):
   `calibration/` holds 515 confirmed planets on 350 stars, 230 TFOP false positives and false alarms, and 120
   detached binaries on cool dwarfs, plus 59 planets at 40-100 d frozen for later. See `calibration/README.md`.
+
+## 2026-10-28
+- RUN: the overnight watcher never fired, because the imbalance went the other way. kcfgamer slowed from 62 stars
+  in its first hour to about 15 an hour after 1am, while Cortex kept ~25, so Cortex ends first (~8am) with kcfgamer
+  ~11 h behind. `scripts/calibration_rebalance_reverse.sh` (with the shared queue helper
+  `scripts/calibration_rebalance_db.py`) waits for Cortex's chain to end and moves the tail of kcfgamer's queue to
+  Cortex (`calibration/out/cortex2/`), sized by Cortex's rate and kcfgamer's last-two-hours rate. Same rule as the
+  first watcher (Josh, 10/27). Why kcfgamer slowed is not known yet.
