@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from tesshunt import config as cfgmod, db, provenance  # noqa: E402
+from tesshunt import config as cfgmod, db, provenance, systematics  # noqa: E402
 
 CAL = os.path.join(cfgmod.ROOT, "calibration")
 OUT = os.path.join(CAL, "out")
@@ -78,17 +78,15 @@ def load(dbs):
     return sig, tg.set_index("tic")
 
 
-def merged_systematics(sig, cfg):
-    """The run-level test (pipeline.postprocess) over every machine's signals at once."""
+def merged_systematics(sig, tg, cfg):
+    """The run-level test (pipeline.postprocess, tesshunt/systematics.py) over every machine's signals at once."""
     k = cfg["kill_tests"]
     thr = sig[sig.passes_threshold == 1]
-    periods, tics = thr.period.to_numpy(), thr.tic.to_numpy()
-    out = {}
-    for i, r in thr.iterrows():
-        n = len(set(tics[np.abs(periods / r.period - 1) < k["systematics_period_tol"]].tolist()))
-        out[i] = n
-    sig["n_same_period"] = pd.Series(out)
-    sig["sys_pass_merged"] = sig.n_same_period.map(lambda n: None if pd.isna(n) else n <= k["systematics_max_targets"])
+    sectors = {t: set(str(s or "").split(",")) - {""} for t, s in tg.sectors.items()}
+    n_per, n_times = systematics.systematics_counts(thr.period, thr.t0, thr.duration_h, thr.tic, sectors, cfg)
+    sig["n_same_period"] = pd.Series(n_per, index=thr.index)
+    sig["n_same_times"] = pd.Series(n_times, index=thr.index)
+    sig["sys_pass_merged"] = sig.n_same_times.map(lambda n: None if pd.isna(n) else n <= k["systematics_max_targets"])
     return sig
 
 
@@ -164,7 +162,7 @@ def main(dbs):
     hard, soft = cfg["kill_tests"]["hard_fail"], cfg["kill_tests"]["soft_flag"]
     dbs = dbs or sorted(glob.glob(os.path.join(OUT, "*", "results.db")))
     sig, tg = load(dbs)
-    sig = merged_systematics(sig, cfg)
+    sig = merged_systematics(sig, tg, cfg)
     pl, fp, eb = score_planets(sig, tg, hard, soft), score_fakes(sig, tg, hard, "fp"), score_fakes(sig, tg, hard, "eb")
     rows = pd.concat([d.dropna(axis=1, how="all") for d in (pl, fp, eb)], ignore_index=True)
     rows["tic"] = rows.tic.astype(int)
@@ -234,10 +232,11 @@ def main(dbs):
     # ---- the run-level test
     thr = sig[sig.passes_threshold == 1]
     stored = thr.tests.map(lambda t: t.get("systematics", {}).get("pass"))
-    L += ["## The systematics test (period shared by more than "
-          f"{cfg['kill_tests']['systematics_max_targets']} stars) and run size", "",
-          f"- Threshold-passing signals: {len(thr)}. Failing it within each machine's own run: "
-          f"{int((stored == False).sum())}; over both runs together: {int((thr.sys_pass_merged == False).sum())}.",  # noqa: E712
+    n = cfg["kill_tests"]["systematics_max_targets"]
+    L += [f"## The systematics test (more than {n} stars dipping at the same period and the same times)", "",
+          f"- Threshold-passing signals: {len(thr)}. Failing it over all runs together: "
+          f"{int((thr.sys_pass_merged == False).sum())}. By period alone (the rule before 10/28), it would be "  # noqa: E712
+          f"{int((thr.n_same_period > n).sum())}; as stored by each machine's own run, {int((stored == False).sum())}.",  # noqa: E712
           f"- Found real planets it rejects over both runs together: "
           f"{int(found.killed_by.str.split(',').map(lambda xs: 'systematics' in xs).sum())} of {len(found)}.", ""]
 

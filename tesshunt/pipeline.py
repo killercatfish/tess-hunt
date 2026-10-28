@@ -172,23 +172,23 @@ def run(cfg, labels=None, workers=None):
 
 def postprocess(cfg):
     """Run-level systematics test: a period shared by too many unrelated stars is instrumental."""
-    from . import killtests
+    from . import killtests, systematics
     con = db.connect(cfg["paths"]["db"])
     st = cfg.get("_provenance") or provenance.stamp(cfg)
     db.save_config(con, cfg, st)
     k = cfg["kill_tests"]
-    rows = con.execute("SELECT tic, iteration, period, tests FROM signals WHERE passes_threshold=1").fetchall()
-    periods = np.array([r[2] for r in rows])
-    tics = np.array([r[0] for r in rows])
+    rows = con.execute("SELECT tic, iteration, period, t0, duration_h, tests FROM signals "
+                       "WHERE passes_threshold=1").fetchall()
+    sectors = {t: set(str(s or "").split(",")) - {""} for t, s in con.execute("SELECT tic, sectors FROM targets")}
+    n_per, n_times = systematics.systematics_counts([r[2] for r in rows], [r[3] for r in rows], [r[4] for r in rows],
+                                                  [r[0] for r in rows], sectors, cfg)
     with con:
-        for tic, it, P, tj in rows:
-            near = np.abs(periods / P - 1) < k["systematics_period_tol"]
-            n_stars = len(set(tics[near].tolist()))
+        for (tic, it, P, _, _, tj), n_p, n_t in zip(rows, n_per, n_times):
             inst = [x for x in k["instrumental_periods_d"] for m in (1, 2, 3, 0.5, 1 / 3)
                     if abs(P / (x * m) - 1) < k["systematics_period_tol"]]
             tests = json.loads(tj)
-            tests["systematics"] = {"pass": n_stars <= k["systematics_max_targets"], "n_targets_same_period": n_stars,
-                                    "near_instrumental_period": inst, "provenance": st}
+            tests["systematics"] = {"pass": n_t <= k["systematics_max_targets"], "n_targets_same_times": n_t,
+                                    "n_targets_same_period": n_p, "near_instrumental_period": inst, "provenance": st}
             sig = {"passes_threshold": True, "tests": tests, "snr": con.execute(
                 "SELECT snr FROM signals WHERE tic=? AND iteration=?", (tic, it)).fetchone()[0]}
             v = killtests.verdict(sig, cfg)

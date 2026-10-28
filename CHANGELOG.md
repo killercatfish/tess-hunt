@@ -161,3 +161,15 @@ Thresholds and method changes. Every change to `config.yaml` thresholds gets a l
   `scripts/calibration_rebalance_db.py`) waits for Cortex's chain to end and moves the tail of kcfgamer's queue to
   Cortex (`calibration/out/cortex2/`), sized by Cortex's rate and kcfgamer's last-two-hours rate. Same rule as the
   first watcher (Josh, 10/27). Why kcfgamer slowed is not known yet.
+- METHOD (Josh 10/28, "go for it" on fixing the systematics test first; the rule is Claude's): the systematics
+  test now counts only stars whose dips land at the same times, not just the same period
+  (`tesshunt/systematics.py`, shared by `pipeline.postprocess` and `scripts/calibration_report.py`). Two stars
+  match when their periods agree within `systematics_period_tol`, they share a sector, and their reference
+  transits line up within half the summed durations (plus the drift the period mismatch allows). Fail is still
+  more than `systematics_max_targets: 3` stars. Why: on the calibration set (698 stars) the period-only rule
+  killed 25 of 234 confirmed planets, because unrelated stars share a period by chance, more often in bigger runs
+  and near the 40 d ceiling where weak signals pile up (643 of 1,589 signals failed over the whole set, 125 within
+  each machine's run). With matching times it kills 0 planets; false positives leaking rise 40 to 43 of 150 and
+  binaries stay at 8 of 110. Planets rejected overall: 26% to 17%. An instrumental signal, or one binary leaking
+  into several apertures, dips at the same moments in every star it touches, so those are still caught.
+  `n_targets_same_period` is still recorded beside the new `n_targets_same_times`.

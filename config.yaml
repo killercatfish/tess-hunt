@@ -63,7 +63,7 @@ kill_tests:
   shape_dchi2: 9.0               # V-shape favoured over U by this much -> fail
   shape_min_snr: 12.0            # below this, shape is inconclusive (pass)
   systematics_period_tol: 0.002  # fractional
-  systematics_max_targets: 3     # period shared by more than N targets -> instrumental
+  systematics_max_targets: 3     # more than N stars dipping at the same period AND times -> instrumental (times since 10/28)
   instrumental_periods_d: [13.7, 27.4]  # TESS orbit / sector; flag these and harmonics
   contamination_radius_arcsec: 42
   contamination_max_eclipse: 0.5 # deepest plausible eclipse on a neighbour
